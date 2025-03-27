@@ -85,7 +85,7 @@ const TechConsultancySection: React.FC = () => {
           </div>
           
           <TextReveal as="h2" className="text-4xl md:text-5xl font-bold mb-6">
-            Nuestra Experiencia en Consultoría Tecnológica
+            Nuestra experiencia en consultoría tecnológica
           </TextReveal>
           
           <p className="text-gray-600 max-w-2xl mx-auto">
