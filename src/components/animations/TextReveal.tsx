@@ -6,9 +6,15 @@ interface TextRevealProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  as?: React.ElementType;
 }
 
-const TextReveal: React.FC<TextRevealProps> = ({ children, className, delay = 0 }) => {
+const TextReveal: React.FC<TextRevealProps> = ({ 
+  children, 
+  className, 
+  delay = 0,
+  as: Component = 'div' 
+}) => {
   const [visibilityPercentage, setVisibilityPercentage] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -63,20 +69,19 @@ const TextReveal: React.FC<TextRevealProps> = ({ children, className, delay = 0 
   const textColor = `rgba(0, 0, 0, ${visibilityPercentage / 100})`;
 
   return (
-    <div 
+    <Component 
       ref={ref} 
       className={cn(
-        'text-reveal transition-colors duration-300 ease-in-out',
+        'text-reveal',
         className
       )}
       style={{ 
         color: textColor,
-        WebkitBackgroundClip: 'text',
-        transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+        transition: 'color 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >
       {children}
-    </div>
+    </Component>
   );
 };
 
