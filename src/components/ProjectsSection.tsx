@@ -1,15 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TextReveal from '@/components/animations/TextReveal';
 import ProjectCarousel from '@/components/ProjectCarousel';
 
 const ProjectsSection: React.FC = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section id="projects" className="py-24 bg-white overflow-hidden">
       <div className="section-container">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
