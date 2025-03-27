@@ -17,18 +17,21 @@ const projects = [
     name: "Saludneo",
     description: "Plataforma de salud digital para asegurados",
     imageSrc: "/placeholder.svg",
+    color: "blue",
   },
   {
     id: 2,
     name: "Segurpay",
     description: "Sistema de pago digital para servicios de seguros",
     imageSrc: "/placeholder.svg",
+    color: "purple",
   },
   {
     id: 3,
     name: "Call Center AI",
     description: "Proyecto de Automatización de Call Center",
     imageSrc: "/placeholder.svg",
+    color: "green",
   }
 ];
 

@@ -9,7 +9,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section id="projects" className="py-24 bg-white overflow-hidden">
       <div className="section-container">
-        <div className="mb-12">
+        <div className="mb-16">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-px bg-gray-200 w-16"></div>
             <span className="text-gray-500 text-sm uppercase tracking-wider font-medium">Projects</span>
