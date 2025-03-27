@@ -69,7 +69,7 @@ const Navbar = () => {
               >
                 <a
                   href={item.href}
-                  className="text-sm font-medium text-gray-700 hover:text-black transition-colors flex items-center"
+                  className="text-sm font-medium text-gray-700 hover:text-black transition-colors flex items-center py-2 px-3 rounded-md hover:bg-gray-50/80"
                 >
                   {item.name}
                   {item.submenu && (
@@ -77,9 +77,15 @@ const Navbar = () => {
                   )}
                 </a>
 
-                {/* Submenu */}
+                {/* Submenu - Improved dropdown "cloud" design */}
                 {item.submenu && hoveredItem === i && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-10 animate-fade-in">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-10"
+                  >
                     {item.submenu.map((subItem) => (
                       <a
                         key={subItem.name}
@@ -89,7 +95,7 @@ const Navbar = () => {
                         {subItem.name}
                       </a>
                     ))}
-                  </div>
+                  </motion.div>
                 )}
               </div>
             ))}

@@ -14,7 +14,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex flex-col items-center justify-center hero-background pt-20 pb-16">
       <div className="section-container text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
-          {/* Animated Tag chip */}
+          {/* Animated Tag chip with shimmer effect */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,16 +24,16 @@ const HeroSection = () => {
             <div className="z-10 px-4 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-medium tracking-wide text-gray-800 shadow-sm">
               Corporate Venture Studio
             </div>
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500 bg-gradient-to-r from-transparent via-white/60 to-transparent z-20"></div>
+            {/* Enhanced shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out bg-gradient-to-r from-transparent via-white/60 to-transparent z-20 shimmer"></div>
           </motion.div>
 
-          {/* Main title with gradient */}
+          {/* Main title with enhanced gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-br from-gray-900 via-black to-gray-700 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent"
           >
             Impulsando la transformación digital en el sector asegurador
           </motion.h1>
