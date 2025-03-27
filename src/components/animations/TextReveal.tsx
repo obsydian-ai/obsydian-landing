@@ -65,8 +65,10 @@ const TextReveal: React.FC<TextRevealProps> = ({
     };
   }, [delay]);
 
-  // Calculate the color based on the visibility percentage
+  // Start with a lighter gray color (closer to Paid.ai style) and transition to black
+  // Increased transition duration for smoother effect
   const textColor = `rgba(0, 0, 0, ${visibilityPercentage / 100})`;
+  const baseColor = 'rgba(113, 113, 122, 0.6)'; // Lighter starting color
 
   return (
     <Component 
@@ -77,6 +79,7 @@ const TextReveal: React.FC<TextRevealProps> = ({
       )}
       style={{ 
         color: textColor,
+        // Smoother and longer transition (600ms instead of 300ms)
         transition: 'color 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >

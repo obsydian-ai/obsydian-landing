@@ -67,7 +67,7 @@
 
   .text-reveal {
     transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    color: rgba(128, 128, 128, 0.4); /* Start with a light gray color */
+    color: rgba(113, 113, 122, 0.6); /* Lighter gray color to start, closer to Paid.ai style */
   }
 
   .mask-image {
@@ -105,7 +105,7 @@
 /* Additional animations for text reveal effect */
 @keyframes text-reveal {
   from {
-    color: rgba(128, 128, 128, 0.4);
+    color: rgba(113, 113, 122, 0.6); /* Lighter starting color */
   }
   to {
     color: rgba(0, 0, 0, 1);
@@ -120,4 +120,18 @@
 .text-reveal p {
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* New styles for Paid.ai-like section layout */
+.paid-section-layout h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.paid-section-layout p {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
