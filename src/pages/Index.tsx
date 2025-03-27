@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import VentureStudioSection from '@/components/VentureStudioSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import TechConsultancySection from '@/components/TechConsultancySection';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
       <HeroSection />
       <VentureStudioSection />
       <ProjectsSection />
+      <TechConsultancySection />
       
       {/* Footer section */}
       <footer className="border-t border-gray-200 py-12 mt-24">
