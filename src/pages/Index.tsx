@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import VentureStudioSection from '@/components/VentureStudioSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <VentureStudioSection />
+      <ProjectsSection />
       
       {/* Footer section */}
       <footer className="border-t border-gray-200 py-12 mt-24">
