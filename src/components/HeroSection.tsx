@@ -14,22 +14,26 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex flex-col items-center justify-center hero-background pt-20 pb-16">
       <div className="section-container text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
-          {/* Tag chip */}
+          {/* Animated Tag chip */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-800 text-xs font-medium mb-4"
+            className="inline-flex relative overflow-hidden group"
           >
-            Corporate Venture Studio
+            <div className="z-10 px-4 py-1.5 rounded-full border border-gray-200 bg-white text-xs font-medium tracking-wide text-gray-800 shadow-sm">
+              Corporate Venture Studio
+            </div>
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500 bg-gradient-to-r from-transparent via-white/60 to-transparent z-20"></div>
           </motion.div>
 
-          {/* Main title */}
+          {/* Main title with gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-br from-gray-900 via-black to-gray-700 bg-clip-text text-transparent"
           >
             Impulsando la transformación digital en el sector asegurador
           </motion.h1>
@@ -45,7 +49,7 @@ const HeroSection = () => {
             impulsar la transformación digital, la eficiencia operativa y nuevos modelos de negocio en el sector asegurador.
           </motion.p>
 
-          {/* Changing text component (like Attio's "We're changing the definition of CRM") */}
+          {/* Changing text component */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,8 +59,8 @@ const HeroSection = () => {
             <div className="inline-flex items-center text-lg sm:text-xl font-medium">
               <span className="text-gray-500 mr-2">We're changing the definition of</span>
               <div className="relative inline-block">
-                <span className="text-primary font-bold">InsurTech</span>
-                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary/20 rounded-full"></div>
+                <span className="text-black font-bold">InsurTech</span>
+                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-black/20 rounded-full"></div>
               </div>
             </div>
           </motion.div>
@@ -70,7 +74,7 @@ const HeroSection = () => {
           >
             <a
               href="#venture-section"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-sm transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 shadow-sm transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToNextSection();

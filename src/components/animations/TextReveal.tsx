@@ -5,9 +5,10 @@ import { cn } from '@/lib/utils';
 interface TextRevealProps {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
 }
 
-const TextReveal: React.FC<TextRevealProps> = ({ children, className }) => {
+const TextReveal: React.FC<TextRevealProps> = ({ children, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -15,14 +16,19 @@ const TextReveal: React.FC<TextRevealProps> = ({ children, className }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
+          setTimeout(() => {
+            setIsVisible(true);
+          }, delay);
+          // Don't disconnect the observer to allow color to change back when scrolling away
+        } else {
+          // When scrolling away, change back to initial color
+          setIsVisible(false);
         }
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.2, // Text starts to reveal when 20% of the element is visible
+        threshold: 0.5, // Text changes color when 50% of the element is visible
       }
     );
 
@@ -35,14 +41,14 @@ const TextReveal: React.FC<TextRevealProps> = ({ children, className }) => {
         observer.unobserve(ref.current);
       }
     };
-  }, []);
+  }, [delay]);
 
   return (
     <div 
       ref={ref} 
       className={cn(
-        'text-reveal text-muted-foreground transition-colors duration-700 ease-in-out',
-        isVisible && 'text-foreground',
+        'text-reveal text-gray-500 transition-colors duration-500 ease-in-out',
+        isVisible && 'text-black',
         className
       )}
     >
