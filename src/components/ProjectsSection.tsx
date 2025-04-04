@@ -28,94 +28,84 @@ const projects = [
   }
 ];
 
-const SCROLL_SNAP_INTERVAL = 100; // vh units
-const SCROLL_SNAP_THRESHOLD = 0.2; // 20% of the interval
+// Definimos el tipo de tema
+interface Theme {
+  text: string;
+  border: string;
+  background: string;
+  primary: string;
+  accent: string;
+}
+
+// Función para obtener el tema basado en el índice
+const getTheme = (index: number): Theme => {
+  const themes: Theme[] = [
+    {
+      text: 'text-blue-600',
+      border: 'border-blue-200',
+      background: 'bg-blue-50',
+      primary: 'blue-600',
+      accent: 'blue-400'
+    },
+    {
+      text: 'text-purple-600',
+      border: 'border-purple-200',
+      background: 'bg-purple-50',
+      primary: 'purple-600',
+      accent: 'purple-400'
+    },
+    {
+      text: 'text-green-600',
+      border: 'border-green-200',
+      background: 'bg-green-50',
+      primary: 'green-600',
+      accent: 'green-400'
+    }
+  ];
+  return themes[index % themes.length];
+};
 
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Create a spring-animated version of scrollYProgress
+  // Movimiento más suave con spring
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 50,
+    damping: 20,
     restDelta: 0.001
   });
 
-  // Transform smooth progress into x position
+  // Transformación del progreso en posición X ajustada
   const x = useTransform(
     smoothProgress,
-    [0, 1],
+    [0.25, 0.85],
     ["0%", `-${(projects.length - 1) * 100}%`]
   );
 
-  // Create opacity transforms for fade effects
+  // Efectos de opacidad ajustados
   const headerOpacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.25],
+    [0, 0.15, 0.25],
     [1, 1, 0]
   );
 
   const projectsOpacity = useTransform(
     scrollYProgress,
-    [0.9, 0.98],
+    [0.95, 1],
     [1, 0]
   );
 
-  // Snap scroll to nearest project
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      if (!containerRef.current || isScrolling) return;
-      
-      clearTimeout(timeoutId);
-      setIsScrolling(true);
-      
-      timeoutId = setTimeout(() => {
-        const container = containerRef.current;
-        if (!container) return;
-        
-        const scrollTop = window.scrollY - container.offsetTop;
-        const containerHeight = container.offsetHeight;
-        const viewportHeight = window.innerHeight;
-        
-        const scrollProgress = scrollTop / (containerHeight - viewportHeight);
-        const projectPosition = scrollProgress * projects.length;
-        const nearestProject = Math.round(projectPosition);
-        
-        if (Math.abs(projectPosition - nearestProject) < SCROLL_SNAP_THRESHOLD) {
-          const targetScroll = container.offsetTop + (nearestProject * viewportHeight);
-          window.scrollTo({
-            top: targetScroll,
-            behavior: 'smooth'
-          });
-          
-          setActiveProject(nearestProject);
-        }
-        
-        setIsScrolling(false);
-      }, 150); // Debounce time
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [isScrolling]);
-
-  // Update active project based on scroll position
+  // Actualizar proyecto activo basado en la posición del scroll
   useEffect(() => {
     return scrollYProgress.on("change", latest => {
       const projectIndex = Math.min(
-        Math.floor(latest * projects.length),
+        Math.floor(latest * projects.length * 0.85),
         projects.length - 1
       );
       setActiveProject(projectIndex);
@@ -126,13 +116,9 @@ const ProjectsSection: React.FC = () => {
     <section 
       ref={containerRef}
       className="relative bg-gradient-to-b from-white to-gray-50/50"
-      style={{ 
-        height: `${projects.length * SCROLL_SNAP_INTERVAL}vh`,
-        scrollSnapType: 'y mandatory',
-        scrollSnapPointsY: `repeat(${SCROLL_SNAP_INTERVAL}vh)`
-      }}
+      style={{ height: `${projects.length * 150}vh` }}
     >
-      {/* Header - Fixed at top with larger padding and gradient overlay */}
+      {/* Header con fade out */}
       <motion.div 
         style={{ opacity: headerOpacity }}
         className="sticky top-0 pt-24 pb-32 bg-gradient-to-b from-white via-white to-transparent z-10"
@@ -152,7 +138,7 @@ const ProjectsSection: React.FC = () => {
             </motion.div>
             
             <TextReveal as="h2" className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              Transformando el Sector Asegurador
+              Transformando el sector asegurador
             </TextReveal>
             
             <motion.p
@@ -169,20 +155,13 @@ const ProjectsSection: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Projects Container - Horizontal scroll controlled by vertical scroll */}
+      {/* Contenedor de proyectos con scroll horizontal */}
       <motion.div 
         style={{ opacity: projectsOpacity }}
         className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
       >
         <motion.div 
-          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none"
-          style={{
-            opacity: useTransform(
-              scrollYProgress,
-              [0, 0.1],
-              [0, 0.75]
-            )
-          }}
+          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none opacity-75"
         />
         
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none opacity-75"></div>
@@ -190,28 +169,26 @@ const ProjectsSection: React.FC = () => {
         <motion.div 
           className="flex w-full"
           style={{ x }}
-          transition={{ 
-            type: "spring",
-            stiffness: 100,
-            damping: 30,
-            restDelta: 0.001
-          }}
+          transition={{ type: "spring", stiffness: 50, damping: 20 }}
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
               className="min-w-full px-6"
-              style={{ scrollSnapAlign: 'start' }}
             >
               <div className="container mx-auto">
-                <ProjectCard project={project} />
+                <ProjectCard
+                  project={project}
+                  isActive={activeProject === index}
+                  theme={getTheme(index)}
+                />
               </div>
             </div>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Progress Indicator */}
+      {/* Indicador de progreso */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
         {projects.map((_, index) => (
           <motion.div

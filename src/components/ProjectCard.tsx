@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+
+interface Theme {
+  text: string;
+  border: string;
+  background: string;
+  primary: string;
+  accent: string;
+}
 
 interface ProjectCardProps {
   project: {
@@ -9,83 +17,275 @@ interface ProjectCardProps {
     name: string;
     description: string;
     imageSrc: string;
-    color?: string;
+    color: string;
   };
+  isActive: boolean;
+  theme: Theme;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const springConfig = {
+  stiffness: 150,
+  damping: 25
+};
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const rotateX = useSpring(10, springConfig);
+  const rotateY = useSpring(-10, springConfig);
+  const cardDepth = useSpring(0, {
+    stiffness: 100,
+    damping: 30
+  });
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { currentTarget, clientX, clientY } = event;
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    
+    const x = clientX - left;
+    const y = clientY - top;
+    
+    // Reducimos el multiplicador para un movimiento más suave
+    const multiplier = 20;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    
+    rotateX.set((y - centerY) / centerY * multiplier);
+    rotateY.set((x - centerX) / centerX * multiplier);
+    cardDepth.set(20);
+    
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    // Posición inicial más sutil
+    rotateX.set(10);
+    rotateY.set(-10);
+    cardDepth.set(0);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    rotateX.set(0);
+    rotateY.set(0);
+    cardDepth.set(20);
+  };
+
   // Custom gradients based on project color
   const gradientMap = {
-    blue: "bg-gradient-to-br from-blue-50/80 to-blue-100/50",
-    purple: "bg-gradient-to-br from-purple-50/80 to-purple-100/50",
-    green: "bg-gradient-to-br from-green-50/80 to-green-100/50",
+    blue: {
+      primary: "from-blue-500/20 to-blue-600/20",
+      secondary: "from-blue-400/10 to-blue-500/10",
+      accent: "bg-blue-500",
+      text: "text-blue-700",
+      border: "border-blue-200/50"
+    },
+    purple: {
+      primary: "from-purple-500/20 to-purple-600/20",
+      secondary: "from-purple-400/10 to-purple-500/10",
+      accent: "bg-purple-500",
+      text: "text-purple-700",
+      border: "border-purple-200/50"
+    },
+    green: {
+      primary: "from-green-500/20 to-green-600/20",
+      secondary: "from-green-400/10 to-green-500/10",
+      accent: "bg-green-500",
+      text: "text-green-700",
+      border: "border-green-200/50"
+    }
   };
   
-  const gradientClass = gradientMap[project.color as keyof typeof gradientMap] || gradientMap.blue;
+  const cardTheme = gradientMap[project.color as keyof typeof gradientMap] || gradientMap.blue;
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full px-6">
-      {/* Left Card: Project Info with Geometric Design */}
+      {/* Left Card: Project Info with enhanced 3D effect */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative h-full"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="relative h-full perspective-2000"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white rounded-3xl transform rotate-3 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white rounded-3xl transform -rotate-2 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"></div>
-        <div className="relative bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border border-gray-100/50 p-8 h-full">
-          {/* Geometric shapes */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-100/50 to-transparent rounded-full -mr-12 -mt-12 blur-2xl"></div>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-gray-100/50 to-transparent rounded-full -ml-16 -mb-16 blur-2xl"></div>
+        {/* Capas de profundidad sólidas */}
+        <motion.div
+          className="absolute inset-0 bg-gray-50 rounded-3xl transform-gpu"
+          style={{
+            rotateX,
+            rotateY,
+            z: -60,
+            scale: 0.85,
+            transformStyle: "preserve-3d",
+            boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)"
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-gray-100 rounded-3xl transform-gpu"
+          style={{
+            rotateX,
+            rotateY,
+            z: -30,
+            scale: 0.92,
+            transformStyle: "preserve-3d",
+            boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)"
+          }}
+        />
+        
+        {/* Tarjeta principal */}
+        <motion.div
+          initial={{ rotateX: 10, rotateY: -10 }}
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+            scale: isHovered ? 1.01 : 1, // Reducimos el escalado al hover
+            boxShadow: useMotionTemplate`0 ${cardDepth}px 50px -15px rgba(0,0,0,0.15), 0 ${cardDepth}px 30px -15px rgba(0,0,0,0.1)`
+          }}
+          transition={{ duration: 0.4 }} // Aumentamos ligeramente la duración de la transición
+          className="relative bg-white rounded-3xl border border-gray-100/50 p-8 h-full transform-gpu"
+        >
+          {/* Spotlight effect más sutil */}
+          <motion.div
+            className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300"
+            style={{
+              background: useMotionTemplate`
+                radial-gradient(
+                  1200px circle at ${mouseX}px ${mouseY}px,
+                  ${cardTheme.primary},
+                  transparent 70%
+                )
+              `,
+              opacity: isHovered ? 0.6 : 0
+            }}
+          />
           
-          <div className="relative z-10 h-full flex flex-col justify-between">
-            {/* Project details */}
-            <div className="space-y-6">
+          {/* Elementos internos con elevación ajustada */}
+          <div className="relative z-10 h-full flex flex-col justify-between transform-gpu">
+            <div className="space-y-6" style={{ transform: "translateZ(40px)" }}> {/* Reducimos la elevación */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-2"
+                className="space-y-4"
               >
-                <h3 className="text-3xl font-bold tracking-tight">{project.name}</h3>
+                <div className="flex items-center space-x-3">
+                  <motion.div 
+                    className={`w-2 h-2 rounded-full ${cardTheme.accent}`}
+                    animate={{ scale: isHovered ? 1.1 : 1 }} // Reducimos la escala
+                    transition={{ duration: 0.4 }}
+                  />
+                  <h3 className={`text-3xl font-bold tracking-tight ${cardTheme.text}`}>{project.name}</h3>
+                </div>
                 <p className="text-gray-600 text-lg leading-relaxed">{project.description}</p>
               </motion.div>
             </div>
             
-            {/* Learn More button */}
+            {/* Botón con elevación ajustada y mejor accesibilidad */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="pt-8"
+              className="pt-8 relative z-20"
+              style={{ transform: "translateZ(50px)" }}
             >
               <Button 
                 variant="ghost"
-                className="group px-0 font-medium text-gray-900 hover:text-gray-900 hover:bg-transparent"
+                className={`group relative px-6 py-3 font-medium rounded-full border ${cardTheme.border} transition-all duration-400 hover:scale-105 hover:shadow-lg ${cardTheme.text} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${cardTheme.text} active:scale-95`}
+                onClick={() => {
+                  const element = document.getElementById(`project-${project.id}`);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const element = document.getElementById(`project-${project.id}`);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+                role="button"
+                aria-label={`Learn more about ${project.name}`}
+                tabIndex={0}
               >
-                Learn More
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative z-10 flex items-center pointer-events-auto">
+                Learn More 
+                  <motion.div
+                    animate={{ x: isHovered ? 6 : 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex items-center"
+                  >
+                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  </motion.div>
+                </span>
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-current"
+                  style={{ opacity: 0.1 }}
+                  initial={false}
+                  animate={{ scale: isHovered ? 1 : 0.95, opacity: isHovered ? 0.15 : 0.1 }}
+                  transition={{ duration: 0.4 }}
+                />
               </Button>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
       
-      {/* Right Card: Phone Screenshot */}
+      {/* Right Card: Phone Screenshot with enhanced floating effect */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative h-full flex items-center justify-center"
+        className="relative h-full flex items-center justify-center perspective-1000"
       >
-        <div className={`relative w-full h-full rounded-3xl ${gradientClass} p-8 flex items-center justify-center overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border border-gray-100/50`}>
-          {/* Background decorative elements */}
+        <motion.div 
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className={`relative w-full h-full rounded-3xl bg-gradient-to-br ${cardTheme.primary} p-8 flex items-center justify-center overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border ${cardTheme.border}`}
+        >
+          {/* Dynamic background elements */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.8),transparent)]"></div>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"></div>
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.5, 0.3, 0.5],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+            className="absolute bottom-0 left-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"
+          />
           
-          {/* Phone container */}
+          {/* Phone container with reflection effect */}
           <motion.div
             initial={{ y: 20, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -93,18 +293,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             className="relative max-w-[280px] mx-auto"
           >
             <div className="rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-sm p-2">
+              <div className="relative">
               <img 
                 src={project.imageSrc === "/placeholder.svg" ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" : project.imageSrc} 
                 alt={`${project.name} screenshot`}
-                className="w-full h-auto rounded-[1.5rem] object-cover aspect-[9/16]"
-              />
-              <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gray-200/80 rounded-full"></div>
+                  className="w-full h-auto rounded-[1.5rem] object-cover aspect-[9/16]"
+                />
+                {/* Reflection overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 rounded-[1.5rem]"></div>
+              </div>
+              <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-black/10 rounded-full backdrop-blur-sm"></div>
             </div>
             
-            {/* Floating effect & glow */}
-            <div className="absolute -inset-8 bg-white/30 rounded-full blur-2xl -z-10 opacity-70"></div>
+            {/* Enhanced glow effect */}
+            <div className="absolute -inset-8 bg-gradient-to-br from-white/40 to-white/20 rounded-full blur-2xl -z-10 opacity-70"></div>
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

@@ -1,73 +1,197 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquareText, Zap, Database, Headset } from 'lucide-react';
-import TextReveal from '@/components/animations/TextReveal';
+import { Shield, Database, Bot, Zap } from 'lucide-react';
 
-// Define the consultant service type
-interface ConsultancyService {
+interface Service {
   id: number;
   title: string;
   description: string;
   icon: React.ReactNode;
+  tags?: string[];
 }
 
-// Define the services data
-const services: ConsultancyService[] = [
+const services: Service[] = [
   {
     id: 1,
-    title: "Automatización de recobros e impagos",
-    description: "Optimizamos los procesos de recobro y gestión de impagos mediante sistemas automatizados que mejoran la eficiencia y reducen costes operativos.",
-    icon: <Database className="w-8 h-8 text-gray-800" />,
+    title: "Centro de Operaciones 24/7",
+    description: "Monitoreo continuo y respuesta inmediata ante amenazas. Nuestro equipo de expertos está disponible en todo momento.",
+    icon: <Shield className="w-7 h-7" />,
+    tags: ["SOC", "Threat Response", "24/7"]
   },
   {
     id: 2,
-    title: "Automatización de atención al cliente",
-    description: "Implementamos soluciones de atención al cliente basadas en IA que responden consultas y resuelven incidencias de forma inmediata y personalizada.",
-    icon: <Headset className="w-8 h-8 text-gray-800" />,
+    title: "Cloud Protection",
+    description: "Protección avanzada para tus servicios en la nube contra amenazas emergentes y ataques sofisticados.",
+    icon: <Database className="w-7 h-7" />,
+    tags: ["Cloud", "Security", "AWS"]
   },
   {
     id: 3,
-    title: "Automatización de gestión de siniestros",
-    description: "Desarrollamos sistemas que agilizan y optimizan la gestión completa de siniestros, desde la notificación hasta la resolución.",
-    icon: <Zap className="w-8 h-8 text-gray-800" />,
+    title: "AI Security",
+    description: "Implementación de sistemas de seguridad potenciados por IA para detección predictiva de amenazas.",
+    icon: <Bot className="w-7 h-7" />,
+    tags: ["AI", "ML", "Predictive"]
   },
   {
     id: 4,
-    title: "Automatización de comunicaciones comerciales",
-    description: "Creamos flujos automatizados para comunicaciones comerciales que mejoran la eficacia de las campañas y la personalización de los mensajes.",
-    icon: <MessageSquareText className="w-8 h-8 text-gray-800" />,
+    title: "Safe BOX",
+    description: "Sistema integral de protección contra phishing, malware y amenazas avanzadas.",
+    icon: <Zap className="w-7 h-7" />,
+    tags: ["Anti-Phishing", "Malware", "Zero-Day"]
   }
 ];
 
-// Card component for each consultancy service
-const ConsultancyCard: React.FC<{ service: ConsultancyService; index: number }> = ({ service, index }) => {
+const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-      viewport={{ once: true, margin: "-100px" }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-300"
+      viewport={{ once: true }}
+      whileHover={{ 
+        y: -12,
+        transition: { duration: 0.3, ease: [0.33, 1, 0.68, 1] }
+      }}
+      className="group"
     >
-      <div className="px-7 py-7 h-full flex flex-col">
-        <div className="mb-5 p-3 bg-gray-50 w-fit rounded-xl">
-          {service.icon}
+      <div 
+        className={`
+          relative bg-white rounded-[32px] h-full overflow-hidden
+          transition-all duration-500
+          border-2 border-[#E5E7EB]
+          shadow-[0_12px_32px_-4px_rgba(0,0,0,0.12)]
+          hover:shadow-[0_32px_64px_-8px_rgba(0,0,0,0.25)]
+          p-8
+          group
+        `}
+      >
+        {/* Fondo con Efecto Dramático */}
+        <div className="
+          absolute inset-0 
+          transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+          scale-[1.5] rotate-[-15deg] translate-x-[100%] translate-y-[10%]
+          group-hover:scale-100 group-hover:rotate-0 group-hover:translate-x-0 group-hover:translate-y-0
+          bg-gradient-to-br from-gray-900 via-gray-900 to-black
+          after:absolute after:inset-0
+          after:bg-gradient-to-br after:from-gray-800/10 after:to-black/10
+          after:opacity-0 after:transition-opacity after:duration-700
+          after:group-hover:opacity-100
+          z-0
+        "/>
+
+        {/* Línea de Acento */}
+        <div className="
+          absolute top-0 left-[15%] right-[15%] h-[2px]
+          bg-gradient-to-r from-transparent via-white/70 to-transparent
+          transition-all duration-700 ease-out
+          translate-y-[-100%] opacity-0
+          group-hover:translate-y-0 group-hover:opacity-100
+          z-10
+        "/>
+
+        {/* Contenido */}
+        <div className="relative z-20 space-y-6">
+          {/* Header Section */}
+          <div className="flex items-start justify-between">
+            {/* Icon Container con Efecto */}
+            <div className="relative">
+              <div className="
+                inline-flex items-center justify-center w-16 h-16 
+                rounded-2xl
+                border-2 transition-all duration-500
+                bg-white text-gray-900
+                border-[#E5E7EB]
+                shadow-[0_4px_8px_-2px_rgba(0,0,0,0.12)]
+                group-hover:scale-110
+                group-hover:rotate-[5deg]
+                group-hover:bg-white
+                group-hover:text-gray-900
+                group-hover:border-white
+                group-hover:shadow-[0_8px_16px_-4px_rgba(255,255,255,0.3)]
+              ">
+                {React.cloneElement(service.icon as React.ReactElement, { 
+                  className: "w-7 h-7 transition-all duration-500 group-hover:scale-110" 
+                })}
+              </div>
+            </div>
+
+            {/* Tags con Efecto */}
+            {service.tags && (
+              <div className="flex flex-wrap gap-2 justify-end">
+                {service.tags.map((tag, index) => (
+                  <span 
+                    key={index}
+                    className="
+                      inline-flex items-center px-3 py-1 rounded-full 
+                      transition-all duration-500
+                      border-2
+                      text-xs font-medium
+                      bg-white text-gray-900 border-[#E5E7EB]
+                      group-hover:scale-105
+                      group-hover:bg-white
+                      group-hover:text-gray-900
+                      group-hover:border-white
+                      group-hover:shadow-[0_4px_8px_-2px_rgba(255,255,255,0.3)]
+                      group-hover:-rotate-[5deg]
+                    "
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Content con Efecto */}
+          <div className="relative">
+            {/* Texto Estado Normal */}
+            <div className="
+              space-y-3
+              transition-all duration-500
+              opacity-100 group-hover:opacity-0
+              group-hover:translate-y-4
+              group-hover:scale-95
+            ">
+              <h3 className="text-[22px] font-semibold tracking-tight text-gray-900">
+                {service.title}
+              </h3>
+              <p className="text-[15px] leading-relaxed text-gray-600">
+                {service.description}
+              </p>
+            </div>
+
+            {/* Texto Estado Hover */}
+            <div className="
+              space-y-3
+              absolute inset-0
+              transition-all duration-500
+              opacity-0 translate-y-[-1rem] scale-105
+              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+            ">
+              <h3 className="
+                text-[22px] font-semibold tracking-tight text-white
+                [text-shadow:0_2px_10px_rgba(255,255,255,0.2)]
+              ">
+                {service.title}
+              </h3>
+              <p className="
+                text-[15px] leading-relaxed text-white
+                [text-shadow:0_1px_8px_rgba(255,255,255,0.1)]
+              ">
+                {service.description}
+              </p>
+            </div>
+          </div>
         </div>
-        
-        <h3 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h3>
-        
-        <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-        
-        <div className="mt-auto">
-          <button className="text-sm font-medium text-gray-700 flex items-center hover:text-black transition-colors">
-            Más información
-            <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
+
+        {/* Efecto de Brillo */}
+        <div className="
+          absolute inset-0
+          bg-gradient-to-tr from-white/0 via-white/10 to-white/0
+          opacity-0 transition-opacity duration-700
+          group-hover:opacity-100
+          pointer-events-none
+          z-10
+        "/>
       </div>
     </motion.div>
   );
@@ -75,33 +199,42 @@ const ConsultancyCard: React.FC<{ service: ConsultancyService; index: number }> 
 
 const TechConsultancySection: React.FC = () => {
   return (
-    <section id="consultancy" className="py-24 bg-gray-50">
-      <div className="section-container">
-        <div className="mb-16 text-center">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px bg-gray-300 w-16"></div>
-            <span className="text-gray-500 text-sm uppercase tracking-wider font-medium">Consultoría</span>
-            <div className="h-px bg-gray-300 w-16"></div>
-          </div>
-          
-          <TextReveal as="h2" className="text-4xl md:text-5xl font-bold mb-6">
-            Nuestra experiencia en consultoría tecnológica
-          </TextReveal>
-          
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Transformamos y optimizamos procesos críticos del sector asegurador a través de 
-            soluciones tecnológicas innovadoras y personalizadas.
+    <section className="py-24 bg-[#F9F9FA]">
+      <div className="container mx-auto px-8 max-w-[1400px]">
+        <motion.div 
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-bold mb-5 text-black/90 tracking-tight">
+            Servicios de Seguridad
+          </h2>
+          <p className="text-black/60 text-lg max-w-2xl mx-auto">
+            Protección completa para tu negocio con tecnología de última generación
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {services.map((service, index) => (
-            <ConsultancyCard 
-              key={service.id} 
-              service={service} 
-              index={index}
-            />
-          ))}
+        <div className="relative">
+          {/* Background Container */}
+          <div className="absolute inset-0 -mx-6 bg-[#F4F4F5] rounded-[32px] 
+            border-2 border-[#E5E7EB]
+            before:absolute before:inset-0 before:rounded-[32px]
+            before:shadow-[inset_0_2px_4px_rgba(255,255,255,0.95)]
+            after:absolute after:inset-0 after:rounded-[32px]
+            after:shadow-[0_8px_32px_-16px_rgba(0,0,0,0.15)]" 
+          />
+
+          <div className="relative p-6">
+            <div className="grid grid-cols-2 gap-8">
+              {services.map((service) => (
+                <ServiceCard 
+                  key={service.id} 
+                  service={service}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

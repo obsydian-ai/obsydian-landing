@@ -1,4 +1,3 @@
-
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -33,7 +32,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.2] tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent pb-2"
           >
             Impulsando la transformación digital en el sector asegurador
           </motion.h1>

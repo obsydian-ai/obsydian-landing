@@ -1,5 +1,5 @@
-
 import TextReveal from './animations/TextReveal';
+import MarkerTextReveal from './animations/MarkerTextReveal';
 import { motion } from 'framer-motion';
 
 const VentureStudioSection = () => {
@@ -13,40 +13,44 @@ const VentureStudioSection = () => {
               {/* Section label with horizontal line - matching Paid.ai */}
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-0.5 bg-black"></div>
-                <TextReveal as="h2" className="text-base font-medium uppercase tracking-wide">
+                <MarkerTextReveal as="h2" className="text-base font-medium uppercase tracking-wide">
                   Nuestra Visión
-                </TextReveal>
+                </MarkerTextReveal>
               </div>
               
               {/* Large title with improved typography to match Paid.ai */}
-              <TextReveal as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]" delay={100}>
-                Desarrollamos soluciones tecnológicas que impulsan la eficiencia y transformación del sector asegurador
-              </TextReveal>
+              <MarkerTextReveal as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+                <div>Desarrollamos soluciones</div>
+                <div>tecnológicas que impulsan</div>
+                <div>la eficiencia y</div>
+                <div>transformación del sector</div>
+                <div>asegurador</div>
+              </MarkerTextReveal>
               
-              {/* Text paragraphs with improved spacing and reveal effect */}
+              {/* Text paragraphs with improved spacing and marker reveal effect */}
               <div className="space-y-6 mt-8">
-                <TextReveal className="text-xl md:text-2xl leading-relaxed" delay={200}>
+                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
                   <p>
                     En Segurneo, creamos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la 
                     transformación digital. Nuestra misión es hacer converger la experiencia y el conocimiento profundo del sector 
                     con las tecnologías más disruptivas.
                   </p>
-                </TextReveal>
+                </MarkerTextReveal>
                 
-                <TextReveal className="text-xl md:text-2xl leading-relaxed" delay={300}>
+                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
                   <p>
                     Desarrollamos soluciones a medida que responden a necesidades concretas. Impulsamos la eficiencia operativa, 
                     la experiencia del cliente y la generación de nuevos modelos de negocio, colaborando estrechamente con compañías 
                     aseguradoras para co-crear el futuro del sector.
                   </p>
-                </TextReveal>
+                </MarkerTextReveal>
                 
-                <TextReveal className="text-xl md:text-2xl leading-relaxed" delay={400}>
+                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
                   <p>
                     Como venture studio, no solo diseñamos soluciones—construimos empresas. Compartimos el riesgo y la recompensa del 
                     proceso emprendedor y trabajamos mano a mano con nuestros partners para impulsar la transformación digital desde adentro.
                   </p>
-                </TextReveal>
+                </MarkerTextReveal>
               </div>
             </div>
 
