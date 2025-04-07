@@ -9,18 +9,18 @@ const NavItems = [
     name: 'Servicios', 
     href: '#services',
     submenu: [
-      { name: 'Our Projects', href: '#projects' },
-      { name: 'Tech Consultancy', href: '#consultancy' }
+      { name: 'Nuestros proyectos', href: '#projects' },
+      { name: 'Consultoría tecnológica', href: '#tech-consultancy' }
     ]
   },
   { 
-    name: 'Resources', 
+    name: 'Recursos', 
     href: '#resources',
     submenu: [
-      { name: 'Coming soon', href: '#coming-soon' }
+      { name: 'Próximamente', href: '#coming-soon' }
     ]
   },
-  { name: 'About us', href: '#about' },
+  { name: 'Sobre nosotros', href: '#about' },
 ];
 
 const Navbar = () => {

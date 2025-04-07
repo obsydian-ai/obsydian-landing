@@ -57,16 +57,71 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
     >
       <div className="
         relative bg-white overflow-hidden
-        rounded-[28px]
-        border-0
-        shadow-[0_8px_24px_-4px_rgba(0,0,0,0.2)]
+        rounded-[32px] md:rounded-[40px]
+        border-2 border-black/[0.03]
+        shadow-[0_8px_24px_-4px_rgba(0,0,0,0.08)]
         transition-all duration-700
-        hover:shadow-[0_16px_40px_-4px_rgba(0,0,0,0.3)]
+        hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)]
+        hover:border-black/[0.08]
+        hover:-translate-y-1
+        group-hover:scale-[1.02]
+        before:content-['']
+        before:absolute
+        before:inset-0
+        before:rounded-[32px] md:before:rounded-[40px]
+        before:border-2
+        before:border-black/[0.03]
+        before:transition-all
+        before:duration-700
+        before:scale-[1.01]
+        hover:before:scale-[1.02]
+        before:opacity-0
+        hover:before:opacity-100
+        after:content-['']
+        after:absolute
+        after:inset-[2px]
+        after:rounded-[30px] md:after:rounded-[38px]
+        after:border-2
+        after:border-black/[0.03]
+        after:transition-all
+        after:duration-700
+        after:scale-[0.99]
+        hover:after:scale-[1.01]
+        after:opacity-0
+        hover:after:opacity-100
       ">
+        {/* Brillo en Esquinas */}
+        <div className="
+          absolute -right-20 -top-20
+          w-40 h-40
+          bg-white
+          rounded-full
+          blur-3xl
+          opacity-0
+          transition-opacity duration-700
+          group-hover:opacity-20
+          pointer-events-none
+        "/>
+        <div className="
+          absolute -left-20 -bottom-20
+          w-40 h-40
+          bg-white
+          rounded-full
+          blur-3xl
+          opacity-0
+          transition-opacity duration-700
+          group-hover:opacity-20
+          pointer-events-none
+        "/>
+
         {/* Contenedor Principal */}
-        <div className="relative z-10 p-8">
+        <div className="
+          relative z-10 p-8 md:p-10
+          transition-transform duration-700
+          group-hover:scale-[0.99]
+        ">
           {/* Header */}
-          <div className="flex flex-col space-y-5">
+          <div className="flex flex-col space-y-4">
             {/* Icono */}
             <div className="
               inline-flex items-center justify-center
@@ -74,18 +129,43 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
               rounded-2xl bg-black/[0.03]
               transition-all duration-500
               group-hover:bg-black/[0.06]
+              group-hover:scale-110
+              group-hover:rotate-3
+              group-hover:shadow-lg
+              relative
+              overflow-hidden
             ">
+              <div className="
+                absolute inset-0
+                bg-gradient-to-r from-black/[0.02] via-black/[0.01] to-black/[0.02]
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-500
+              "/>
               {React.cloneElement(feature.icon as React.ReactElement, {
-                className: "w-5 h-5 text-gray-900"
+                className: "w-5 h-5 text-gray-900 relative z-10"
               })}
             </div>
 
             {/* Contenido */}
             <div className="space-y-3">
-              <h3 className="text-xl font-semibold text-gray-900">
+              <h3 className="
+                text-2xl md:text-3xl
+                font-semibold
+                text-gray-900
+                tracking-tight
+                transition-all duration-500
+                group-hover:translate-x-2
+              ">
                 {feature.title}
               </h3>
-              <p className="text-[14px] leading-relaxed text-gray-600 max-w-lg">
+              <p className="
+                text-[15px]
+                leading-relaxed
+                text-gray-600
+                max-w-lg
+                transition-all duration-500
+                group-hover:-translate-x-1
+              ">
                 {feature.description}
               </p>
             </div>
@@ -93,11 +173,14 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 
           {/* Imagen del Dashboard */}
           <div className={`
-            relative mt-8
-            aspect-[16/9] w-full
-            overflow-hidden rounded-xl
+            relative mt-6
+            aspect-[16/7] w-full
+            overflow-hidden rounded-2xl
             ${feature.image}
             bg-opacity-50
+            transition-all duration-700
+            group-hover:scale-[1.03]
+            group-hover:shadow-xl
           `}>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-[85%] h-3/5">
@@ -122,6 +205,8 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
             <div className="
               absolute inset-0
               bg-gradient-to-t from-white/60 to-transparent
+              transition-opacity duration-700
+              group-hover:opacity-80
             "/>
           </div>
         </div>

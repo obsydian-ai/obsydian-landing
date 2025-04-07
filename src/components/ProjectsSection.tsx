@@ -114,6 +114,7 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <section 
+      id="projects"
       ref={containerRef}
       className="relative bg-gradient-to-b from-white to-gray-50/50"
       style={{ height: `${projects.length * 150}vh` }}

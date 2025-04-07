@@ -7,191 +7,270 @@ interface Service {
   title: string;
   description: string;
   icon: React.ReactNode;
-  tags?: string[];
+  colors: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  };
 }
 
 const services: Service[] = [
   {
     id: 1,
-    title: "Centro de Operaciones 24/7",
-    description: "Monitoreo continuo y respuesta inmediata ante amenazas. Nuestro equipo de expertos está disponible en todo momento.",
-    icon: <Shield className="w-7 h-7" />,
-    tags: ["SOC", "Threat Response", "24/7"]
+    title: "Recuperación de impagos",
+    description: "Automatiza y optimiza la gestión de cobros con IA, mejorando la tasa de recuperación hasta un 40%.",
+    icon: <Shield className="w-8 h-8" />,
+    colors: {
+      primary: "from-zinc-900 to-black",
+      secondary: "from-zinc-800 to-zinc-900",
+      tertiary: "from-zinc-700 to-zinc-800"
+    }
   },
   {
     id: 2,
-    title: "Cloud Protection",
-    description: "Protección avanzada para tus servicios en la nube contra amenazas emergentes y ataques sofisticados.",
-    icon: <Database className="w-7 h-7" />,
-    tags: ["Cloud", "Security", "AWS"]
+    title: "Atención inteligente",
+    description: "Respuestas instantáneas y personalizadas 24/7. Mejora la satisfacción de tus clientes en un 60%.",
+    icon: <Database className="w-8 h-8" />,
+    colors: {
+      primary: "from-blue-50 to-[#EEF6FF]",
+      secondary: "from-blue-100 to-blue-50",
+      tertiary: "from-white to-blue-50"
+    }
   },
   {
     id: 3,
-    title: "AI Security",
-    description: "Implementación de sistemas de seguridad potenciados por IA para detección predictiva de amenazas.",
-    icon: <Bot className="w-7 h-7" />,
-    tags: ["AI", "ML", "Predictive"]
+    title: "Gestión de siniestros",
+    description: "Reduce el tiempo de gestión en un 70% con IA. Respuestas más rápidas y precisas para cada caso.",
+    icon: <Bot className="w-8 h-8" />,
+    colors: {
+      primary: "from-slate-400 via-zinc-300 to-gray-200",
+      secondary: "from-slate-500 via-zinc-400 to-gray-300",
+      tertiary: "from-slate-300 via-zinc-200 to-gray-100"
+    }
   },
   {
     id: 4,
-    title: "Safe BOX",
-    description: "Sistema integral de protección contra phishing, malware y amenazas avanzadas.",
-    icon: <Zap className="w-7 h-7" />,
-    tags: ["Anti-Phishing", "Malware", "Zero-Day"]
+    title: "Marketing inteligente",
+    description: "Optimiza tus comunicaciones con IA. Aumenta la conversión y engagement de tus campañas en un 50%.",
+    icon: <Zap className="w-8 h-8" />,
+    colors: {
+      primary: "from-neutral-400 via-stone-300 to-zinc-200",
+      secondary: "from-neutral-500 via-stone-400 to-zinc-300",
+      tertiary: "from-neutral-300 via-stone-200 to-zinc-100"
+    }
   }
 ];
 
 const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
+  const isBlack = service.id === 1;
+  const isDark = service.id === 3 || service.id === 4;
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ 
-        y: -12,
-        transition: { duration: 0.3, ease: [0.33, 1, 0.68, 1] }
+      whileInView={{ 
+        opacity: 1, 
+        y: 0,
+        transition: {
+          type: "spring",
+          duration: 1,
+          bounce: 0.3
+        }
       }}
-      className="group"
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ 
+        y: -8,
+        transition: { 
+          type: "spring",
+          duration: 0.4,
+          bounce: 0.2
+        }
+      }}
+      className="group relative perspective-[2000px]"
     >
-      <div 
-        className={`
-          relative bg-white rounded-[32px] h-full overflow-hidden
+      {/* Borde Exterior Animado con Morphing */}
+      <div className={`
+        absolute -inset-0.5
+        rounded-[42px]
+        bg-gradient-to-r
+        ${isBlack 
+          ? 'from-white/20 via-white/10 to-white/20' 
+          : isDark
+            ? 'from-black/10 via-black/5 to-black/10'
+            : 'from-black/[0.04] via-black/[0.02] to-black/[0.04]'}
+        opacity-40 group-hover:opacity-100
+        blur
+        transition-all duration-500
+        group-hover:duration-200
+      `}/>
+
+      <div className={`
+        relative
+        rounded-[40px]
+        aspect-[1.1/1]
+        overflow-hidden
+        shadow-[0_4px_24px_-12px_rgba(0,0,0,0.12)]
+        hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.25)]
+        transition-all duration-500
+        border-2
+        ${isBlack 
+          ? 'border-white/20' 
+          : isDark
+            ? 'border-black/10'
+            : 'border-black/[0.05]'}
+        transform-style-preserve-3d
+        group-hover:[transform:rotateX(10deg)]
+      `}>
+        {/* Fondo con Efectos */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Círculos con Morphing */}
+          <div className={`
+            absolute w-[120%] aspect-square
+            rounded-full
+            bg-gradient-to-br ${service.colors.primary}
+            -top-[60%] -right-[10%]
+            blur-[64px]
+            opacity-80 group-hover:opacity-90
+            transition-all duration-500
+            group-hover:scale-110
+            group-hover:rotate-12
+            group-hover:translate-x-6
+          `}/>
+          
+          <div className={`
+            absolute w-[90%] aspect-square
+            rounded-full
+            bg-gradient-to-br ${service.colors.secondary}
+            -bottom-[40%] -left-[20%]
+            blur-[64px]
+            opacity-80 group-hover:opacity-90
+            transition-all duration-500
+            group-hover:scale-125
+            group-hover:-rotate-12
+            group-hover:-translate-x-6
+          `}/>
+
+          <div className={`
+            absolute w-[70%] aspect-square
+            rounded-full
+            bg-gradient-to-br ${service.colors.tertiary}
+            top-[20%] left-[20%]
+            blur-[64px]
+            opacity-80 group-hover:opacity-90
+            transition-all duration-500
+            group-hover:scale-150
+            group-hover:rotate-45
+          `}/>
+
+          {/* Overlay Dinámico */}
+          <div className={`
+            absolute inset-0
+            backdrop-blur-[32px]
+            ${isBlack 
+              ? 'bg-black/40' 
+              : isDark
+                ? 'bg-white/30'
+                : 'bg-white/40'}
+            transition-all duration-500
+            group-hover:opacity-90
+          `}/>
+        </div>
+
+        {/* Contenido Interior */}
+        <div className="
+          relative z-10
+          h-full w-full 
+          flex flex-col 
+          justify-between 
+          p-10 md:p-12
           transition-all duration-500
-          border-2 border-[#E5E7EB]
-          shadow-[0_12px_32px_-4px_rgba(0,0,0,0.12)]
-          hover:shadow-[0_32px_64px_-8px_rgba(0,0,0,0.25)]
-          p-8
-          group
-        `}
-      >
-        {/* Fondo con Efecto Dramático */}
-        <div className="
-          absolute inset-0 
-          transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-          scale-[1.5] rotate-[-15deg] translate-x-[100%] translate-y-[10%]
-          group-hover:scale-100 group-hover:rotate-0 group-hover:translate-x-0 group-hover:translate-y-0
-          bg-gradient-to-br from-gray-900 via-gray-900 to-black
-          after:absolute after:inset-0
-          after:bg-gradient-to-br after:from-gray-800/10 after:to-black/10
-          after:opacity-0 after:transition-opacity after:duration-700
-          after:group-hover:opacity-100
-          z-0
-        "/>
-
-        {/* Línea de Acento */}
-        <div className="
-          absolute top-0 left-[15%] right-[15%] h-[2px]
-          bg-gradient-to-r from-transparent via-white/70 to-transparent
-          transition-all duration-700 ease-out
-          translate-y-[-100%] opacity-0
-          group-hover:translate-y-0 group-hover:opacity-100
-          z-10
-        "/>
-
-        {/* Contenido */}
-        <div className="relative z-20 space-y-6">
-          {/* Header Section */}
-          <div className="flex items-start justify-between">
-            {/* Icon Container con Efecto */}
-            <div className="relative">
-              <div className="
-                inline-flex items-center justify-center w-16 h-16 
-                rounded-2xl
-                border-2 transition-all duration-500
-                bg-white text-gray-900
-                border-[#E5E7EB]
-                shadow-[0_4px_8px_-2px_rgba(0,0,0,0.12)]
+          transform-style-preserve-3d
+          [transform:translateZ(40px)]
+          group-hover:[transform:translateZ(80px)]
+        ">
+          {/* Icono con Rotación 3D */}
+          <div className={`
+            inline-flex items-center justify-center
+            w-16 h-16
+            rounded-2xl
+            ${isBlack 
+              ? 'bg-white/10' 
+              : isDark
+                ? 'bg-black/10'
+                : 'bg-black/[0.03]'}
+            transition-all duration-500
+            group-hover:scale-110
+            group-hover:-rotate-12
+            group-hover:shadow-lg
+            relative
+            overflow-hidden
+          `}>
+            {React.cloneElement(service.icon as React.ReactElement, {
+              className: `
+                w-8 h-8 
+                ${isBlack ? 'text-white' : isDark ? 'text-gray-800' : 'text-gray-900'} 
+                relative z-10
+                transition-transform duration-500
                 group-hover:scale-110
-                group-hover:rotate-[5deg]
-                group-hover:bg-white
-                group-hover:text-gray-900
-                group-hover:border-white
-                group-hover:shadow-[0_8px_16px_-4px_rgba(255,255,255,0.3)]
-              ">
-                {React.cloneElement(service.icon as React.ReactElement, { 
-                  className: "w-7 h-7 transition-all duration-500 group-hover:scale-110" 
-                })}
-              </div>
-            </div>
-
-            {/* Tags con Efecto */}
-            {service.tags && (
-              <div className="flex flex-wrap gap-2 justify-end">
-                {service.tags.map((tag, index) => (
-                  <span 
-                    key={index}
-                    className="
-                      inline-flex items-center px-3 py-1 rounded-full 
-                      transition-all duration-500
-                      border-2
-                      text-xs font-medium
-                      bg-white text-gray-900 border-[#E5E7EB]
-                      group-hover:scale-105
-                      group-hover:bg-white
-                      group-hover:text-gray-900
-                      group-hover:border-white
-                      group-hover:shadow-[0_4px_8px_-2px_rgba(255,255,255,0.3)]
-                      group-hover:-rotate-[5deg]
-                    "
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+                group-hover:rotate-12
+              `
+            })}
           </div>
 
-          {/* Content con Efecto */}
-          <div className="relative">
-            {/* Texto Estado Normal */}
-            <div className="
-              space-y-3
-              transition-all duration-500
-              opacity-100 group-hover:opacity-0
-              group-hover:translate-y-4
-              group-hover:scale-95
-            ">
-              <h3 className="text-[22px] font-semibold tracking-tight text-gray-900">
+          {/* Texto con Animación Mejorada */}
+          <div className="
+            space-y-4 
+            transition-all duration-500
+          ">
+            <div className="overflow-hidden">
+              <h3 className={`
+                text-[28px] md:text-[32px]
+                font-semibold
+                leading-[1.15]
+                tracking-[-0.02em]
+                ${isBlack ? 'text-white' : isDark ? 'text-gray-800' : 'text-gray-900'}
+                transition-all duration-500
+                group-hover:translate-x-2
+                mb-2
+              `}>
                 {service.title}
               </h3>
-              <p className="text-[15px] leading-relaxed text-gray-600">
-                {service.description}
-              </p>
             </div>
 
-            {/* Texto Estado Hover */}
             <div className="
-              space-y-3
-              absolute inset-0
+              relative
               transition-all duration-500
-              opacity-0 translate-y-[-1rem] scale-105
-              group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
             ">
-              <h3 className="
-                text-[22px] font-semibold tracking-tight text-white
-                [text-shadow:0_2px_10px_rgba(255,255,255,0.2)]
-              ">
-                {service.title}
-              </h3>
-              <p className="
-                text-[15px] leading-relaxed text-white
-                [text-shadow:0_1px_8px_rgba(255,255,255,0.1)]
-              ">
+              <p className={`
+                text-[17px]
+                leading-relaxed
+                ${isBlack ? 'text-white/90' : isDark ? 'text-gray-700' : 'text-gray-600'}
+                max-w-[95%]
+                transition-all duration-500
+                group-hover:translate-y-1
+                relative
+                after:content-['']
+                after:absolute
+                after:bottom-0
+                after:left-0
+                after:w-full
+                after:h-[2px]
+                after:bg-gradient-to-r
+                after:${isBlack 
+                  ? 'from-white/0 via-white/20 to-white/0' 
+                  : isDark
+                    ? 'from-black/0 via-black/10 to-black/0'
+                    : 'from-black/0 via-black/5 to-black/0'}
+                after:opacity-0
+                after:transition-all
+                after:duration-500
+                group-hover:after:opacity-100
+              `}>
                 {service.description}
               </p>
             </div>
           </div>
         </div>
-
-        {/* Efecto de Brillo */}
-        <div className="
-          absolute inset-0
-          bg-gradient-to-tr from-white/0 via-white/10 to-white/0
-          opacity-0 transition-opacity duration-700
-          group-hover:opacity-100
-          pointer-events-none
-          z-10
-        "/>
       </div>
     </motion.div>
   );
@@ -199,42 +278,29 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
 
 const TechConsultancySection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#F9F9FA]">
-      <div className="container mx-auto px-8 max-w-[1400px]">
-        <motion.div 
-          className="text-center mb-20"
+    <section id="tech-consultancy" className="py-24">
+      <div className="container mx-auto px-8 max-w-[1200px]">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl font-bold mb-5 text-black/90 tracking-tight">
-            Servicios de Seguridad
+          <h2 className="text-[40px] md:text-[48px] font-bold mb-4 tracking-tight">
+            Soluciones que transforman tu negocio
           </h2>
-          <p className="text-black/60 text-lg max-w-2xl mx-auto">
-            Protección completa para tu negocio con tecnología de última generación
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Tecnología de vanguardia para automatizar y optimizar tus procesos clave
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Background Container */}
-          <div className="absolute inset-0 -mx-6 bg-[#F4F4F5] rounded-[32px] 
-            border-2 border-[#E5E7EB]
-            before:absolute before:inset-0 before:rounded-[32px]
-            before:shadow-[inset_0_2px_4px_rgba(255,255,255,0.95)]
-            after:absolute after:inset-0 after:rounded-[32px]
-            after:shadow-[0_8px_32px_-16px_rgba(0,0,0,0.15)]" 
-          />
-
-          <div className="relative p-6">
-            <div className="grid grid-cols-2 gap-8">
-              {services.map((service) => (
-                <ServiceCard 
-                  key={service.id} 
-                  service={service}
-                />
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {services.map((service) => (
+            <ServiceCard 
+              key={service.id}
+              service={service}
+            />
+          ))}
         </div>
       </div>
     </section>
