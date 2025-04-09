@@ -1,106 +1,190 @@
-import TextReveal from './animations/TextReveal';
-import MarkerTextReveal from './animations/MarkerTextReveal';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 const VentureStudioSection = () => {
-  return (
-    <section id="venture-section" className="py-24 md:py-32 bg-white">
-      <div className="section-container">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
-            {/* Left column with title and description - taking more space to match Paid.ai */}
-            <div className="md:col-span-8 space-y-12">
-              {/* Section label with horizontal line - matching Paid.ai */}
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-0.5 bg-black"></div>
-                <MarkerTextReveal as="h2" className="text-base font-medium uppercase tracking-wide">
-                  Nuestra Visión
-                </MarkerTextReveal>
-              </div>
-              
-              {/* Large title with improved typography to match Paid.ai */}
-              <MarkerTextReveal as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-                <div>Desarrollamos soluciones</div>
-                <div>tecnológicas que impulsan</div>
-                <div>la eficiencia y</div>
-                <div>transformación del sector</div>
-                <div>asegurador</div>
-              </MarkerTextReveal>
-              
-              {/* Text paragraphs with improved spacing and marker reveal effect */}
-              <div className="space-y-6 mt-8">
-                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
-                  <p>
-                    En Segurneo, creamos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la 
-                    transformación digital. Nuestra misión es hacer converger la experiencia y el conocimiento profundo del sector 
-                    con las tecnologías más disruptivas.
-                  </p>
-                </MarkerTextReveal>
-                
-                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
-                  <p>
-                    Desarrollamos soluciones a medida que responden a necesidades concretas. Impulsamos la eficiencia operativa, 
-                    la experiencia del cliente y la generación de nuevos modelos de negocio, colaborando estrechamente con compañías 
-                    aseguradoras para co-crear el futuro del sector.
-                  </p>
-                </MarkerTextReveal>
-                
-                <MarkerTextReveal className="text-xl md:text-2xl leading-relaxed">
-                  <p>
-                    Como venture studio, no solo diseñamos soluciones—construimos empresas. Compartimos el riesgo y la recompensa del 
-                    proceso emprendedor y trabajamos mano a mano con nuestros partners para impulsar la transformación digital desde adentro.
-                  </p>
-                </MarkerTextReveal>
-              </div>
-            </div>
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
 
-            {/* Right column for illustration, similar to Paid.ai style */}
-            <div className="md:col-span-4 flex justify-center">
-              <div className="w-full">
-                <div className="relative h-full flex items-center justify-center">
-                  {/* Simple illustration similar to Paid.ai style */}
-                  <svg className="w-full max-w-xs" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {/* Coin symbol */}
-                    <circle cx="200" cy="120" r="70" stroke="black" strokeWidth="6" />
-                    <text x="200" y="140" textAnchor="middle" fontSize="90" fontWeight="bold" fill="black">$</text>
-                    
-                    {/* Steps/blocks like in Paid.ai */}
-                    <rect x="70" y="200" width="60" height="20" fill="black" />
-                    <rect x="90" y="180" width="60" height="20" fill="black" />
-                    <rect x="110" y="160" width="60" height="20" fill="black" />
-                    <rect x="130" y="140" width="60" height="20" fill="black" />
-                    
-                    {/* Simple character */}
-                    <circle cx="70" cy="120" r="25" fill="black" /> {/* Head */}
-                    <rect x="50" y="145" width="40" height="60" fill="black" /> {/* Body */}
-                    <rect x="40" y="165" width="15" height="40" fill="black" /> {/* Left arm */}
-                    <rect x="85" y="165" width="15" height="30" transform="rotate(-30 85 165)" fill="black" /> {/* Right arm */}
-                    <rect x="50" y="205" width="15" height="40" fill="black" /> {/* Left leg */}
-                    <rect x="75" y="205" width="15" height="40" fill="black" /> {/* Right leg */}
-                  </svg>
+  // Ajustamos los rangos para que el efecto sea más suave y legible
+  // const titleProgress1 = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+  // const titleProgress2 = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
+  // const titleProgress3 = useTransform(scrollYProgress, [0.2, 0.35], [0, 1]);
+  // const titleProgress4 = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
+  // const titleProgress5 = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
+
+  // const paragraph1Progress = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
+  // const paragraph2Progress = useTransform(scrollYProgress, [0.55, 0.7], [0, 1]);
+  // const paragraph3Progress = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
+
+  const statsOpacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
+
+  // const RevealWord = ({ word, progress }: { word: string; progress: any }) => { ... };
+
+  const RevealLine = ({ text, className, isTitle = false }: { text: string; className?: string; isTitle?: boolean }) => {
+    const lineRef = useRef<HTMLSpanElement>(null);
+    const { scrollYProgress: lineScrollYProgress } = useScroll({
+      target: lineRef,
+      offset: ["start end", "end end"]
+    });
+
+    const clipProgress = useTransform(lineScrollYProgress, v => Math.max(0, Math.min(1, v)));
+
+    return (
+      <span ref={lineRef} className={`${className} relative overflow-hidden block ${isTitle ? 'h-[1em]' : ''}`}>
+        <span className="text-gray-300 inline" aria-hidden="true">{text}</span>
+        <motion.span
+          className="absolute left-0 top-0 bottom-0 text-black inline"
+          style={{
+            clipPath: useTransform(clipProgress, [0, 1], ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']),
+            WebkitClipPath: useTransform(clipProgress, [0, 1], ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'])
+          }}
+          aria-hidden="true"
+        >
+          {text}
+        </motion.span>
+        <span className="opacity-0 inline" aria-hidden="true">{text}</span>
+      </span>
+    );
+  };
+
+  return (
+    <section 
+      ref={sectionRef} 
+      id="venture-section" 
+      className="relative min-h-[200vh] bg-white"
+    >
+      <div className="sticky top-0 min-h-screen flex items-center">
+        <div className="w-full py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+              {/* Columna izquierda con texto */}
+              <div className="md:col-span-8 space-y-8">
+                {/* Etiqueta de sección */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false }}
+                  className="flex items-center space-x-4"
+                >
+                  <div className="w-12 h-0.5 bg-black"></div>
+                  <span className="text-base font-medium uppercase tracking-wide">
+                    Nuestra Visión
+                  </span>
+                </motion.div>
+
+                {/* Título principal con revelado progresivo */}
+                <div className="space-y-0 leading-none">
+                  <RevealLine 
+                    text="Desarrollamos"
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                    isTitle={true}
+                  />
+                  <RevealLine 
+                    text="soluciones tecnológicas"
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                    isTitle={true}
+                  />
+                  <RevealLine 
+                    text="que impulsan la eficiencia y"
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                    isTitle={true}
+                  />
+                  <RevealLine 
+                    text="transformación del sector"
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                    isTitle={true}
+                  />
+                  <RevealLine 
+                    text="asegurador"
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                    isTitle={true}
+                  />
+                </div>
+
+                {/* Párrafos con revelado progresivo */}
+                <div className="mt-2 leading-none">
+                  <RevealLine 
+                    text="En Segurneo, creamos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestra misión es hacer converger la experiencia y el conocimiento profundo del sector con las tecnologías más disruptivas."
+                    className="text-xl md:text-2xl leading-[1.1] text-gray-700 block"
+                    isTitle={false}
+                  />
+                  <RevealLine 
+                    text="Desarrollamos soluciones a medida que responden a necesidades concretas. Impulsamos la eficiencia operativa, la experiencia del cliente y la generación de nuevos modelos de negocio, colaborando estrechamente con compañías aseguradoras para co-crear el futuro del sector."
+                    className="text-xl md:text-2xl leading-[1.1] text-gray-700 block"
+                    isTitle={false}
+                  />
+                  <RevealLine 
+                    text="Como venture studio, no solo diseñamos soluciones—construimos empresas. Compartimos el riesgo y la recompensa del proceso emprendedor y trabajamos mano a mano con nuestros partners para impulsar la transformación digital desde adentro."
+                    className="text-xl md:text-2xl leading-[1.1] text-gray-700 block"
+                    isTitle={false}
+                  />
                 </div>
               </div>
-            </div>
 
-            {/* Statistics section with larger numbers and improved layout */}
-            <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-              <div className="bg-white p-6 text-center">
-                <TextReveal delay={500}>
-                  <div className="text-5xl md:text-6xl font-bold mb-3">+15</div>
-                  <div className="text-lg text-gray-600">Proyectos lanzados</div>
-                </TextReveal>
-              </div>
-              <div className="bg-white p-6 text-center">
-                <TextReveal delay={600}>
-                  <div className="text-5xl md:text-6xl font-bold mb-3">+30M€</div>
-                  <div className="text-lg text-gray-600">Ahorro generado</div>
-                </TextReveal>
-              </div>
-              <div className="bg-white p-6 text-center">
-                <TextReveal delay={700}>
-                  <div className="text-5xl md:text-6xl font-bold mb-3">+5</div>
-                  <div className="text-lg text-gray-600">Ventures co-fundadas</div>
-                </TextReveal>
+              {/* Columna derecha con ilustración */}
+              <div className="md:col-span-4 relative">
+                <motion.div 
+                  style={{ 
+                    y: useTransform(scrollYProgress, [0, 1], [50, -50]),
+                    rotate: useTransform(scrollYProgress, [0, 1], [5, -5]),
+                    scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9])
+                  }}
+                  className="sticky top-1/2 -translate-y-1/2"
+                >
+                  {/* Nueva ilustración con diseño moderno */}
+                  <div className="relative w-full aspect-square">
+                    {/* Círculos decorativos */}
+                    <div className="absolute inset-0">
+                      <motion.div 
+                        style={{
+                          opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.3, 0.1])
+                        }}
+                        className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full blur-xl"
+                      />
+                      <motion.div 
+                        style={{
+                          opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.3, 0.1])
+                        }}
+                        className="absolute bottom-0 left-0 w-40 h-40 bg-purple-100 rounded-full blur-xl"
+                      />
+                      <motion.div 
+                        style={{
+                          opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.4, 0.2])
+                        }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gray-100 rounded-full blur-xl"
+                      />
+                    </div>
+
+                    {/* Elementos geométricos */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative w-3/4 h-3/4">
+                        <motion.div 
+                          style={{
+                            rotate: useTransform(scrollYProgress, [0, 1], [0, 360])
+                          }}
+                          className="absolute inset-0 border-4 border-black rounded-3xl"
+                        />
+                        <motion.div 
+                          style={{
+                            scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8])
+                          }}
+                          className="absolute inset-4 border-4 border-blue-500 rounded-full"
+                        />
+                        <motion.div 
+                          style={{
+                            rotate: useTransform(scrollYProgress, [0, 1], [45, 405])
+                          }}
+                          className="absolute inset-0 flex items-center justify-center"
+                        >
+                          <div className="w-1/2 h-1/2 bg-purple-500 opacity-20 transform rotate-45" />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>

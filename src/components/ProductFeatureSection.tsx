@@ -219,7 +219,7 @@ const ProductFeatureSection: React.FC = () => {
   return (
     <section className="relative bg-black mt-48">
       {/* Header Fijo en el Centro */}
-      <div className="sticky top-1/2 -translate-y-1/2 z-10 w-full">
+      <div className="sticky top-0 pt-32 pb-32 z-10 w-full bg-black">
         <div className="container mx-auto px-8 max-w-[1400px]">
           <motion.div 
             className="text-center"
@@ -247,7 +247,7 @@ const ProductFeatureSection: React.FC = () => {
       </div>
 
       {/* Espacio inicial para el scroll */}
-      <div className="h-screen"/>
+      <div className="h-[50vh]"/>
 
       {/* Contenedor de Cards */}
       <div className="relative z-20">
