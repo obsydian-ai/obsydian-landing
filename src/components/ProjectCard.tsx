@@ -35,23 +35,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   useEffect(() => {
-    // Simplified touch detection, omitting passive option for TS compatibility
-    const onTouchStart = () => {
-      setIsTouchDevice(true);
-      // Remove listener without options object
-      window.removeEventListener('touchstart', onTouchStart);
+    // Check if device supports touch
+    const checkTouch = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
     };
     
-    // Add listener without options object
-    window.addEventListener('touchstart', onTouchStart);
+    checkTouch();
+    window.addEventListener('resize', checkTouch);
     
-    // Cleanup listener without options object
-    return () => window.removeEventListener('touchstart', onTouchStart);
+    return () => window.removeEventListener('resize', checkTouch);
   }, []);
 
   // Conditional Spring setup based on device type
-  const rotateX = useSpring(isTouchDevice ? 0 : 10, springConfig);
-  const rotateY = useSpring(isTouchDevice ? 0 : -10, springConfig);
+  const rotateX = useSpring(0, springConfig);
+  const rotateY = useSpring(0, springConfig);
   const cardDepth = useSpring(0, { stiffness: 100, damping: 30 });
 
   // Event handlers only active on non-touch devices
@@ -74,16 +71,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
   const handleMouseLeave = () => {
     if (isTouchDevice) return;
     setIsHovered(false);
-    rotateX.set(10);
-    rotateY.set(-10);
+    rotateX.set(0);
+    rotateY.set(0);
     cardDepth.set(0);
   };
 
   const handleMouseEnter = () => {
     if (isTouchDevice) return;
     setIsHovered(true);
-    rotateX.set(0);
-    rotateY.set(0);
     cardDepth.set(20);
   };
 
@@ -129,20 +124,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
           <>
             <motion.div
               className="absolute inset-0 bg-gray-50 rounded-2xl lg:rounded-3xl transform-gpu hidden lg:block"
-              style={{ rotateX, rotateY, z: -60, scale: 0.85, transformStyle: "preserve-3d", boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)" }}
+              style={{ 
+                rotateX, 
+                rotateY, 
+                z: -60, 
+                scale: 0.85, 
+                transformStyle: "preserve-3d",
+                boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)"
+              }}
             />
             <motion.div
               className="absolute inset-0 bg-gray-100 rounded-2xl lg:rounded-3xl transform-gpu hidden lg:block"
-              style={{ rotateX, rotateY, z: -30, scale: 0.92, transformStyle: "preserve-3d", boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)" }}
+              style={{ 
+                rotateX, 
+                rotateY, 
+                z: -30, 
+                scale: 0.92, 
+                transformStyle: "preserve-3d",
+                boxShadow: "0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)"
+              }}
             />
           </>
         )}
         
         <motion.div
-          initial={isTouchDevice ? {} : { rotateX: 10, rotateY: -10 }}
           style={{
-            rotateX: isTouchDevice ? 0 : rotateX,
-            rotateY: isTouchDevice ? 0 : rotateY,
             transformStyle: "preserve-3d",
             scale: isHovered && !isTouchDevice ? 1.01 : 1,
             boxShadow: isTouchDevice 
