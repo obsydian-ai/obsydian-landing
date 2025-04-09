@@ -122,23 +122,23 @@ const ProjectsSection: React.FC = () => {
       {/* Header con fade out */}
       <motion.div 
         style={{ opacity: headerOpacity }}
-        className="sticky top-0 pt-24 pb-32 bg-gradient-to-b from-white via-white to-transparent z-10"
+        className="sticky top-0 pt-16 pb-16 md:pt-24 md:pb-32 bg-gradient-to-b from-white via-white to-transparent z-10"
       >
-        <div className="container px-6 mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center gap-4 mb-6"
+              className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6"
             >
-              <div className="h-px bg-gray-200 w-12"></div>
-              <span className="text-gray-500 text-sm uppercase tracking-wider font-medium">Nuestros Proyectos</span>
-              <div className="h-px bg-gray-200 w-12"></div>
+              <div className="h-px bg-gray-200 w-8 md:w-12"></div>
+              <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">Nuestros Proyectos</span>
+              <div className="h-px bg-gray-200 w-8 md:w-12"></div>
             </motion.div>
             
-            <TextReveal as="h2" className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <TextReveal as="h2" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
               Transformando el sector asegurador
             </TextReveal>
             
@@ -147,7 +147,7 @@ const ProjectsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-gray-600 text-lg leading-relaxed"
+              className="text-gray-600 text-base md:text-lg leading-relaxed"
             >
               Exploramos soluciones innovadoras diseñadas para transformar la industria de seguros.
               Desde plataformas de salud hasta sistemas de pago y servicios automatizados.
@@ -162,10 +162,10 @@ const ProjectsSection: React.FC = () => {
         className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
       >
         <motion.div 
-          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none opacity-75"
+          className="absolute inset-x-0 top-0 h-20 md:h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none opacity-75"
         />
         
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none opacity-75"></div>
+        <div className="absolute inset-x-0 bottom-0 h-20 md:h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none opacity-75"></div>
         
         <motion.div 
           className="flex w-full"
@@ -175,7 +175,7 @@ const ProjectsSection: React.FC = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="min-w-full px-6"
+              className="min-w-full px-4 md:px-6"
             >
               <div className="container mx-auto">
                 <ProjectCard
@@ -190,7 +190,7 @@ const ProjectsSection: React.FC = () => {
       </motion.div>
 
       {/* Indicador de progreso */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+      <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 md:gap-3 z-20">
         {projects.map((_, index) => (
           <motion.div
             key={index}
