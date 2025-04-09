@@ -37,7 +37,7 @@ const features: Feature[] = [
 const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 200 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ 
         opacity: 1, 
         y: 0,
@@ -45,11 +45,11 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
           type: "spring",
           damping: 25,
           stiffness: 100,
-          duration: 0.8,
+          duration: 0.5,
           delay: index * 0.1
         }
       }}
-      viewport={{ once: true, margin: "-10%" }}
+      viewport={{ once: true, amount: 0.2 }}
       className={`
         group w-full max-w-3xl mx-auto
         ${index % 2 === 0 ? 'lg:mr-[40%]' : 'lg:ml-[40%]'}
@@ -57,114 +57,54 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
     >
       <div className="
         relative bg-white overflow-hidden
-        rounded-[32px] md:rounded-[40px]
-        border-2 border-black/[0.03]
-        shadow-[0_8px_24px_-4px_rgba(0,0,0,0.08)]
-        transition-all duration-700
-        hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)]
-        hover:border-black/[0.08]
+        rounded-2xl md:rounded-[32px] lg:rounded-[40px]
+        border border-black/[0.05]
+        shadow-md hover:shadow-xl
+        transition-all duration-500
         hover:-translate-y-1
-        group-hover:scale-[1.02]
-        before:content-['']
-        before:absolute
-        before:inset-0
-        before:rounded-[32px] md:before:rounded-[40px]
-        before:border-2
-        before:border-black/[0.03]
-        before:transition-all
-        before:duration-700
-        before:scale-[1.01]
-        hover:before:scale-[1.02]
-        before:opacity-0
-        hover:before:opacity-100
-        after:content-['']
-        after:absolute
-        after:inset-[2px]
-        after:rounded-[30px] md:after:rounded-[38px]
-        after:border-2
-        after:border-black/[0.03]
-        after:transition-all
-        after:duration-700
-        after:scale-[0.99]
-        hover:after:scale-[1.01]
-        after:opacity-0
-        hover:after:opacity-100
       ">
-        {/* Brillo en Esquinas */}
-        <div className="
-          absolute -right-20 -top-20
-          w-40 h-40
-          bg-white
-          rounded-full
-          blur-3xl
-          opacity-0
-          transition-opacity duration-700
-          group-hover:opacity-20
-          pointer-events-none
-        "/>
-        <div className="
-          absolute -left-20 -bottom-20
-          w-40 h-40
-          bg-white
-          rounded-full
-          blur-3xl
-          opacity-0
-          transition-opacity duration-700
-          group-hover:opacity-20
-          pointer-events-none
-        "/>
-
         {/* Contenedor Principal */}
         <div className="
-          relative z-10 p-8 md:p-10
-          transition-transform duration-700
+          relative z-10 p-6 md:p-8 lg:p-10
+          transition-transform duration-500
           group-hover:scale-[0.99]
         ">
           {/* Header */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3 md:space-y-4">
             {/* Icono */}
             <div className="
               inline-flex items-center justify-center
-              w-12 h-12
-              rounded-2xl bg-black/[0.03]
-              transition-all duration-500
-              group-hover:bg-black/[0.06]
-              group-hover:scale-110
-              group-hover:rotate-3
-              group-hover:shadow-lg
-              relative
-              overflow-hidden
+              w-10 h-10 md:w-12 md:h-12
+              rounded-xl md:rounded-2xl bg-black/[0.04]
+              transition-all duration-300
+              group-hover:bg-black/[0.08]
+              group-hover:scale-105
+              group-hover:rotate-2
             ">
-              <div className="
-                absolute inset-0
-                bg-gradient-to-r from-black/[0.02] via-black/[0.01] to-black/[0.02]
-                opacity-0 group-hover:opacity-100
-                transition-opacity duration-500
-              "/>
               {React.cloneElement(feature.icon as React.ReactElement, {
-                className: "w-5 h-5 text-gray-900 relative z-10"
+                className: "w-5 h-5 text-gray-800"
               })}
             </div>
 
             {/* Contenido */}
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <h3 className="
-                text-2xl md:text-3xl
+                text-xl md:text-2xl lg:text-3xl
                 font-semibold
                 text-gray-900
                 tracking-tight
-                transition-all duration-500
-                group-hover:translate-x-2
+                transition-transform duration-300
+                group-hover:translate-x-1
               ">
                 {feature.title}
               </h3>
               <p className="
-                text-[15px]
+                text-sm md:text-[15px]
                 leading-relaxed
                 text-gray-600
                 max-w-lg
-                transition-all duration-500
-                group-hover:-translate-x-1
+                transition-transform duration-300
+                group-hover:-translate-x-0.5
               ">
                 {feature.description}
               </p>
@@ -173,41 +113,24 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 
           {/* Imagen del Dashboard */}
           <div className={`
-            relative mt-6
-            aspect-[16/7] w-full
-            overflow-hidden rounded-2xl
+            relative mt-4 md:mt-6
+            aspect-video w-full
+            overflow-hidden rounded-lg md:rounded-xl
             ${feature.image}
-            bg-opacity-50
-            transition-all duration-700
-            group-hover:scale-[1.03]
-            group-hover:shadow-xl
+            bg-opacity-60
+            transition-all duration-500
+            group-hover:scale-[1.02]
+            group-hover:shadow-lg
           `}>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[85%] h-3/5">
+              <div className="w-[80%] h-[60%]">
                 <svg className="w-full h-full" viewBox="0 0 400 200">
-                  <path
-                    d="M 0 100 C 100 80, 200 120, 300 100 S 400 80, 500 100"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="text-black/[0.07]"
-                  />
-                  <path
-                    d="M 0 120 C 100 100, 200 140, 300 120 S 400 100, 500 120"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="text-black/[0.07]"
-                  />
+                  <rect width="400" height="200" fill="currentColor" className="text-black/[0.03]"/>
+                  <line x1="50" y1="150" x2="350" y2="50" stroke="currentColor" strokeWidth="2" className="text-black/[0.05]"/>
+                  <circle cx="150" cy="100" r="30" fill="none" stroke="currentColor" strokeWidth="2" className="text-black/[0.05]"/>
                 </svg>
               </div>
             </div>
-            <div className="
-              absolute inset-0
-              bg-gradient-to-t from-white/60 to-transparent
-              transition-opacity duration-700
-              group-hover:opacity-80
-            "/>
           </div>
         </div>
       </div>
@@ -217,10 +140,10 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 
 const ProductFeatureSection: React.FC = () => {
   return (
-    <section className="relative bg-black mt-48">
+    <section className="relative bg-black mt-24 md:mt-48">
       {/* Header Fijo en el Centro */}
-      <div className="sticky top-0 pt-32 pb-32 z-10 w-full bg-black">
-        <div className="container mx-auto px-8 max-w-[1400px]">
+      <div className="sticky top-0 pt-20 pb-20 md:pt-32 md:pb-32 z-10 w-full bg-black">
+        <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
           <motion.div 
             className="text-center"
             initial={{ opacity: 0 }}
@@ -228,18 +151,18 @@ const ProductFeatureSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="
-              inline-flex items-center px-6 py-2 mb-8
+              inline-flex items-center px-4 py-1.5 md:px-6 md:py-2 mb-6 md:mb-8
               rounded-full bg-white/10 text-white
-              text-sm font-medium tracking-wide
+              text-xs md:text-sm font-medium tracking-wide
               backdrop-blur-sm
             ">
-              <Settings className="w-4 h-4 mr-2" />
+              <Settings className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
               Monetiza como lo planeas
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight text-white">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight text-white">
               Monetiza como quieres.
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-gray-300 max-w-xl md:max-w-2xl mx-auto">
               La plataforma todo en uno que maneja tu facturación, suscripciones, márgenes y renovaciones con solo 5 líneas de código.
             </p>
           </motion.div>
@@ -247,12 +170,12 @@ const ProductFeatureSection: React.FC = () => {
       </div>
 
       {/* Espacio inicial para el scroll */}
-      <div className="h-[50vh]"/>
+      <div className="h-[20vh] md:h-[30vh] lg:h-[50vh]"/>
 
       {/* Contenedor de Cards */}
       <div className="relative z-20">
-        <div className="container mx-auto px-8 max-w-[1400px]">
-          <div className="space-y-24 py-32">
+        <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
+          <div className="space-y-12 md:space-y-16 lg:space-y-24 py-16 md:py-24 lg:py-32">
             {features.map((feature, index) => (
               <FeatureCard 
                 key={feature.id} 
