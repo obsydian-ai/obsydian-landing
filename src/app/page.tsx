@@ -1,11 +1,13 @@
 import React from 'react';
-import TechConsultancySection from '@/components/TechConsultancySection';
 import ProductFeatureSection from '@/components/ProductFeatureSection';
+import VentureStudioSection from '@/components/VentureStudioSection';
+import ProjectsSection from '@/components/ProjectsSection';
 
 export default function Home() {
   return (
     <main>
-      <TechConsultancySection />
+      <VentureStudioSection />
+      <ProjectsSection />
       <ProductFeatureSection />
     </main>
   );

@@ -8,21 +8,21 @@ const projects = [
   {
     id: 1,
     name: "Saludneo",
-    description: "Plataforma de salud digital que conecta asegurados con servicios médicos de manera eficiente y segura. Gestiona citas, historiales y trámites en un solo lugar.",
-    imageSrc: "/placeholder.svg",
+    description: "Broker de distribución de seguros de salud nativo con Inteligencia Artificial.",
+    imageSrc: "/lovable-uploads/saludneo-onboarding.webp",
     color: "blue",
   },
   {
     id: 2,
     name: "Segurpay",
-    description: "Sistema de pago digital inteligente diseñado específicamente para el sector asegurador. Simplifica transacciones y automatiza reconciliaciones.",
-    imageSrc: "/placeholder.svg",
+    description: "Plataforma de pago adaptada al sector asegurador. Gestiona impagos, recobros y facturas de forma automatizada.",
+    imageSrc: "/lovable-uploads/segurpay-dashboard.webp",
     color: "purple",
   },
   {
     id: 3,
     name: "Call Center AI",
-    description: "Solución de inteligencia artificial que optimiza la atención al cliente en centros de llamadas. Reduce tiempos de espera y mejora la satisfacción.",
+    description: "Solución de inteligencia artificial que optimiza la atención al cliente en centros de llamadas. Reduce tiempos de espera, aumenta márgenes y mejora la satisfacción.",
     imageSrc: "/placeholder.svg",
     color: "green",
   }
@@ -139,7 +139,7 @@ const ProjectsSection: React.FC = () => {
             </motion.div>
             
             <TextReveal as="h2" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
-              Transformando el sector asegurador
+              Explora nuestras soluciones
             </TextReveal>
             
             <motion.p
@@ -149,8 +149,7 @@ const ProjectsSection: React.FC = () => {
               viewport={{ once: true }}
               className="text-gray-600 text-base md:text-lg leading-relaxed"
             >
-              Exploramos soluciones innovadoras diseñadas para transformar la industria de seguros.
-              Desde plataformas de salud hasta sistemas de pago y servicios automatizados.
+              Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.
             </motion.p>
           </div>
         </div>

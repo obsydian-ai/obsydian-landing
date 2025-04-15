@@ -17,10 +17,9 @@ const NavItems = [
     name: 'Recursos', 
     href: '#resources',
     submenu: [
-      { name: 'Próximamente', href: '#coming-soon' }
+      { name: 'Próximamente', disabled: true }
     ]
-  },
-  { name: 'Sobre nosotros', href: '#about' },
+  }
 ];
 
 const Navbar = () => {
@@ -84,7 +83,7 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <a href="#" className="text-2xl font-semibold tracking-tight text-black">
-                Segurneo
+                Segurneo<span className="text-blue-500">.</span>
               </a>
             </motion.div>
 
@@ -120,15 +119,18 @@ const Navbar = () => {
                         className="relative mt-2 w-48 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-2"
                       >
                         {item.submenu.map((subItem) => (
-                          <motion.a
+                          <motion.div
                             key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50/80 hover:text-black transition-colors"
-                            whileHover={{ x: 4 }}
+                            className={`block px-4 py-2 text-sm ${
+                              subItem.disabled 
+                                ? 'text-gray-400 cursor-not-allowed' 
+                                : 'text-gray-600 hover:bg-gray-50/80 hover:text-black transition-colors cursor-pointer'
+                            }`}
+                            whileHover={!subItem.disabled ? { x: 4 } : {}}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             {subItem.name}
-                          </motion.a>
+                          </motion.div>
                         ))}
                       </motion.div>
                     </div>
@@ -206,16 +208,19 @@ const Navbar = () => {
                         transition={{ delay: 0.1 }}
                       >
                         {item.submenu.map((subItem) => (
-                          <motion.a
+                          <motion.div
                             key={subItem.name}
-                            href={subItem.href}
-                            className="block text-sm font-medium text-gray-500 hover:text-black transition-colors py-1"
-                            onClick={() => setMobileMenuOpen(false)}
-                            whileHover={{ x: 4 }}
+                            className={`block text-sm font-medium ${
+                              subItem.disabled 
+                                ? 'text-gray-400 cursor-not-allowed' 
+                                : 'text-gray-500 hover:text-black transition-colors cursor-pointer'
+                            }`}
+                            onClick={() => !subItem.disabled && setMobileMenuOpen(false)}
+                            whileHover={!subItem.disabled ? { x: 4 } : {}}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             {subItem.name}
-                          </motion.a>
+                          </motion.div>
                         ))}
                       </motion.div>
                     )}

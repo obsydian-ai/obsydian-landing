@@ -24,7 +24,7 @@ const VentureStudioSection = () => {
   // const RevealWord = ({ word, progress }: { word: string; progress: any }) => { ... };
 
   const RevealLine = ({ text, className, isTitle = false }: { text: string; className?: string; isTitle?: boolean }) => {
-    const lineRef = useRef<HTMLSpanElement>(null);
+    const lineRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress: lineScrollYProgress } = useScroll({
       target: lineRef,
       offset: ["start end", "end end"]
@@ -33,10 +33,10 @@ const VentureStudioSection = () => {
     const clipProgress = useTransform(lineScrollYProgress, v => Math.max(0, Math.min(1, v)));
 
     return (
-      <span ref={lineRef} className={`${className} relative overflow-hidden block ${isTitle ? 'h-[1em]' : ''}`}>
-        <span className="text-gray-300 inline" aria-hidden="true">{text}</span>
+      <div ref={lineRef} className={`${className} relative overflow-hidden ${isTitle ? 'h-[1.1em]' : 'leading-tight'}`}>
+        <span className="text-gray-300 block" aria-hidden="true">{text}</span>
         <motion.span
-          className="absolute left-0 top-0 bottom-0 text-black inline"
+          className="absolute left-0 top-0 right-0 text-black"
           style={{
             clipPath: useTransform(clipProgress, [0, 1], ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']),
             WebkitClipPath: useTransform(clipProgress, [0, 1], ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'])
@@ -45,8 +45,8 @@ const VentureStudioSection = () => {
         >
           {text}
         </motion.span>
-        <span className="opacity-0 inline" aria-hidden="true">{text}</span>
-      </span>
+        <span className="sr-only">{text}</span>
+      </div>
     );
   };
 
@@ -76,24 +76,19 @@ const VentureStudioSection = () => {
                 </motion.div>
 
                 {/* Título principal con revelado progresivo */}
-                <div className="space-y-0 leading-none">
+                <div className="space-y-0">
                   <RevealLine 
-                    text="Desarrollamos"
+                    text="Impulsamos la"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
                   <RevealLine 
-                    text="soluciones tecnológicas"
+                    text="transformación digital"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
                   <RevealLine 
-                    text="que impulsan la eficiencia y"
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
-                    isTitle={true}
-                  />
-                  <RevealLine 
-                    text="transformación del sector"
+                    text="del sector"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
@@ -105,20 +100,20 @@ const VentureStudioSection = () => {
                 </div>
 
                 {/* Párrafos con revelado progresivo */}
-                <div className="mt-4 md:mt-6 leading-snug">
+                <div className="mt-4 md:mt-6 space-y-[1.35rem]">
                   <RevealLine 
-                    text="En Segurneo, creamos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestra misión es hacer converger la experiencia y el conocimiento profundo del sector con las tecnologías más disruptivas."
-                    className="text-base md:text-lg lg:text-xl text-gray-700 block mb-2 md:mb-3"
+                    text="En Segurneo, tendemos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestro equipo combina una profunda experiencia en seguros con un sólido dominio de las tecnologías más avanzadas."
+                    className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />
                   <RevealLine 
-                    text="Desarrollamos soluciones a medida que responden a necesidades concretas. Impulsamos la eficiencia operativa, la experiencia del cliente y la generación de nuevos modelos de negocio, colaborando estrechamente con compañías aseguradoras para co-crear el futuro del sector."
-                    className="text-base md:text-lg lg:text-xl text-gray-700 block mb-2 md:mb-3"
+                    text="Por un lado, nuestra rama de consultoría tecnológica desarrolla soluciones a medida que responden a necesidades específicas del negocio. Impulsamos la eficiencia operativa, mejoramos la experiencia del cliente y aceleramos la digitalización de aseguradoras y distribuidores."
+                    className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />
                   <RevealLine 
-                    text="Como venture studio, no solo diseñamos soluciones—construimos empresas. Compartimos el riesgo y la recompensa del proceso emprendedor y trabajamos mano a mano con nuestros partners para impulsar la transformación digital desde adentro."
-                    className="text-base md:text-lg lg:text-xl text-gray-700 block"
+                    text="Por otro lado, exploramos y creamos nuevos modelos de negocio. Colaboramos estrechamente con aseguradoras y distribuidores para co-crear el futuro del sector. Como venture studio, no solo diseñamos soluciones: construimos empresas. Compartimos el riesgo y la recompensa del emprendimiento, trabajando codo a codo con nuestros partners para transformar el sector desde dentro."
+                    className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />
                 </div>
