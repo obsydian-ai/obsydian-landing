@@ -111,30 +111,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        {/* Card container con sombra sutil */}
+        {/* Card container */}
         <div className="bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
-          {/* Contenedor de imagen con gradiente */}
+          {/* Gradient header */}
           <div className="relative overflow-hidden rounded-t-[24px]">
-            <div className="aspect-[16/9] relative">
-              <img 
-                src={
-                  project.name === "Saludneo" 
-                    ? "/lovable-uploads/saludneo-onboarding-new.webp"
-                    : project.name === "Call Center AI"
-                    ? "/lovable-uploads/call-center-ai.png"
-                    : project.imageSrc === "/placeholder.svg" 
-                      ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
-                      : project.imageSrc
-                } 
-                alt={`${project.name} screenshot`}
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
-              {/* Overlay con gradiente suave */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/5 to-transparent"></div>
+            <div className="aspect-[2/1] relative">
+              <div className={`absolute inset-0 ${
+                project.color === 'blue' 
+                  ? 'bg-gradient-to-br from-blue-500/20 via-blue-400/30 to-blue-600/20'
+                  : project.color === 'purple'
+                  ? 'bg-gradient-to-br from-purple-500/20 via-purple-400/30 to-purple-600/20'
+                  : 'bg-gradient-to-br from-green-500/20 via-green-400/30 to-green-600/20'
+              }`}>
+                {/* Patrón de puntos sutil */}
+                <div className="absolute inset-0 opacity-30"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)',
+                    backgroundSize: '24px 24px',
+                    color: 'currentColor'
+                  }}
+                />
+                
+                {/* Círculo decorativo */}
+                <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full ${
+                  project.color === 'blue' 
+                    ? 'bg-blue-500/10'
+                    : project.color === 'purple'
+                    ? 'bg-purple-500/10'
+                    : 'bg-green-500/10'
+                }`} />
+              </div>
             </div>
           </div>
 
-          {/* Contenido con padding ajustado */}
+          {/* Contenido */}
           <div className="p-6">
             {/* Header con dot indicator */}
             <div className="flex items-center gap-3 mb-3">
@@ -148,12 +158,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
               </h3>
             </div>
 
-            {/* Descripción con tamaño óptimo para móvil */}
+            {/* Descripción */}
             <p className="text-gray-600 text-[15px] leading-relaxed mb-5">
               {project.description}
             </p>
 
-            {/* Botón estilo Segurneo */}
+            {/* Botón */}
             <Button 
               variant="ghost"
               className={`
