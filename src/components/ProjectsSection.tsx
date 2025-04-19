@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import TextReveal from '@/components/animations/TextReveal';
 import ProjectCard from '@/components/ProjectCard';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 // Project data
 const projects = [
@@ -68,6 +69,7 @@ const getTheme = (index: number): Theme => {
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
+  const isMobile = useMediaQuery('(max-width: 768px)');
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -117,11 +119,11 @@ const ProjectsSection: React.FC = () => {
       id="projects"
       ref={containerRef}
       className="relative bg-gradient-to-b from-white to-gray-50/50"
-      style={{ height: `${projects.length * 150}vh` }}
+      style={{ height: isMobile ? 'auto' : `${projects.length * 150}vh` }}
     >
       {/* Header con fade out */}
       <motion.div 
-        style={{ opacity: headerOpacity }}
+        style={{ opacity: isMobile ? 1 : headerOpacity }}
         className="sticky top-0 pt-16 pb-16 md:pt-24 md:pb-32 bg-gradient-to-b from-white via-white to-transparent z-10"
       >
         <div className="container px-4 md:px-6 mx-auto">
@@ -155,54 +157,81 @@ const ProjectsSection: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Contenedor de proyectos con scroll horizontal */}
-      <motion.div 
-        style={{ opacity: projectsOpacity }}
-        className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
-      >
-        <motion.div 
-          className="absolute inset-x-0 top-0 h-20 md:h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none opacity-75"
-        />
-        
-        <div className="absolute inset-x-0 bottom-0 h-20 md:h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none opacity-75"></div>
-        
-        <motion.div 
-          className="flex w-full"
-          style={{ x }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        >
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="min-w-full px-4 md:px-6"
-            >
-              <div className="container mx-auto">
+      {isMobile ? (
+        // Mobile layout - vertical scroll
+        <div className="py-8 px-4">
+          <div className="space-y-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="w-full"
+              >
                 <ProjectCard
                   project={project}
-                  isActive={activeProject === index}
+                  isActive={true}
                   theme={getTheme(index)}
+                  isMobile={true}
                 />
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Indicador de progreso */}
-      <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 md:gap-3 z-20">
-        {projects.map((_, index) => (
-          <motion.div
-            key={index}
-            className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-              index === activeProject ? 'bg-black' : 'bg-gray-300'
-            }`}
-            animate={{
-              scale: index === activeProject ? 1.5 : 1,
-            }}
-            transition={{ duration: 0.2 }}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        // Desktop layout - horizontal scroll
+        <motion.div 
+          style={{ opacity: projectsOpacity }}
+          className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+        >
+          <motion.div 
+            className="absolute inset-x-0 top-0 h-20 md:h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none opacity-75"
           />
-        ))}
-      </div>
+          
+          <div className="absolute inset-x-0 bottom-0 h-20 md:h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none opacity-75"></div>
+          
+          <motion.div 
+            className="flex w-full"
+            style={{ x }}
+            transition={{ type: "spring", stiffness: 50, damping: 20 }}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className="min-w-full px-4 md:px-6"
+              >
+                <div className="container mx-auto">
+                  <ProjectCard
+                    project={project}
+                    isActive={activeProject === index}
+                    theme={getTheme(index)}
+                  />
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Progress indicator - Only show on desktop */}
+      {!isMobile && (
+        <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 md:gap-3 z-20">
+          {projects.map((_, index) => (
+            <motion.div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                index === activeProject ? 'bg-black' : 'bg-gray-300'
+              }`}
+              animate={{
+                scale: index === activeProject ? 1.5 : 1,
+              }}
+              transition={{ duration: 0.2 }}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };

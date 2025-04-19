@@ -21,6 +21,7 @@ interface ProjectCardProps {
   };
   isActive: boolean;
   theme: Theme;
+  isMobile?: boolean;
 }
 
 const springConfig = {
@@ -28,7 +29,7 @@ const springConfig = {
   damping: 25
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isMobile = false }) => {
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -102,6 +103,67 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
   
   const cardTheme = gradientMap[project.color as keyof typeof gradientMap] || gradientMap.blue;
   
+  // Si es móvil, retornamos un layout más simple
+  if (isMobile) {
+    return (
+      <motion.div
+        className="bg-white rounded-2xl shadow-lg border border-gray-100/50 overflow-hidden"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        {/* Imagen */}
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <img 
+            src={
+              project.name === "Saludneo" 
+                ? "/lovable-uploads/saludneo-onboarding-new.webp"
+                : project.name === "Call Center AI"
+                ? "/lovable-uploads/call-center-ai.png"
+                : project.imageSrc === "/placeholder.svg" 
+                  ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
+                  : project.imageSrc
+            } 
+            alt={`${project.name} screenshot`}
+            className="w-full h-full object-cover"
+          />
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/30 to-transparent`}></div>
+        </div>
+
+        {/* Contenido */}
+        <div className="p-6 space-y-4">
+          <div className="flex items-center space-x-3">
+            <motion.div 
+              className={`w-2 h-2 rounded-full ${theme.accent}`}
+            />
+            <h3 className={`text-2xl font-bold tracking-tight ${theme.text}`}>{project.name}</h3>
+          </div>
+          <p className="text-gray-600 text-base leading-relaxed">{project.description}</p>
+          
+          <Button 
+            variant="ghost"
+            className={`group relative w-full px-4 py-2 font-medium rounded-full border ${theme.border} ${theme.text}`}
+            onClick={() => {
+              const element = document.getElementById(`project-${project.id}`);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            role="button"
+            aria-label={`Learn more about ${project.name}`}
+          >
+            Coming soon
+            <motion.div
+              className="absolute inset-0 rounded-full bg-current"
+              style={{ opacity: 0.1 }}
+            />
+          </Button>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Desktop layout (existing code)
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full px-6">
       {/* Left Card: Project Info with enhanced 3D effect */}
