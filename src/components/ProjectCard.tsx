@@ -112,42 +112,44 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
         viewport={{ once: true }}
       >
         {/* Card container con sombra sutil */}
-        <div className="bg-white rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
+        <div className="bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
           {/* Contenedor de imagen con gradiente */}
-          <div className="relative h-[200px] overflow-hidden rounded-t-[32px]">
-            <img 
-              src={
-                project.name === "Saludneo" 
-                  ? "/lovable-uploads/saludneo-onboarding-new.webp"
-                  : project.name === "Call Center AI"
-                  ? "/lovable-uploads/call-center-ai.png"
-                  : project.imageSrc === "/placeholder.svg" 
-                    ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
-                    : project.imageSrc
-              } 
-              alt={`${project.name} screenshot`}
-              className="w-full h-full object-cover"
-            />
-            {/* Overlay con gradiente suave */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+          <div className="relative overflow-hidden rounded-t-[24px]">
+            <div className="aspect-[16/9] relative">
+              <img 
+                src={
+                  project.name === "Saludneo" 
+                    ? "/lovable-uploads/saludneo-onboarding-new.webp"
+                    : project.name === "Call Center AI"
+                    ? "/lovable-uploads/call-center-ai.png"
+                    : project.imageSrc === "/placeholder.svg" 
+                      ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
+                      : project.imageSrc
+                } 
+                alt={`${project.name} screenshot`}
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+              {/* Overlay con gradiente suave */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/5 to-transparent"></div>
+            </div>
           </div>
 
-          {/* Contenido con padding generoso */}
-          <div className="p-8">
+          {/* Contenido con padding ajustado */}
+          <div className="p-6">
             {/* Header con dot indicator */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
               <motion.div 
-                className={`w-2.5 h-2.5 rounded-full ${theme.accent}`}
+                className={`w-2 h-2 rounded-full ${theme.accent}`}
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <h3 className={`text-2xl font-bold tracking-tight ${theme.text}`}>
+              <h3 className={`text-xl font-bold tracking-tight ${theme.text}`}>
                 {project.name}
               </h3>
             </div>
 
             {/* Descripción con tamaño óptimo para móvil */}
-            <p className="text-gray-600 text-base leading-relaxed mb-6">
+            <p className="text-gray-600 text-[15px] leading-relaxed mb-5">
               {project.description}
             </p>
 
@@ -155,8 +157,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
             <Button 
               variant="ghost"
               className={`
-                group relative w-full py-4 font-medium
-                rounded-2xl border-2 transition-all duration-200
+                group relative w-full py-3.5 font-medium
+                rounded-2xl border transition-all duration-200
                 ${theme.border} ${theme.text}
                 active:scale-[0.98]
               `}
@@ -169,7 +171,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
               role="button"
               aria-label={`Learn more about ${project.name}`}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2 text-sm font-medium">
                 Coming soon
                 <ArrowRight className="w-4 h-4" />
               </span>

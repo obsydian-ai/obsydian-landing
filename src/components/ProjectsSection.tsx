@@ -121,46 +121,48 @@ const ProjectsSection: React.FC = () => {
       className="relative bg-gradient-to-b from-white to-gray-50/50"
       style={{ height: isMobile ? 'auto' : `${projects.length * 150}vh` }}
     >
-      {/* Header con fade out */}
-      <motion.div 
-        style={{ opacity: isMobile ? 1 : headerOpacity }}
-        className="sticky top-0 pt-16 pb-16 md:pt-24 md:pb-32 bg-gradient-to-b from-white via-white to-transparent z-10"
-      >
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6"
-            >
-              <div className="h-px bg-gray-200 w-8 md:w-12"></div>
-              <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">Nuestros Proyectos</span>
-              <div className="h-px bg-gray-200 w-8 md:w-12"></div>
-            </motion.div>
-            
-            <TextReveal as="h2" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
-              Explora nuestras soluciones
-            </TextReveal>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-gray-600 text-base md:text-lg leading-relaxed"
-            >
-              Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.
-            </motion.p>
+      {/* Header */}
+      <div className={`${isMobile ? 'relative bg-white' : 'sticky top-0 bg-gradient-to-b from-white via-white to-transparent'}`}>
+        <motion.div 
+          style={{ opacity: isMobile ? 1 : headerOpacity }}
+          className="pt-16 pb-8 md:pt-24 md:pb-32 z-10"
+        >
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6"
+              >
+                <div className="h-px bg-gray-200 w-8 md:w-12"></div>
+                <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">Nuestros Proyectos</span>
+                <div className="h-px bg-gray-200 w-8 md:w-12"></div>
+              </motion.div>
+              
+              <TextReveal as="h2" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
+                Explora nuestras soluciones
+              </TextReveal>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-gray-600 text-base md:text-lg leading-relaxed"
+              >
+                Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.
+              </motion.p>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {isMobile ? (
         // Mobile layout - vertical scroll
-        <div className="py-6 px-4">
-          <div className="space-y-6">
+        <div className="pt-8 px-4 pb-16">
+          <div className="space-y-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -174,7 +176,7 @@ const ProjectsSection: React.FC = () => {
                     ease: [0.21, 0.45, 0.27, 0.9]
                   } 
                 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="w-full"
               >
                 <ProjectCard
