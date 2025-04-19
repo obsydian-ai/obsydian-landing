@@ -114,7 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
         onMouseLeave={handleMouseLeave}
         className="relative h-full perspective-2000"
       >
-        {/* Capas de profundidad sólidas */}
+        {/* Card layers and content */}
         <motion.div
           className="absolute inset-0 bg-gray-50 rounded-3xl transform-gpu"
           style={{
@@ -138,17 +138,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
           }}
         />
         
-        {/* Tarjeta principal */}
+        {/* Main card */}
         <motion.div
           initial={{ rotateX: 10, rotateY: -10 }}
           style={{
             rotateX,
             rotateY,
             transformStyle: "preserve-3d",
-            scale: isHovered ? 1.01 : 1, // Reducimos el escalado al hover
+            scale: isHovered ? 1.01 : 1,
             boxShadow: useMotionTemplate`0 ${cardDepth}px 50px -15px rgba(0,0,0,0.15), 0 ${cardDepth}px 30px -15px rgba(0,0,0,0.1)`
           }}
-          transition={{ duration: 0.4 }} // Aumentamos ligeramente la duración de la transición
+          transition={{ duration: 0.4 }}
           className="relative bg-white rounded-3xl border border-gray-100/50 p-8 h-full transform-gpu"
         >
           {/* Spotlight effect más sutil */}
@@ -216,15 +216,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
                 aria-label={`Learn more about ${project.name}`}
                 tabIndex={0}
               >
-                <span className="relative z-10 flex items-center pointer-events-auto">
-                Coming soon 
-                  <motion.div
-                    animate={{ x: isHovered ? 6 : 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex items-center"
-                  >
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </motion.div>
+                <span className="relative z-10 flex items-center justify-center w-full pointer-events-auto">
+                  Coming soon
                 </span>
                 <motion.div
                   className="absolute inset-0 rounded-full bg-current"
@@ -239,7 +232,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
         </motion.div>
       </motion.div>
       
-      {/* Right Card: Phone Screenshot with enhanced floating effect */}
+      {/* Right Card: Screenshot with enhanced floating effect */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -256,57 +249,47 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme }) =
             ease: "easeInOut"
           }}
           className={`relative w-full h-full rounded-3xl bg-gradient-to-br ${cardTheme.primary} p-8 flex items-center justify-center overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border ${cardTheme.border}`}
+          style={{
+            minHeight: project.name === "Call Center AI" ? "600px" : "auto"
+          }}
         >
           {/* Dynamic background elements */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.8),transparent)]"></div>
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.5, 0.3, 0.5],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-            className="absolute bottom-0 left-0 w-32 h-32 bg-white/20 rounded-full blur-3xl"
-          />
           
-          {/* Phone container with reflection effect */}
+          {/* Phone/Desktop container with reflection effect */}
           <motion.div
             initial={{ y: 20, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-[280px] mx-auto"
+            className={`relative ${project.name === "Call Center AI" ? 'w-full max-w-[95%]' : 'max-w-[280px]'} mx-auto`}
           >
-            <div className="rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-sm p-2">
+            <div className={`rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-sm ${
+              project.name === "Call Center AI" ? 'p-3' : 'p-2'
+            }`}>
               <div className="relative">
-              <img 
-                src={project.imageSrc === "/placeholder.svg" ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" : project.imageSrc} 
-                alt={`${project.name} screenshot`}
-                className="w-full h-auto rounded-[1.5rem] object-contain aspect-[9/19]"
-                style={{
-                  maxHeight: "calc(100vh - 200px)",
-                  objectPosition: "top center"
-                }}
-              />
-                {/* Reflection overlay */}
+                <img 
+                  src={
+                    project.name === "Saludneo" 
+                      ? "/lovable-uploads/saludneo-onboarding-new.webp"
+                      : project.name === "Call Center AI"
+                      ? "/lovable-uploads/call-center-ai.png"
+                      : project.imageSrc === "/placeholder.svg" 
+                        ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
+                        : project.imageSrc
+                  } 
+                  alt={`${project.name} screenshot`}
+                  className={`w-full h-auto rounded-[1.5rem] ${
+                    project.name === "Call Center AI" 
+                      ? 'aspect-[16/9] object-cover scale-105' 
+                      : 'aspect-[9/19] object-contain'
+                  }`}
+                  style={{
+                    maxHeight: project.name === "Call Center AI" ? "450px" : "calc(100vh - 200px)",
+                    objectPosition: "top center"
+                  }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 rounded-[1.5rem]"></div>
               </div>
-              <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-black/10 rounded-full backdrop-blur-sm"></div>
             </div>
             
             {/* Enhanced glow effect */}

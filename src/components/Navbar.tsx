@@ -10,7 +10,7 @@ const NavItems = [
     href: '#services',
     submenu: [
       { name: 'Nuestros proyectos', href: '#projects' },
-      { name: 'Consultoría tecnológica', href: '#tech-consultancy' }
+      { name: 'Consultoría tecnológica', href: '#services' }
     ]
   },
   { 
@@ -100,6 +100,15 @@ const Navbar = () => {
                 >
                   <a
                     href={item.href}
+                    onClick={(e) => {
+                      if (item.href) {
+                        e.preventDefault();
+                        const element = document.querySelector(item.href);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }
+                    }}
                     className="text-sm font-medium text-gray-600 hover:text-black transition-colors flex items-center py-2 px-3 rounded-lg hover:bg-gray-50/80"
                   >
                     {item.name}
@@ -119,8 +128,19 @@ const Navbar = () => {
                         className="relative mt-2 w-48 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-2"
                       >
                         {item.submenu.map((subItem) => (
-                          <motion.div
+                          <motion.a
                             key={subItem.name}
+                            href={subItem.href}
+                            onClick={(e) => {
+                              if (!subItem.disabled && subItem.href) {
+                                e.preventDefault();
+                                const element = document.querySelector(subItem.href);
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth' });
+                                  setHoveredItem(null);
+                                }
+                              }
+                            }}
                             className={`block px-4 py-2 text-sm ${
                               subItem.disabled 
                                 ? 'text-gray-400 cursor-not-allowed' 
@@ -130,7 +150,7 @@ const Navbar = () => {
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             {subItem.name}
-                          </motion.div>
+                          </motion.a>
                         ))}
                       </motion.div>
                     </div>
@@ -149,7 +169,9 @@ const Navbar = () => {
 
               {/* CTA Button */}
               <motion.a
-                href="#contact"
+                href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm ml-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -193,8 +215,17 @@ const Navbar = () => {
                   >
                     <a
                       href={item.href}
+                      onClick={(e) => {
+                        if (item.href) {
+                          e.preventDefault();
+                          const element = document.querySelector(item.href);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                            setMobileMenuOpen(false);
+                          }
+                        }
+                      }}
                       className="block text-base font-medium text-gray-600 hover:text-black transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
                     </a>
@@ -208,19 +239,29 @@ const Navbar = () => {
                         transition={{ delay: 0.1 }}
                       >
                         {item.submenu.map((subItem) => (
-                          <motion.div
+                          <motion.a
                             key={subItem.name}
+                            href={subItem.href}
+                            onClick={(e) => {
+                              if (!subItem.disabled && subItem.href) {
+                                e.preventDefault();
+                                const element = document.querySelector(subItem.href);
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth' });
+                                  setMobileMenuOpen(false);
+                                }
+                              }
+                            }}
                             className={`block text-sm font-medium ${
                               subItem.disabled 
                                 ? 'text-gray-400 cursor-not-allowed' 
                                 : 'text-gray-500 hover:text-black transition-colors cursor-pointer'
                             }`}
-                            onClick={() => !subItem.disabled && setMobileMenuOpen(false)}
                             whileHover={!subItem.disabled ? { x: 4 } : {}}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             {subItem.name}
-                          </motion.div>
+                          </motion.a>
                         ))}
                       </motion.div>
                     )}
@@ -239,7 +280,9 @@ const Navbar = () => {
                 
                 {/* Mobile CTA Button */}
                 <motion.a
-                  href="#contact"
+                  href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-base font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm"
                   onClick={() => setMobileMenuOpen(false)}
                   initial={{ opacity: 0, x: -20 }}

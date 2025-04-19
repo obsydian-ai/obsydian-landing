@@ -44,6 +44,7 @@ const features: Feature[] = [
 const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, index }) => {
   return (
     <motion.div
+      id={`feature-${feature.id}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ 
         opacity: 1, 
@@ -122,7 +123,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
           <div className={`
             relative mt-4 md:mt-6
             aspect-video w-full
-            overflow-hidden rounded-lg md:rounded-xl
+            overflow-visible rounded-lg md:rounded-xl
             ${feature.image}
             bg-opacity-60
             transition-all duration-700
@@ -161,7 +162,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
             <div className="absolute inset-0 flex items-center justify-center">
               {feature.id === 1 && (
                 // Ilustración mejorada para Atención al cliente
-                <div className="w-[85%] h-[70%] relative">
+                <div className="w-[85%] h-[70%] relative -mt-16">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
                       <linearGradient id="chat-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -187,28 +188,28 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
                     
                     {/* Ondas de comunicación */}
                     <g className="animate-pulse-slow">
-                      <circle cx="200" cy="100" r="80" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
-                      <circle cx="200" cy="100" r="60" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
-                      <circle cx="200" cy="100" r="40" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
+                      <circle cx="200" cy="140" r="80" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
+                      <circle cx="200" cy="140" r="60" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
+                      <circle cx="200" cy="140" r="40" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
                     </g>
 
                     {/* Burbujas de chat con efectos mejorados */}
                     <g className="animate-bounce-slow">
-                      <rect x="40" y="30" width="140" height="45" rx="22.5" fill="url(#chat-gradient-1)" className="text-primary-100"/>
-                      <circle cx="60" cy="52.5" r="15" fill="currentColor" className="text-primary-200 animate-pulse"/>
-                      <path d="M90 52.5 H160" stroke="currentColor" strokeWidth="2" className="text-primary-300"/>
+                      <rect x="40" y="70" width="140" height="45" rx="22.5" fill="url(#chat-gradient-1)" className="text-primary-100"/>
+                      <circle cx="60" cy="92.5" r="15" fill="currentColor" className="text-primary-200 animate-pulse"/>
+                      <path d="M90 92.5 H160" stroke="currentColor" strokeWidth="2" className="text-primary-300"/>
                       {/* Indicador de escritura */}
                       <g className="animate-bounce-slow">
-                        <circle cx="90" cy="52.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow"/>
-                        <circle cx="100" cy="52.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:150ms]"/>
-                        <circle cx="110" cy="52.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:300ms]"/>
+                        <circle cx="90" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow"/>
+                        <circle cx="100" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:150ms]"/>
+                        <circle cx="110" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:300ms]"/>
                       </g>
                     </g>
 
                     {/* Elementos decorativos */}
                     <g className="animate-sparkle">
-                      <path d="M350 40 L355 35 L350 30 L345 35 Z" fill="currentColor" className="text-primary-300"/>
-                      <path d="M50 160 L55 155 L50 150 L45 155 Z" fill="currentColor" className="text-primary-300"/>
+                      <path d="M350 80 L355 75 L350 70 L345 75 Z" fill="currentColor" className="text-primary-300"/>
+                      <path d="M50 180 L55 175 L50 170 L45 175 Z" fill="currentColor" className="text-primary-300"/>
                     </g>
                   </svg>
                 </div>
@@ -487,17 +488,25 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
             </div>
 
             {/* Indicador de interactividad */}
-            <div className="
-              absolute bottom-4 right-4
-              px-3 py-1.5
-              bg-white/90 rounded-full
-              text-xs font-medium
-              transform transition-all duration-300
-              opacity-0 group-hover:opacity-100
-              translate-y-2 group-hover:translate-y-0
-            ">
+            <a
+              href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                absolute bottom-4 right-4
+                px-3 py-1.5
+                bg-white/90 hover:bg-white
+                rounded-full
+                text-xs font-medium text-gray-600 hover:text-gray-900
+                transition-all duration-300
+                opacity-0 group-hover:opacity-100
+                translate-y-2 group-hover:translate-y-0
+                cursor-pointer
+                hover:shadow-md
+              "
+            >
               Click para más info
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -507,7 +516,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 
 const ProductFeatureSection: React.FC = () => {
   return (
-    <section className="relative bg-black mt-24 md:mt-48">
+    <section id="services" className="relative bg-black mt-24 md:mt-48">
       {/* Header Fijo en el Centro */}
       <div className="sticky top-0 pt-20 pb-20 md:pt-32 md:pb-32 z-10 w-full bg-black">
         <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
