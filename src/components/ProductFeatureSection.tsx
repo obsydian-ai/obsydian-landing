@@ -123,14 +123,12 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
           <div className={`
             relative mt-4 md:mt-6
             aspect-video w-full
-            overflow-visible rounded-lg md:rounded-xl
+            overflow-hidden rounded-lg md:rounded-xl
             ${feature.image}
             bg-opacity-60
             transition-all duration-700
             group-hover:scale-[1.03]
             group-hover:shadow-xl
-            before:absolute before:inset-0 before:bg-gradient-to-br before:from-black/[0.02] before:to-black/[0.05]
-            before:rounded-lg before:md:rounded-xl
           `}>
             {/* Botón de acción flotante */}
             <div className="absolute top-4 right-4 z-10">
