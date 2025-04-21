@@ -162,7 +162,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
             <div className="absolute inset-0 flex items-center justify-center">
               {feature.id === 1 && (
                 // Ilustración mejorada para Atención al cliente
-                <div className="w-[85%] h-[70%] relative -mt-16">
+                <div className="w-[85%] h-[70%] relative -mt-16 bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
                       <linearGradient id="chat-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -216,7 +216,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
               )}
               {feature.id === 2 && (
                 // Ilustración mejorada para Recuperación de impagos
-                <div className="w-[85%] h-[70%] relative">
+                <div className="w-[85%] h-[70%] relative bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
                       <linearGradient id="chart-gradient-2" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -298,7 +298,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
               )}
               {feature.id === 3 && (
                 // Ilustración mejorada para Gestión de siniestros
-                <div className="w-[85%] h-[70%] relative">
+                <div className="w-[85%] h-[70%] relative bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
                       <linearGradient id="doc-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -376,7 +376,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
               )}
               {feature.id === 4 && (
                 // Ilustración mejorada para Métodos de pago
-                <div className="w-[85%] h-[70%] relative">
+                <div className="w-[85%] h-[70%] relative bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
                       <linearGradient id="card-gradient-4" x1="0%" y1="0%" x2="100%" y2="100%">
