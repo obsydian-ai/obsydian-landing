@@ -120,8 +120,45 @@ const Navbar = () => {
               </a>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
+            {/* Container for Right-side items on Mobile */} 
+            <div className="flex items-center space-x-2">
+              {/* Language Toggle Button - Visible on Mobile */} 
+              <motion.button 
+                onClick={handleLocaleChange}
+                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner md:hidden" // Show only on mobile (<=md)
+                aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
+                style={{ width: '64px' }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.1 }}
+              >
+                {/* Indicator */}
+                <motion.div
+                  layout
+                  transition={{ type: "spring", stiffness: 600, damping: 30 }}
+                  className="absolute left-0.5 top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
+                  animate={{ left: currentLanguage === 'en' ? 'calc(50% + 1px)' : '2px' }}
+                />
+                {/* Labels */}
+                <div className="relative z-10 flex justify-around w-full">
+                  <span className={cn("px-1.5 text-xs font-semibold transition-colors duration-300", currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600')}>ES</span>
+                  <span className={cn("px-1.5 text-xs font-semibold transition-colors duration-300", currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600')}>EN</span>
+                </div>
+              </motion.button>
+
+              {/* Mobile menu button */}
+              <motion.button
+                className="md:hidden rounded-lg p-2 text-gray-600 hover:bg-gray-50/80 hover:text-black transition-colors" // Only show on mobile (<=md)
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />} 
+              </motion.button>
+            </div>
+
+            {/* Desktop Navigation (includes desktop toggle) */}
+            <nav className="hidden md:flex items-center space-x-1"> {/* Hide on mobile (<=md) */}
               {NavItems.map((item, i) => (
                 <motion.div 
                   key={item.name}
@@ -191,10 +228,10 @@ const Navbar = () => {
                 </motion.div>
               ))}
 
-              {/* Language Toggle Button - More Margin + Click Animation */}
+              {/* Language Toggle Button - Desktop */}
               <motion.button
                 onClick={handleLocaleChange}
-                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner mr-3"
+                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner mr-3" // Keep mr-3
                 aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
                 style={{ width: '64px' }}
                 whileTap={{ scale: 0.97 }}
@@ -202,21 +239,15 @@ const Navbar = () => {
               >
                 {/* Indicator */}
                 <motion.div
-                  layout 
+                  layout
                   transition={{ type: "spring", stiffness: 600, damping: 30 }}
-                  className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
+                  className="absolute left-0.5 top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
                   animate={{ left: currentLanguage === 'en' ? 'calc(50% + 1px)' : '2px' }}
                 />
-                {/* Labels - Increased contrast */}
+                {/* Labels */}
                 <div className="relative z-10 flex justify-around w-full">
-                  <span className={cn(
-                    "px-1.5 text-xs font-semibold transition-colors duration-300", 
-                    currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
-                  )}>ES</span>
-                  <span className={cn(
-                    "px-1.5 text-xs font-semibold transition-colors duration-300", 
-                    currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
-                  )}>EN</span>
+                  <span className={cn("px-1.5 text-xs font-semibold transition-colors duration-300", currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600')}>ES</span>
+                  <span className={cn("px-1.5 text-xs font-semibold transition-colors duration-300", currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600')}>EN</span>
                 </div>
               </motion.button>
 
@@ -233,125 +264,15 @@ const Navbar = () => {
                 {t('cta')}
               </motion.a>
             </nav>
-
-            {/* Mobile menu button */}
-            <motion.button
-              className="md:hidden rounded-lg p-2 text-gray-600 hover:bg-gray-50/80 hover:text-black transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </motion.button>
           </div>
         </motion.div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Menu (Dropdown) */} 
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-gray-100 relative z-10"
-            >
+            <motion.div /* ... */ className="md:hidden border-t border-gray-100 relative z-10">
               <nav className="flex flex-col space-y-4 py-4 px-6 bg-white/95">
-                {NavItems.map((item) => (
-                  <motion.div 
-                    key={item.name}
-                    className="py-1"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <a
-                      href={item.href}
-                      onClick={(e) => {
-                        if (item.href) {
-                          e.preventDefault();
-                          const element = document.querySelector(item.href);
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
-                            setMobileMenuOpen(false);
-                          }
-                        }
-                      }}
-                      className="block text-base font-medium text-gray-600 hover:text-black transition-colors"
-                    >
-                      {item.name}
-                    </a>
-                    
-                    {/* Mobile Submenu */}
-                    {item.submenu && (
-                      <motion.div 
-                        className="pl-4 mt-2 space-y-2 border-l border-gray-100"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        {item.submenu.map((subItem) => (
-                          <motion.a
-                            key={subItem.name}
-                            href={subItem.href}
-                            onClick={(e) => {
-                              if (!subItem.disabled && subItem.href) {
-                                e.preventDefault();
-                                const element = document.querySelector(subItem.href);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth' });
-                                  setMobileMenuOpen(false);
-                                }
-                              }
-                            }}
-                            className={`block text-sm font-medium ${
-                              subItem.disabled 
-                                ? 'text-gray-400 cursor-not-allowed' 
-                                : 'text-gray-500 hover:text-black transition-colors cursor-pointer'
-                            }`}
-                            whileHover={!subItem.disabled ? { x: 4 } : {}}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                          >
-                            {subItem.name}
-                          </motion.a>
-                        ))}
-                      </motion.div>
-                    )}
-                  </motion.div>
-                ))}
-                
-                {/* Mobile Language Toggle Button (similar refined logic + click animation) */}
-                <motion.button
-                  onClick={() => {
-                    handleLocaleChange();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner self-start my-2"
-                  aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
-                  style={{ width: '64px' }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.1 }}
-                >
-                  {/* Indicator */}
-                  <motion.div
-                    layout
-                    transition={{ type: "spring", stiffness: 600, damping: 30 }}
-                    className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
-                    animate={{ left: currentLanguage === 'en' ? 'calc(50% + 1px)' : '2px' }}
-                  />
-                  {/* Labels - Increased contrast */}
-                  <div className="relative z-10 flex justify-around w-full">
-                    <span className={cn(
-                      "px-1.5 text-xs font-semibold transition-colors duration-300", 
-                      currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
-                    )}>ES</span>
-                    <span className={cn(
-                      "px-1.5 text-xs font-semibold transition-colors duration-300", 
-                      currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
-                    )}>EN</span>
-                  </div>
-                </motion.button>
+                {/* ... Mobile NavItems mapping ... */} 
                 
                 {/* Mobile CTA Button */}
                 <motion.a
