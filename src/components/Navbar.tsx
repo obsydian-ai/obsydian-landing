@@ -2,30 +2,63 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
-const NavItems = [
-  { name: 'Inicio', href: '#' },
+// Define a type for NavItem including submenus
+type SubMenuItem = {
+  nameKey: string; // Key for translation
+  href?: string;
+  disabled?: boolean;
+};
+
+type NavItem = {
+  nameKey: string; // Key for translation
+  href?: string;
+  submenu?: SubMenuItem[];
+};
+
+// NavItems now uses translation keys
+const NavItemsData: NavItem[] = [
+  { nameKey: 'home', href: '#' },
   { 
-    name: 'Servicios', 
+    nameKey: 'services', 
     href: '#services',
     submenu: [
-      { name: 'Nuestros proyectos', href: '#projects' },
-      { name: 'Consultoría tecnológica', href: '#services' }
+      { nameKey: 'projects', href: '#projects' },
+      { nameKey: 'consulting', href: '#services' }
     ]
   },
   { 
-    name: 'Recursos', 
+    nameKey: 'resources', 
     href: '#resources',
     submenu: [
-      { name: 'Próximamente', disabled: true }
+      { nameKey: 'soon', disabled: true } // Assuming 'soon' key exists
     ]
   }
 ];
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation('Navbar');
+  const currentLanguage = i18n.language as 'en' | 'es'; // Type assertion
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+
+  // Generate NavItems with translated names
+  const NavItems = NavItemsData.map(item => ({
+    ...item,
+    name: t(item.nameKey),
+    submenu: item.submenu?.map(subItem => ({
+      ...subItem,
+      name: t(subItem.nameKey)
+    }))
+  }));
+
+  // Function to handle locale change
+  const handleLocaleChange = () => {
+    const otherLocale = currentLanguage === 'en' ? 'es' : 'en';
+    i18n.changeLanguage(otherLocale);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +124,7 @@ const Navbar = () => {
             <nav className="hidden md:flex items-center space-x-1">
               {NavItems.map((item, i) => (
                 <motion.div 
-                  key={item.name} 
+                  key={item.name}
                   className="relative group"
                   onMouseEnter={() => setHoveredItem(i)}
                   onMouseLeave={() => setHoveredItem(null)}
@@ -158,13 +191,33 @@ const Navbar = () => {
                 </motion.div>
               ))}
 
-              {/* Language Switcher */}
-              <motion.button 
-                className="text-sm font-medium text-gray-600 hover:text-black transition-colors px-3 py-2 rounded-lg hover:bg-gray-50/80"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              {/* Language Toggle Button - More Margin + Click Animation */}
+              <motion.button
+                onClick={handleLocaleChange}
+                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner mr-3"
+                aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
+                style={{ width: '64px' }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.1 }}
               >
-                EN / ES
+                {/* Indicator */}
+                <motion.div
+                  layout 
+                  transition={{ type: "spring", stiffness: 600, damping: 30 }}
+                  className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
+                  animate={{ left: currentLanguage === 'en' ? 'calc(50% + 1px)' : '2px' }}
+                />
+                {/* Labels - Increased contrast */}
+                <div className="relative z-10 flex justify-around w-full">
+                  <span className={cn(
+                    "px-1.5 text-xs font-semibold transition-colors duration-300", 
+                    currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
+                  )}>ES</span>
+                  <span className={cn(
+                    "px-1.5 text-xs font-semibold transition-colors duration-300", 
+                    currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
+                  )}>EN</span>
+                </div>
               </motion.button>
 
               {/* CTA Button */}
@@ -177,7 +230,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                Hablemos
+                {t('cta')}
               </motion.a>
             </nav>
 
@@ -207,7 +260,7 @@ const Navbar = () => {
               <nav className="flex flex-col space-y-4 py-4 px-6 bg-white/95">
                 {NavItems.map((item) => (
                   <motion.div 
-                    key={item.name} 
+                    key={item.name}
                     className="py-1"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -268,14 +321,36 @@ const Navbar = () => {
                   </motion.div>
                 ))}
                 
-                {/* Mobile Language Switcher */}
-                <motion.button 
-                  className="text-base font-medium text-gray-600 hover:text-black transition-colors text-left py-1"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
+                {/* Mobile Language Toggle Button (similar refined logic + click animation) */}
+                <motion.button
+                  onClick={() => {
+                    handleLocaleChange();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner self-start my-2"
+                  aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
+                  style={{ width: '64px' }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.1 }}
                 >
-                  EN / ES
+                  {/* Indicator */}
+                  <motion.div
+                    layout
+                    transition={{ type: "spring", stiffness: 600, damping: 30 }}
+                    className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm z-0"
+                    animate={{ left: currentLanguage === 'en' ? 'calc(50% + 1px)' : '2px' }}
+                  />
+                  {/* Labels - Increased contrast */}
+                  <div className="relative z-10 flex justify-around w-full">
+                    <span className={cn(
+                      "px-1.5 text-xs font-semibold transition-colors duration-300", 
+                      currentLanguage === 'es' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
+                    )}>ES</span>
+                    <span className={cn(
+                      "px-1.5 text-xs font-semibold transition-colors duration-300", 
+                      currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600' 
+                    )}>EN</span>
+                  </div>
                 </motion.button>
                 
                 {/* Mobile CTA Button */}
@@ -291,7 +366,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Hablemos
+                  {t('cta')}
                 </motion.a>
               </nav>
             </motion.div>

@@ -3,27 +3,28 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import TextReveal from '@/components/animations/TextReveal';
 import ProjectCard from '@/components/ProjectCard';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import { useTranslation } from 'react-i18next';
 
-// Project data
-const projects = [
+// Project data now uses description keys
+const projectsData = [
   {
     id: 1,
     name: "Saludneo",
-    description: "Broker de distribución de seguros de salud nativo con Inteligencia Artificial.",
+    descriptionKey: "project1Desc",
     imageSrc: "/lovable-uploads/saludneo-onboarding.webp",
     color: "blue",
   },
   {
     id: 2,
     name: "Segurpay",
-    description: "Plataforma de pago adaptada al sector asegurador. Gestiona impagos, recobros y facturas de forma automatizada.",
+    descriptionKey: "project2Desc",
     imageSrc: "/lovable-uploads/segurpay-dashboard.webp",
     color: "purple",
   },
   {
     id: 3,
     name: "Call Center AI",
-    description: "Solución de inteligencia artificial que optimiza la atención al cliente en centros de llamadas. Reduce tiempos de espera, aumenta márgenes y mejora la satisfacción.",
+    descriptionKey: "project3Desc",
     imageSrc: "/placeholder.svg",
     color: "green",
   }
@@ -67,6 +68,8 @@ const getTheme = (index: number): Theme => {
 };
 
 const ProjectsSection: React.FC = () => {
+  const { t } = useTranslation('ProjectsSection');
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -87,7 +90,7 @@ const ProjectsSection: React.FC = () => {
   const x = useTransform(
     smoothProgress,
     [0.25, 0.85],
-    ["0%", `-${(projects.length - 1) * 100}%`]
+    ["0%", `-${(projectsData.length - 1) * 100}%`]
   );
 
   // Efectos de opacidad ajustados
@@ -103,12 +106,18 @@ const ProjectsSection: React.FC = () => {
     [1, 0]
   );
 
+  // Map projectsData to include translated description
+  const projects = projectsData.map(p => ({
+    ...p,
+    description: t(p.descriptionKey)
+  }));
+
   // Actualizar proyecto activo basado en la posición del scroll
   useEffect(() => {
     return scrollYProgress.on("change", latest => {
       const projectIndex = Math.min(
-        Math.floor(latest * projects.length * 0.85),
-        projects.length - 1
+        Math.floor(latest * projectsData.length * 0.85),
+        projectsData.length - 1
       );
       setActiveProject(projectIndex);
     });
@@ -137,12 +146,14 @@ const ProjectsSection: React.FC = () => {
                 className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6"
               >
                 <div className="h-px bg-gray-200 w-8 md:w-12"></div>
-                <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">Nuestros Proyectos</span>
+                <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">
+                  {t('sectionTag')}
+                </span>
                 <div className="h-px bg-gray-200 w-8 md:w-12"></div>
               </motion.div>
               
               <TextReveal as="h2" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">
-                Explora nuestras soluciones
+                {t('title')}
               </TextReveal>
               
               <motion.p
@@ -152,7 +163,7 @@ const ProjectsSection: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-gray-600 text-base md:text-lg leading-relaxed"
               >
-                Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.
+                {t('paragraph')}
               </motion.p>
             </div>
           </div>

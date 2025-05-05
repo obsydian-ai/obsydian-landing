@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const VentureStudioSection = () => {
+  const { t } = useTranslation('VentureStudioSection');
+
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -23,7 +26,8 @@ const VentureStudioSection = () => {
 
   // const RevealWord = ({ word, progress }: { word: string; progress: any }) => { ... };
 
-  const RevealLine = ({ text, className, isTitle = false }: { text: string; className?: string; isTitle?: boolean }) => {
+  const RevealLine = ({ textKey, className, isTitle = false }: { textKey: string; className?: string; isTitle?: boolean }) => {
+    const revealedText = t(textKey);
     const lineRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress: lineScrollYProgress } = useScroll({
       target: lineRef,
@@ -34,7 +38,7 @@ const VentureStudioSection = () => {
 
     return (
       <div ref={lineRef} className={`${className} relative overflow-hidden ${isTitle ? 'h-[1.1em]' : 'leading-tight'}`}>
-        <span className="text-gray-300 block" aria-hidden="true">{text}</span>
+        <span className="text-gray-300 block" aria-hidden="true">{revealedText}</span>
         <motion.span
           className="absolute left-0 top-0 right-0 text-black"
           style={{
@@ -43,9 +47,9 @@ const VentureStudioSection = () => {
           }}
           aria-hidden="true"
         >
-          {text}
+          {revealedText}
         </motion.span>
-        <span className="sr-only">{text}</span>
+        <span className="sr-only">{revealedText}</span>
       </div>
     );
   };
@@ -71,29 +75,29 @@ const VentureStudioSection = () => {
                 >
                   <div className="w-8 md:w-12 h-0.5 bg-black"></div>
                   <span className="text-sm md:text-base font-medium uppercase tracking-wide">
-                    Nuestra Visión
+                    {t('sectionTag')}
                   </span>
                 </motion.div>
 
                 {/* Título principal con revelado progresivo */}
                 <div className="space-y-0">
                   <RevealLine 
-                    text="Impulsamos la"
+                    textKey="titlePart1"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
                   <RevealLine 
-                    text="transformación digital"
+                    textKey="titlePart2"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
                   <RevealLine 
-                    text="del sector"
+                    textKey="titlePart3"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
                   <RevealLine 
-                    text="asegurador"
+                    textKey="titlePart4"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     isTitle={true}
                   />
@@ -102,17 +106,17 @@ const VentureStudioSection = () => {
                 {/* Párrafos con revelado progresivo */}
                 <div className="mt-4 md:mt-6 space-y-[1.35rem]">
                   <RevealLine 
-                    text="En Segurneo, tendemos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestro equipo combina una profunda experiencia en seguros con un sólido dominio de las tecnologías más avanzadas."
+                    textKey="paragraph1"
                     className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />
                   <RevealLine 
-                    text="Por un lado, nuestra rama de consultoría tecnológica desarrolla soluciones a medida que responden a necesidades específicas del negocio. Impulsamos la eficiencia operativa, mejoramos la experiencia del cliente y aceleramos la digitalización de aseguradoras y distribuidores."
+                    textKey="paragraph2"
                     className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />
                   <RevealLine 
-                    text="Por otro lado, exploramos y creamos nuevos modelos de negocio. Colaboramos estrechamente con aseguradoras y distribuidores para co-crear el futuro del sector. Como venture studio, no solo diseñamos soluciones: construimos empresas. Compartimos el riesgo y la recompensa del emprendimiento, trabajando codo a codo con nuestros partners para transformar el sector desde dentro."
+                    textKey="paragraph3"
                     className="text-base md:text-lg lg:text-xl text-gray-700"
                     isTitle={false}
                   />

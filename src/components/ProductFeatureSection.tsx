@@ -1,6 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, BanknoteIcon, FileSearch, CreditCard, Settings } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+interface FeatureData {
+  id: number;
+  titleKey: string;
+  descriptionKey: string;
+  icon: React.ReactNode;
+  image: string;
+}
+
+const featuresData: FeatureData[] = [
+  {
+    id: 1,
+    titleKey: "feature1Title",
+    descriptionKey: "feature1Desc",
+    icon: <MessageCircle className="w-8 h-8" />,
+    image: "bg-gradient-to-br from-blue-50 to-indigo-100"
+  },
+  {
+    id: 2,
+    titleKey: "feature2Title",
+    descriptionKey: "feature2Desc",
+    icon: <BanknoteIcon className="w-8 h-8" />,
+    image: "bg-gradient-to-br from-emerald-50 to-teal-100"
+  },
+  {
+    id: 3,
+    titleKey: "feature3Title",
+    descriptionKey: "feature3Desc",
+    icon: <FileSearch className="w-8 h-8" />,
+    image: "bg-gradient-to-br from-amber-50 to-yellow-100"
+  },
+  {
+    id: 4,
+    titleKey: "feature4Title",
+    descriptionKey: "feature4Desc",
+    icon: <CreditCard className="w-8 h-8" />,
+    image: "bg-gradient-to-br from-purple-50 to-pink-100"
+  }
+];
 
 interface Feature {
   id: number;
@@ -10,38 +50,7 @@ interface Feature {
   image: string;
 }
 
-const features: Feature[] = [
-  {
-    id: 1,
-    title: "Atención al cliente",
-    description: "Respuestas instantáneas y personalizadas 24/7 vía voz, email y Whatsapp. Mejora la satisfacción del cliente y tus márgenes.",
-    icon: <MessageCircle className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-blue-50 to-indigo-100"
-  },
-  {
-    id: 2,
-    title: "Recuperación de impagos",
-    description: "Automatiza y optimiza la gestión de cobros con IA, mejorando la tasa de recuperación hasta un 40%.",
-    icon: <BanknoteIcon className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-emerald-50 to-teal-100"
-  },
-  {
-    id: 3,
-    title: "Gestión de siniestros",
-    description: "Reduce el tiempo de gestión en un 70% con IA. Respuestas más rápidas y precisas para cada caso.",
-    icon: <FileSearch className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-amber-50 to-yellow-100"
-  },
-  {
-    id: 4,
-    title: "Métodos de pago",
-    description: "Permite a tus clientes pagar con su método de pago preferido, subiendo la conversión y reduciendo los costes operativos.",
-    icon: <CreditCard className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-purple-50 to-pink-100"
-  }
-];
-
-const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, index }) => {
+const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) => string }> = ({ feature, index, t }) => {
   return (
     <motion.div
       id={`feature-${feature.id}`}
@@ -503,7 +512,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
                 hover:shadow-md
               "
             >
-              Click para más info
+              {t('cardActionText')}
             </a>
           </div>
         </div>
@@ -513,6 +522,14 @@ const FeatureCard: React.FC<{ feature: Feature; index: number }> = ({ feature, i
 };
 
 const ProductFeatureSection: React.FC = () => {
+  const { t } = useTranslation('ProductFeatureSection');
+
+  const features: Feature[] = featuresData.map(f => ({
+    ...f,
+    title: t(f.titleKey),
+    description: t(f.descriptionKey)
+  }));
+
   return (
     <section id="services" className="relative bg-black mt-24 md:mt-48">
       {/* Header Fijo en el Centro */}
@@ -531,13 +548,13 @@ const ProductFeatureSection: React.FC = () => {
               backdrop-blur-sm
             ">
               <Settings className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-              Céntrate en lo importante
+              {t('sectionTag')}
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight text-white">
-              Digitaliza tu negocio
+              {t('title')}
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-gray-300 max-w-xl md:max-w-2xl mx-auto">
-              Automatiza el trabajo manual, para centrarte en hacer crecer tu negocio
+              {t('paragraph')}
             </p>
           </motion.div>
         </div>
@@ -555,6 +572,7 @@ const ProductFeatureSection: React.FC = () => {
                 key={feature.id} 
                 feature={feature}
                 index={index}
+                t={t}
               />
             ))}
           </div>

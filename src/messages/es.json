@@ -1,0 +1,51 @@
+{
+  "Navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "resources": "Recursos",
+    "projects": "Nuestros proyectos",
+    "consulting": "Consultoría tecnológica",
+    "soon": "Próximamente",
+    "cta": "Hablemos"
+  },
+  "HeroSection": {
+    "tag": "Inteligencia Artificial",
+    "title": "Transformando el sector asegurador",
+    "subtitle": "SegurNeo construye, escala y co-funda soluciones innovadoras en el sector asegurador",
+    "changingTextPrefix": "Cambiando la definición de",
+    "ctaButton": "Descubre nuestras soluciones",
+    "scrollIndicator": "Scroll para explorar"
+  },
+  "VentureStudioSection": {
+    "sectionTag": "Nuestra Visión",
+    "titlePart1": "Impulsamos la",
+    "titlePart2": "transformación digital",
+    "titlePart3": "del sector",
+    "titlePart4": "asegurador",
+    "paragraph1": "En Segurneo, tendemos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestro equipo combina una profunda experiencia en seguros con un sólido dominio de las tecnologías más avanzadas.",
+    "paragraph2": "Por un lado, nuestra rama de consultoría tecnológica desarrolla soluciones a medida que responden a necesidades específicas del negocio. Impulsamos la eficiencia operativa, mejoramos la experiencia del cliente y aceleramos la digitalización de aseguradoras y distribuidores.",
+    "paragraph3": "Por otro lado, exploramos y creamos nuevos modelos de negocio. Colaboramos estrechamente con aseguradoras y distribuidores para co-crear el futuro del sector. Como venture studio, no solo diseñamos soluciones: construimos empresas. Compartimos el riesgo y la recompensa del emprendimiento, trabajando codo a codo con nuestros partners para transformar el sector desde dentro."
+  },
+  "ProjectsSection": {
+    "sectionTag": "Nuestros Proyectos",
+    "title": "Explora nuestras soluciones",
+    "paragraph": "Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.",
+    "project1Desc": "Broker de distribución de seguros de salud nativo con Inteligencia Artificial.",
+    "project2Desc": "Plataforma de pago adaptada al sector asegurador. Gestiona impagos, recobros y facturas de forma automatizada.",
+    "project3Desc": "Solución de inteligencia artificial que optimiza la atención al cliente en centros de llamadas. Reduce tiempos de espera, aumenta márgenes y mejora la satisfacción."
+  },
+  "ProductFeatureSection": {
+    "sectionTag": "Céntrate en lo importante",
+    "title": "Digitaliza tu negocio",
+    "paragraph": "Automatiza el trabajo manual, para centrarte en hacer crecer tu negocio",
+    "feature1Title": "Atención al cliente",
+    "feature1Desc": "Respuestas instantáneas y personalizadas 24/7 vía voz, email y Whatsapp. Mejora la satisfacción del cliente y tus márgenes.",
+    "feature2Title": "Recuperación de impagos",
+    "feature2Desc": "Automatiza y optimiza la gestión de cobros con IA, mejorando la tasa de recuperación hasta un 40%.",
+    "feature3Title": "Gestión de siniestros",
+    "feature3Desc": "Reduce el tiempo de gestión en un 70% con IA. Respuestas más rápidas y precisas para cada caso.",
+    "feature4Title": "Métodos de pago",
+    "feature4Desc": "Permite a tus clientes pagar con su método de pago preferido, subiendo la conversión y reduciendo los costes operativos.",
+    "cardActionText": "Click para más info"
+  }
+} 

@@ -1,7 +1,10 @@
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation('HeroSection');
+
   const scrollToNextSection = () => {
     const ventureSection = document.getElementById('venture-section');
     if (ventureSection) {
@@ -21,7 +24,7 @@ const HeroSection = () => {
             className="inline-flex relative overflow-hidden group"
           >
             <div className="z-10 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-gray-200 bg-white text-[0.65rem] sm:text-xs font-medium tracking-wide text-gray-800 shadow-sm">
-              Inteligencia Artificial
+              {t('tag')}
             </div>
             {/* Enhanced shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out bg-gradient-to-r from-transparent via-white/60 to-transparent z-20 shimmer"></div>
@@ -34,7 +37,7 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] sm:leading-[1.2] tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent pb-1 sm:pb-2 px-1"
           >
-            Transformando el sector asegurador
+            {t('title')}
           </motion.h1>
 
           {/* Subtitle */}
@@ -44,7 +47,7 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-1 leading-relaxed"
           >
-            SegurNeo construye, escala y co-funda soluciones innovadoras en el sector asegurador
+            {t('subtitle')}
           </motion.p>
 
           {/* Changing text component */}
@@ -55,7 +58,7 @@ const HeroSection = () => {
             className="py-2 sm:py-4"
           >
             <div className="inline-flex flex-wrap justify-center items-center text-base sm:text-lg md:text-xl font-medium gap-2 px-1">
-              <span className="text-gray-500">Cambiando la definición de</span>
+              <span className="text-gray-500">{t('changingTextPrefix')}</span>
               <div className="relative inline-block">
                 <span className="text-black font-bold">InsurTech</span>
                 <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-black/20 rounded-full"></div>
@@ -78,7 +81,7 @@ const HeroSection = () => {
                 scrollToNextSection();
               }}
             >
-              Descubre nuestras soluciones
+              {t('ctaButton')}
             </a>
           </motion.div>
         </div>
@@ -91,7 +94,7 @@ const HeroSection = () => {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400"
       >
-        <span className="text-xs sm:text-sm mb-1 sm:mb-2">Scroll para explorar</span>
+        <span className="text-xs sm:text-sm mb-1 sm:mb-2">{t('scrollIndicator')}</span>
         <ChevronDown size={20} className="animate-bounce" />
       </motion.div>
     </section>
