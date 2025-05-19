@@ -36,7 +36,7 @@
   },
   "ProductFeatureSection": {
     "sectionTag": "Focus on what matters",
-    "title": "Digitize your business",
+    "title": "Digitalize your business",
     "paragraph": "Automate manual work, so you can focus on growing your business",
     "feature1Title": "Customer support",
     "feature1Desc": "Instant, personalized 24/7 responses via voice, email, and Whatsapp. Improve customer satisfaction and your margins.",
@@ -47,5 +47,19 @@
     "feature4Title": "Payment methods",
     "feature4Desc": "Allow your customers to pay with their preferred payment method, increasing conversion and reducing operational costs.",
     "cardActionText": "Click for more info"
+  },
+  "ContactSection": {
+    "title": "Contact",
+    "subtitle": "with us",
+    "buttonText": "Contact us"
+  },
+  "Footer": {
+    "services": "Services",
+    "techConsulting": "Technology consulting",
+    "ourProjects": "Our projects",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms and Conditions",
+    "allRightsReserved": "All rights reserved."
   }
 } 

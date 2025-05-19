@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion, useScroll, useTransform, cubicBezier } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const ContactSection = () => {
+  const { t } = useTranslation();
+  
   const handleContactClick = () => {
     window.location.href = 'mailto:hi@segurneo.com';
   };
@@ -94,7 +97,7 @@ const ContactSection = () => {
 
       {/* Contenido del botón */}
       <div className="relative flex items-center justify-center gap-2">
-        <span>Contact us</span>
+        <span>{t('ContactSection:buttonText')}</span>
         <motion.span
           initial={{ x: 0 }}
           whileHover={{ x: 5 }}
@@ -120,9 +123,9 @@ const ContactSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Contacta
+            {t('ContactSection:title')}
             <br />
-            con nosotros
+            {t('ContactSection:subtitle')}
           </motion.h2>
         </div>
 

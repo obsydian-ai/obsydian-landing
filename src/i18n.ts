@@ -25,14 +25,18 @@ i18n
         HeroSection: esTranslation.HeroSection,
         VentureStudioSection: esTranslation.VentureStudioSection,
         ProjectsSection: esTranslation.ProjectsSection,
-        ProductFeatureSection: esTranslation.ProductFeatureSection
+        ProductFeatureSection: esTranslation.ProductFeatureSection,
+        ContactSection: esTranslation.ContactSection,
+        Footer: esTranslation.Footer
       },
       en: { // English resources
         Navbar: enTranslation.Navbar,      
         HeroSection: enTranslation.HeroSection,
         VentureStudioSection: enTranslation.VentureStudioSection,
         ProjectsSection: enTranslation.ProjectsSection,
-        ProductFeatureSection: enTranslation.ProductFeatureSection
+        ProductFeatureSection: enTranslation.ProductFeatureSection,
+        ContactSection: enTranslation.ContactSection,
+        Footer: enTranslation.Footer
       }
     },
     // No longer need backend configuration
@@ -40,7 +44,15 @@ i18n
     //   loadPath: '/messages/{{lng}}.json',
     // },
     // Define all namespaces that should be loaded
-    ns: ['Navbar', 'HeroSection', 'VentureStudioSection', 'ProjectsSection', 'ProductFeatureSection'], 
+    ns: [
+      'Navbar', 
+      'HeroSection', 
+      'VentureStudioSection', 
+      'ProjectsSection', 
+      'ProductFeatureSection',
+      'ContactSection',
+      'Footer'
+    ], 
     defaultNS: 'Navbar', 
     // React specific configuration
     react: {

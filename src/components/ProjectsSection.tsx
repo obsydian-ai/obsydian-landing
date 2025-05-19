@@ -25,7 +25,7 @@ const projectsData = [
     id: 3,
     name: "Call Center AI",
     descriptionKey: "project3Desc",
-    imageSrc: "/placeholder.svg",
+    imageSrc: "/lovable-uploads/call-center-dashboard.png",
     color: "green",
   }
 ];

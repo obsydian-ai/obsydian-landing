@@ -1,4 +1,18 @@
 {
+  "ContactSection": {
+    "title": "Contacta",
+    "subtitle": "con nosotros",
+    "buttonText": "Contáctanos"
+  },
+  "Footer": {
+    "services": "Servicios",
+    "techConsulting": "Consultoría tecnológica",
+    "ourProjects": "Nuestros proyectos",
+    "contact": "Contacto",
+    "privacyPolicy": "Política de Privacidad",
+    "termsConditions": "Términos y Condiciones",
+    "allRightsReserved": "Todos los derechos reservados."
+  },
   "Navbar": {
     "home": "Inicio",
     "services": "Servicios",

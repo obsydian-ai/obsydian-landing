@@ -3,8 +3,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const FooterNew = () => {
+  const { t } = useTranslation('Footer');
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -49,7 +51,7 @@ const FooterNew = () => {
           {/* Servicios */}
           <div className="md:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
-              Servicios
+              {t('services')}
             </h3>
             <ul className="space-y-3">
               <li>
@@ -61,7 +63,7 @@ const FooterNew = () => {
                     document.getElementById('tech-consultancy')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  Consultoría tecnológica
+                  {t('techConsulting')}
                 </Link>
               </li>
               <li>
@@ -73,7 +75,7 @@ const FooterNew = () => {
                     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  Nuestros proyectos
+                  {t('ourProjects')}
                 </Link>
               </li>
             </ul>
@@ -82,7 +84,7 @@ const FooterNew = () => {
           {/* Contacto */}
           <div className="md:col-span-3">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
-              Contacto
+              {t('contact')}
             </h3>
             <a
               href="mailto:hi@segurneo.com"
@@ -106,19 +108,19 @@ const FooterNew = () => {
 
         {/* Copyright y enlaces legales */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-          <p className="mb-4 md:mb-0">© {currentYear} Segurneo. Todos los derechos reservados.</p>
+          <p className="mb-4 md:mb-0">© {currentYear} Segurneo. {t('allRightsReserved')}</p>
           <div className="flex space-x-8">
             <Link 
               to="/politica-privacidad" 
               className="hover:text-white transition-all duration-300"
             >
-              Política de Privacidad
+              {t('privacyPolicy')}
             </Link>
             <Link 
               to="/terminos-condiciones" 
               className="hover:text-white transition-all duration-300"
             >
-              Términos y Condiciones
+              {t('termsConditions')}
             </Link>
           </div>
         </div>

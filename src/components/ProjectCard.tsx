@@ -368,11 +368,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                   src={
                     project.name === "Saludneo" 
                       ? "/lovable-uploads/saludneo-onboarding-new.webp"
-                      : project.name === "Call Center AI"
-                      ? "/lovable-uploads/call-center-ai.png"
                       : project.imageSrc === "/placeholder.svg" 
                         ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
-                        : project.imageSrc
+                        : project.imageSrc 
                   } 
                   alt={`${project.name} screenshot`}
                   className={`w-full h-auto rounded-[1.5rem] ${
