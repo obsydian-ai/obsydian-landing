@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, TrendingUp, Package, Factory } from 'lucide-react';
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
@@ -29,6 +29,18 @@ const springConfig = {
   damping: 25
 };
 
+// Icon mapping for each case
+const getProjectIcon = (projectName: string) => {
+  if (projectName.toLowerCase().includes('retail')) {
+    return <Package className="w-16 h-16" />;
+  } else if (projectName.toLowerCase().includes('logístic')) {
+    return <TrendingUp className="w-16 h-16" />;
+  } else if (projectName.toLowerCase().includes('industrial')) {
+    return <Factory className="w-16 h-16" />;
+  }
+  return <Package className="w-16 h-16" />;
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isMobile = false }) => {
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
@@ -48,7 +60,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
     const x = clientX - left;
     const y = clientY - top;
     
-    // Reducimos el multiplicador para un movimiento más suave
     const multiplier = 20;
     const centerX = width / 2;
     const centerY = height / 2;
@@ -63,7 +74,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    // Posición inicial más sutil
     rotateX.set(10);
     rotateY.set(-10);
     cardDepth.set(0);
@@ -83,21 +93,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
       secondary: "from-blue-400/10 to-blue-500/10",
       accent: "bg-blue-500",
       text: "text-blue-700",
-      border: "border-blue-200/50"
+      border: "border-blue-200/50",
+      icon: "text-blue-600"
     },
     purple: {
       primary: "from-purple-500/20 to-purple-600/20",
       secondary: "from-purple-400/10 to-purple-500/10",
       accent: "bg-purple-500",
       text: "text-purple-700",
-      border: "border-purple-200/50"
+      border: "border-purple-200/50",
+      icon: "text-purple-600"
     },
     green: {
       primary: "from-green-500/20 to-green-600/20",
       secondary: "from-green-400/10 to-green-500/10",
       accent: "bg-green-500",
       text: "text-green-700",
-      border: "border-green-200/50"
+      border: "border-green-200/50",
+      icon: "text-green-600"
     }
   };
   
@@ -113,77 +126,74 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
       >
         {/* Card container */}
         <div className="bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100">
-          {/* Gradient header */}
+          {/* Header with abstract design instead of image */}
           <div className="relative overflow-hidden rounded-t-[24px]">
-            <div className="aspect-[2/1] relative">
-              <div className={`absolute inset-0 ${
-                project.color === 'blue' 
-                  ? 'bg-gradient-to-br from-blue-500/20 via-blue-400/30 to-blue-600/20'
-                  : project.color === 'purple'
-                  ? 'bg-gradient-to-br from-purple-500/20 via-purple-400/30 to-purple-600/20'
-                  : 'bg-gradient-to-br from-green-500/20 via-green-400/30 to-green-600/20'
-              }`}>
-                {/* Patrón de puntos sutil */}
-                <div className="absolute inset-0 opacity-30"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)',
-                    backgroundSize: '24px 24px',
-                    color: 'currentColor'
-                  }}
-                />
+            <div className="aspect-[3/2] relative">
+              <div className={`absolute inset-0 bg-gradient-to-br ${cardTheme.primary.replace('/20', '/30')}`}>
+                {/* Geometric patterns */}
+                <div className="absolute inset-0">
+                  {/* Grid pattern */}
+                  <div className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
+                      backgroundSize: '20px 20px',
+                      color: project.color === 'blue' ? '#3b82f6' : project.color === 'purple' ? '#8b5cf6' : '#22c55e'
+                    }}
+                  />
+                  
+                  {/* Floating geometric shapes */}
+                  <div className={`absolute top-6 right-6 w-12 h-12 rounded-full ${cardTheme.accent} opacity-20`} />
+                  <div className={`absolute bottom-8 left-8 w-6 h-6 ${cardTheme.accent} opacity-30 rotate-45`} />
+                  <div className={`absolute top-1/2 left-1/2 w-16 h-16 border-2 ${cardTheme.border.replace('/50', '')} opacity-40 rounded-lg rotate-12`} />
+                </div>
                 
-                {/* Círculo decorativo */}
-                <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full ${
-                  project.color === 'blue' 
-                    ? 'bg-blue-500/10'
-                    : project.color === 'purple'
-                    ? 'bg-purple-500/10'
-                    : 'bg-green-500/10'
-                }`} />
+                {/* Central icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className={`${cardTheme.icon} opacity-60`}>
+                    {getProjectIcon(project.name)}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Contenido */}
-          <div className="p-6">
-            {/* Header con dot indicator */}
-            <div className="flex items-center gap-3 mb-3">
+          {/* Content */}
+          <div className="p-8">
+            {/* Header with dot indicator */}
+            <div className="flex items-center gap-3 mb-4">
               <motion.div 
                 className={`w-2 h-2 rounded-full ${theme.accent}`}
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <h3 className={`text-xl font-bold tracking-tight ${theme.text}`}>
+              <h3 className={`text-2xl font-bold tracking-tight ${theme.text}`}>
                 {project.name}
               </h3>
             </div>
 
-            {/* Descripción */}
-            <p className="text-gray-600 text-[15px] leading-relaxed mb-5">
+            {/* Description */}
+            <p className="text-gray-600 text-base leading-relaxed mb-8">
               {project.description}
             </p>
 
-            {/* Botón */}
+            {/* CTA Button */}
             <Button 
               variant="ghost"
               className={`
-                group relative w-full py-3.5 font-medium
+                group relative w-full py-4 font-medium
                 rounded-2xl border transition-all duration-200
                 ${theme.border} ${theme.text}
                 active:scale-[0.98]
               `}
               onClick={() => {
-                const element = document.getElementById(`project-${project.id}`);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
+                window.open('https://cal.com/obsidyan-demo/30min', '_blank');
               }}
               role="button"
-              aria-label={`Learn more about ${project.name}`}
+              aria-label={`Solicitar demo para ${project.name}`}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2 text-sm font-medium">
-                Coming soon
-                <ArrowRight className="w-4 h-4" />
+              <span className="relative z-10 flex items-center justify-center gap-2 text-base font-medium">
+                Solicitar demo
+                <ArrowRight className="w-5 h-5" />
               </span>
               <motion.div
                 className={`absolute inset-0 rounded-2xl ${theme.background}`}
@@ -198,7 +208,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
     );
   }
 
-  // Desktop layout (existing code)
+  // Desktop layout
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full px-6">
       {/* Left Card: Project Info with enhanced 3D effect */}
@@ -211,7 +221,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
         onMouseLeave={handleMouseLeave}
         className="relative h-full perspective-2000"
       >
-        {/* Card layers and content */}
+        {/* Card layers */}
         <motion.div
           className="absolute inset-0 bg-gray-50 rounded-3xl transform-gpu"
           style={{
@@ -248,7 +258,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
           transition={{ duration: 0.4 }}
           className="relative bg-white rounded-3xl border border-gray-100/50 p-8 h-full transform-gpu"
         >
-          {/* Spotlight effect más sutil */}
+          {/* Spotlight effect */}
           <motion.div
             className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300"
             style={{
@@ -263,19 +273,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
             }}
           />
           
-          {/* Elementos internos con elevación ajustada */}
+          {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-between transform-gpu">
-            <div className="space-y-6" style={{ transform: "translateZ(40px)" }}> {/* Reducimos la elevación */}
+            <div className="space-y-6" style={{ transform: "translateZ(40px)" }}>
               <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="space-y-4"
               >
                 <div className="flex items-center space-x-3">
                   <motion.div 
                     className={`w-2 h-2 rounded-full ${cardTheme.accent}`}
-                    animate={{ scale: isHovered ? 1.1 : 1 }} // Reducimos la escala
+                    animate={{ scale: isHovered ? 1.1 : 1 }}
                     transition={{ duration: 0.4 }}
                   />
                   <h3 className={`text-3xl font-bold tracking-tight ${cardTheme.text}`}>{project.name}</h3>
@@ -284,7 +294,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
               </motion.div>
             </div>
             
-            {/* Botón con elevación ajustada y mejor accesibilidad */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -294,27 +304,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
             >
               <Button 
                 variant="ghost"
-                className={`group relative px-6 py-3 font-medium rounded-full border ${cardTheme.border} transition-all duration-400 hover:scale-105 hover:shadow-lg ${cardTheme.text} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${cardTheme.text} active:scale-95`}
+                className={`group relative px-6 py-3 font-medium rounded-full border ${cardTheme.border} transition-all duration-400 hover:scale-105 hover:shadow-lg ${cardTheme.text} focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95`}
                 onClick={() => {
-                  const element = document.getElementById(`project-${project.id}`);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  window.open('https://cal.com/obsidyan-demo/30min', '_blank');
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    const element = document.getElementById(`project-${project.id}`);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    window.open('https://cal.com/obsidyan-demo/30min', '_blank');
                   }
                 }}
                 role="button"
-                aria-label={`Learn more about ${project.name}`}
+                aria-label={`Solicitar demo para ${project.name}`}
                 tabIndex={0}
               >
                 <span className="relative z-10 flex items-center justify-center w-full pointer-events-auto">
-                  Coming soon
+                  Solicitar demo
                 </span>
                 <motion.div
                   className="absolute inset-0 rounded-full bg-current"
@@ -329,12 +333,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
         </motion.div>
       </motion.div>
       
-      {/* Right Card: Screenshot with enhanced floating effect */}
+      {/* Right Card: Abstract Visual Design */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative h-full flex items-center justify-center perspective-1000"
+        className="relative h-full flex items-center justify-center perspective-1000 min-h-[500px]"
       >
         <motion.div 
           animate={{
@@ -345,51 +349,79 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className={`relative w-full h-full rounded-3xl bg-gradient-to-br ${cardTheme.primary} p-8 flex items-center justify-center overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border ${cardTheme.border}`}
-          style={{
-            minHeight: project.name === "Call Center AI" ? "600px" : "auto"
-          }}
+          className={`relative w-full h-full rounded-3xl bg-gradient-to-br ${cardTheme.primary} p-12 flex items-center justify-center overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm border ${cardTheme.border}`}
         >
-          {/* Dynamic background elements */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.8),transparent)]"></div>
-          
-          {/* Phone/Desktop container with reflection effect */}
-          <motion.div
-            initial={{ y: 20, opacity: 0, scale: 0.95 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className={`relative ${project.name === "Call Center AI" ? 'w-full max-w-[95%]' : 'max-w-[280px]'} mx-auto`}
-          >
-            <div className={`rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white/90 backdrop-blur-sm ${
-              project.name === "Call Center AI" ? 'p-3' : 'p-2'
-            }`}>
-              <div className="relative">
-                <img 
-                  src={
-                    project.name === "Saludneo" 
-                      ? "/lovable-uploads/saludneo-onboarding-new.webp"
-                      : project.imageSrc === "/placeholder.svg" 
-                        ? "/lovable-uploads/284ec182-b2fd-4316-9df7-2f1e0ba87234.png" 
-                        : project.imageSrc 
-                  } 
-                  alt={`${project.name} screenshot`}
-                  className={`w-full h-auto rounded-[1.5rem] ${
-                    project.name === "Call Center AI" 
-                      ? 'aspect-[16/9] object-cover scale-105' 
-                      : 'aspect-[9/19] object-contain'
-                  }`}
-                  style={{
-                    maxHeight: project.name === "Call Center AI" ? "450px" : "calc(100vh - 200px)",
-                    objectPosition: "top center"
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 rounded-[1.5rem]"></div>
-              </div>
-            </div>
+          {/* Background patterns */}
+          <div className="absolute inset-0">
+            {/* Grid pattern */}
+            <div className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+                color: project.color === 'blue' ? '#3b82f6' : project.color === 'purple' ? '#8b5cf6' : '#22c55e'
+              }}
+            />
             
-            {/* Enhanced glow effect */}
-            <div className="absolute -inset-8 bg-gradient-to-br from-white/40 to-white/20 rounded-full blur-2xl -z-10 opacity-70"></div>
+            {/* Geometric shapes */}
+            <div className={`absolute top-12 right-12 w-24 h-24 rounded-full ${cardTheme.accent} opacity-10`} />
+            <div className={`absolute bottom-20 left-16 w-16 h-16 ${cardTheme.accent} opacity-20 rotate-45`} />
+            <div className={`absolute top-1/3 left-1/4 w-32 h-32 border-4 ${cardTheme.border.replace('/50', '')} opacity-30 rounded-2xl rotate-12`} />
+            <div className={`absolute bottom-1/3 right-1/4 w-20 h-20 border-2 ${cardTheme.border.replace('/50', '')} opacity-40 rounded-full`} />
+          </div>
+
+          {/* Central icon with animation */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative z-10"
+          >
+            <motion.div 
+              className={`${cardTheme.icon} opacity-70`}
+              animate={{ 
+                rotate: [0, 5, -5, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              {getProjectIcon(project.name)}
+            </motion.div>
           </motion.div>
+
+          {/* Floating elements */}
+          <motion.div
+            className={`absolute w-8 h-8 rounded-full ${cardTheme.accent} opacity-30`}
+            animate={{
+              x: [0, 20, -10, 0],
+              y: [0, -15, 10, 0],
+              scale: [1, 1.2, 0.8, 1]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ top: '20%', left: '70%' }}
+          />
+          
+          <motion.div
+            className={`absolute w-6 h-6 ${cardTheme.accent} opacity-40 rotate-45`}
+            animate={{
+              x: [0, -15, 25, 0],
+              y: [0, 20, -5, 0],
+              rotate: [45, 90, 135, 45]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ bottom: '30%', left: '20%' }}
+          />
         </motion.div>
       </motion.div>
     </div>

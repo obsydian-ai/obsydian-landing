@@ -24,13 +24,13 @@ const NavItemsData: NavItem[] = [
     nameKey: 'services', 
     href: '#services',
     submenu: [
-      { nameKey: 'projects', href: '#projects' },
-      { nameKey: 'consulting', href: '#services' }
+      { nameKey: 'features', href: '#services' },
+      { nameKey: 'benefits', href: '#benefits' }
     ]
   },
   { 
-    nameKey: 'resources', 
-    href: '#resources',
+    nameKey: 'solution', 
+    href: '#solution',
     submenu: [
       { nameKey: 'soon', disabled: true } // Assuming 'soon' key exists
     ]
@@ -116,7 +116,7 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <a href="#" className="text-2xl font-semibold tracking-tight text-black">
-                Segurneo<span className="text-blue-500">.</span>
+                Obsidyan<span className="text-blue-500">.</span>
               </a>
             </motion.div>
 
@@ -253,7 +253,7 @@ const Navbar = () => {
 
               {/* CTA Button */}
               <motion.a
-                href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+                href="https://cal.com/obsidyan-demo/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm ml-2"
@@ -276,7 +276,7 @@ const Navbar = () => {
                 
                 {/* Mobile CTA Button */}
                 <motion.a
-                  href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+                  href="https://cal.com/obsidyan-demo/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-base font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm"

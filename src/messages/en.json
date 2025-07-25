@@ -1,53 +1,4 @@
 {
-  "Navbar": {
-    "home": "Home",
-    "services": "Services",
-    "resources": "Resources",
-    "projects": "Our projects",
-    "consulting": "Technology consulting",
-    "soon": "Coming soon",
-    "cta": "Let's talk"
-  },
-  "HeroSection": {
-    "tag": "Artificial Intelligence",
-    "title": "Transforming the insurance sector",
-    "subtitle": "SegurNeo builds, scales, and co-founds innovative solutions in the insurance sector",
-    "changingTextPrefix": "Changing the definition of",
-    "ctaButton": "Discover our solutions",
-    "scrollIndicator": "Scroll to explore"
-  },
-  "VentureStudioSection": {
-    "sectionTag": "Our Vision",
-    "titlePart1": "We drive the",
-    "titlePart2": "digital transformation",
-    "titlePart3": "of the insurance",
-    "titlePart4": "sector",
-    "paragraph1": "At Segurneo, we bridge the gap between the insurance sector's tradition and the limitless possibilities of digital transformation. Our team combines deep insurance expertise with a strong command of the most advanced technologies.",
-    "paragraph2": "On one hand, our technology consulting branch develops tailored solutions that address specific business needs. We boost operational efficiency, enhance customer experience, and accelerate the digitalization of insurers and distributors.",
-    "paragraph3": "On the other hand, we explore and create new business models. We collaborate closely with insurers and distributors to co-create the future of the sector. As a venture studio, we don't just design solutions: we build companies. We share the risk and reward of entrepreneurship, working side-by-side with our partners to transform the sector from within."
-  },
-  "ProjectsSection": {
-    "sectionTag": "Our Projects",
-    "title": "Explore our solutions",
-    "paragraph": "We create solutions from different angles: B2C, B2B, and B2B2C. We have developed online comparators, payment systems adapted to insurance operations, and AI virtual agents that automate customer service without losing the human touch.",
-    "project1Desc": "Native health insurance distribution broker with Artificial Intelligence.",
-    "project2Desc": "Payment platform adapted to the insurance sector. Manages non-payments, collections, and invoices automatically.",
-    "project3Desc": "Artificial intelligence solution that optimizes customer service in call centers. Reduces waiting times, increases margins, and improves satisfaction."
-  },
-  "ProductFeatureSection": {
-    "sectionTag": "Focus on what matters",
-    "title": "Digitalize your business",
-    "paragraph": "Automate manual work, so you can focus on growing your business",
-    "feature1Title": "Customer support",
-    "feature1Desc": "Instant, personalized 24/7 responses via voice, email, and Whatsapp. Improve customer satisfaction and your margins.",
-    "feature2Title": "Non-payment recovery",
-    "feature2Desc": "Automate and optimize collections management with AI, improving recovery rates by up to 40%.",
-    "feature3Title": "Claims management",
-    "feature3Desc": "Reduce management time by 70% with AI. Faster and more accurate responses for each case.",
-    "feature4Title": "Payment methods",
-    "feature4Desc": "Allow your customers to pay with their preferred payment method, increasing conversion and reducing operational costs.",
-    "cardActionText": "Click for more info"
-  },
   "ContactSection": {
     "title": "Contact",
     "subtitle": "with us",
@@ -55,11 +6,60 @@
   },
   "Footer": {
     "services": "Services",
-    "techConsulting": "Technology consulting",
-    "ourProjects": "Our projects",
+    "auditingSolution": "Intelligent Auditing",
+    "ourSolution": "Our Solution",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
     "termsConditions": "Terms and Conditions",
     "allRightsReserved": "All rights reserved."
+  },
+  "Navbar": {
+    "home": "Home",
+    "services": "Services",
+    "solution": "Solution",
+    "benefits": "Benefits",
+    "features": "Features",
+    "soon": "Coming soon",
+    "cta": "Request Demo"
+  },
+  "HeroSection": {
+    "tag": "Automating logistics",
+    "title": "Logistics made easy and profitable",
+    "subtitle": "Obsidyan automates invoice auditing, detects errors and manages claims to maximize your logistics savings",
+    "changingTextPrefix": "Transforming",
+    "ctaButton": "Discover how to save",
+    "scrollIndicator": "Scroll to explore"
+  },
+  "VentureStudioSection": {
+    "sectionTag": "Our Mission",
+    "titlePart1": "We revolutionize",
+    "titlePart2": "logistics management",
+    "titlePart3": "with artificial",
+    "titlePart4": "intelligence",
+    "paragraph1": "At Obsidyan, we transform how companies manage their transportation costs. Our platform uses advanced AI to automatically audit carrier invoices, detecting errors and discrepancies that traditionally go unnoticed.",
+    "paragraph2": "We automate the entire process: from invoice reception to claims management. Our AI interprets documents in any format, standardizes them, and compares them with contracts and negotiated rates to identify surcharges, duplicates, and billing errors.",
+    "paragraph3": "We don't just detect problems, we automatically generate and send claims to your carriers. With our control panel, you have complete visibility of your savings, recovery rate, and key logistics auditing metrics."
+  },
+  "ProjectsSection": {
+    "sectionTag": "Real use case",
+    "title": "How we make you save",
+    "paragraph": "Obsidyan is based on improving efficiency in logistics billing management.",
+    "case1Desc": "Retail company recovers €45,000 annually by detecting fuel surcharges and incorrect rates in their domestic shipments.",
+    "case2Desc": "Logistics company reduced audit time by 30% and increased error detection rate by 85% in international invoices.",
+    "case3Desc": "Industrial manufacturer automated 100% of their claims and improved cost visibility in their supply chain."
+  },
+  "ProductFeatureSection": {
+    "sectionTag": "Power your logistics",
+    "title": "Automate your audit",
+    "paragraph": "Transform manual invoice management into an intelligent and automated process",
+    "feature1Title": "Automatic auditing",
+    "feature1Desc": "Receive, interpret and standardize invoices in any format. Our AI processes documents 24/7 without manual intervention.",
+    "feature2Title": "Intelligent detection",
+    "feature2Desc": "Identify surcharges, duplicates, incorrect rates and discrepancies by comparing with contracts and shipping data.",
+    "feature3Title": "Automatic claims",
+    "feature3Desc": "Generate and send personalized claims to carriers with detailed reports of detected incidents.",
+    "feature4Title": "Control panel",
+    "feature4Desc": "Monitor savings, recovery rate, audited invoices and key metrics from a centralized dashboard.",
+    "cardActionText": "View demo"
   }
 } 

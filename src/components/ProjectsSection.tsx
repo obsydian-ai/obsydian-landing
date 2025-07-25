@@ -9,22 +9,22 @@ import { useTranslation } from 'react-i18next';
 const projectsData = [
   {
     id: 1,
-    name: "Saludneo",
-    descriptionKey: "project1Desc",
+    name: "Caso retail",
+    descriptionKey: "case1Desc",
     imageSrc: "/lovable-uploads/saludneo-onboarding.webp",
     color: "blue",
   },
   {
     id: 2,
-    name: "Segurpay",
-    descriptionKey: "project2Desc",
+    name: "Caso logístico",
+    descriptionKey: "case2Desc",
     imageSrc: "/lovable-uploads/segurpay-dashboard.webp",
     color: "purple",
   },
   {
     id: 3,
-    name: "Call Center AI",
-    descriptionKey: "project3Desc",
+    name: "Caso industrial",
+    descriptionKey: "case3Desc",
     imageSrc: "/lovable-uploads/call-center-dashboard.png",
     color: "green",
   }

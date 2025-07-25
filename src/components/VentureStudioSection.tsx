@@ -57,7 +57,7 @@ const VentureStudioSection = () => {
   return (
     <section 
       ref={sectionRef} 
-      id="venture-section" 
+      id="mission-section" 
       className="relative bg-white"
     >
       <div className="md:sticky md:top-0 md:min-h-screen flex items-center">

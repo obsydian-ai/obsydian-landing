@@ -6,9 +6,9 @@ const HeroSection = () => {
   const { t } = useTranslation('HeroSection');
 
   const scrollToNextSection = () => {
-    const ventureSection = document.getElementById('venture-section');
-    if (ventureSection) {
-      ventureSection.scrollIntoView({ behavior: 'smooth' });
+    const missionSection = document.getElementById('mission-section');
+    if (missionSection) {
+      missionSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -60,7 +60,7 @@ const HeroSection = () => {
             <div className="inline-flex flex-wrap justify-center items-center text-base sm:text-lg md:text-xl font-medium gap-2 px-1">
               <span className="text-gray-500">{t('changingTextPrefix')}</span>
               <div className="relative inline-block">
-                <span className="text-black font-bold">InsurTech</span>
+                <span className="text-black font-bold">logística</span>
                 <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-black/20 rounded-full"></div>
               </div>
             </div>
@@ -74,7 +74,7 @@ const HeroSection = () => {
             className="mt-6 sm:mt-8"
           >
             <a
-              href="#venture-section"
+              href="#mission-section"
               className="inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 shadow-sm transition-colors"
               onClick={(e) => {
                 e.preventDefault();

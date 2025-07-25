@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, BanknoteIcon, FileSearch, CreditCard, Settings } from 'lucide-react';
+import { FileCheck, Search, Send, BarChart3, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface FeatureData {
@@ -16,28 +16,28 @@ const featuresData: FeatureData[] = [
     id: 1,
     titleKey: "feature1Title",
     descriptionKey: "feature1Desc",
-    icon: <MessageCircle className="w-8 h-8" />,
+    icon: <FileCheck className="w-8 h-8" />,
     image: "bg-gradient-to-br from-blue-50 to-indigo-100"
   },
   {
     id: 2,
     titleKey: "feature2Title",
     descriptionKey: "feature2Desc",
-    icon: <BanknoteIcon className="w-8 h-8" />,
+    icon: <Search className="w-8 h-8" />,
     image: "bg-gradient-to-br from-emerald-50 to-teal-100"
   },
   {
     id: 3,
     titleKey: "feature3Title",
     descriptionKey: "feature3Desc",
-    icon: <FileSearch className="w-8 h-8" />,
+    icon: <Send className="w-8 h-8" />,
     image: "bg-gradient-to-br from-amber-50 to-yellow-100"
   },
   {
     id: 4,
     titleKey: "feature4Title",
     descriptionKey: "feature4Desc",
-    icon: <CreditCard className="w-8 h-8" />,
+    icon: <BarChart3 className="w-8 h-8" />,
     image: "bg-gradient-to-br from-purple-50 to-pink-100"
   }
 ];
@@ -151,16 +151,16 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
               ">
                 <div className="w-6 h-6 relative">
                   {feature.id === 1 && (
-                    <MessageCircle className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
+                    <FileCheck className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
                   )}
                   {feature.id === 2 && (
-                    <BanknoteIcon className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
+                    <Search className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
                   )}
                   {feature.id === 3 && (
-                    <FileSearch className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
+                    <Send className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
                   )}
                   {feature.id === 4 && (
-                    <CreditCard className="w-full h-full text-info-500 group-hover/btn:text-info-400 transition-colors" />
+                    <BarChart3 className="w-full h-full text-info-500 group-hover/btn:text-info-400 transition-colors" />
                   )}
                 </div>
               </button>
@@ -168,18 +168,18 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
 
             <div className="absolute inset-0 flex items-center justify-center">
               {feature.id === 1 && (
-                // Ilustración mejorada para Atención al cliente
+                // Ilustración para Auditoría Automática
                 <div className="w-[85%] h-[70%] relative -mt-16 bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
-                      <linearGradient id="chat-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <linearGradient id="audit-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="currentColor" stopOpacity="0.14"/>
                         <stop offset="50%" stopColor="currentColor" stopOpacity="0.09"/>
                         <stop offset="100%" stopColor="currentColor" stopOpacity="0.05"/>
                       </linearGradient>
-                      <linearGradient id="chat-accent" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.2"/>
-                        <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.1"/>
+                      <linearGradient id="invoice-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2"/>
+                        <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.1"/>
                       </linearGradient>
                       <filter id="glow">
                         <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -190,304 +190,324 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
                       </filter>
                     </defs>
                     
-                    {/* Fondo con patrón animado */}
-                    <rect width="400" height="200" fill="url(#gradient-dots)" className="animate-slide opacity-30"/>
-                    
-                    {/* Ondas de comunicación */}
-                    <g className="animate-pulse-slow">
-                      <circle cx="200" cy="140" r="80" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
-                      <circle cx="200" cy="140" r="60" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
-                      <circle cx="200" cy="140" r="40" stroke="url(#chat-accent)" strokeWidth="1" fill="none"/>
+                    {/* Documentos de facturas */}
+                    <g className="animate-float">
+                      {[0, 1, 2].map((i) => (
+                        <g key={i} transform={`translate(${i * 15}, ${i * 10})`} className={`animate-fade-in [animation-delay:${i * 200}ms]`}>
+                          <rect 
+                            x="50" 
+                            y="30" 
+                            width="120" 
+                            height="140" 
+                            rx="8" 
+                            fill="url(#audit-gradient-1)" 
+                            className="text-primary-100 shadow-lg"
+                          />
+                          {/* Líneas de texto simulando factura */}
+                          {[60, 80, 100, 120, 140].map((y, j) => (
+                            <line 
+                              key={j}
+                              x1="60" 
+                              y1={y} 
+                              x2={140 - j * 5} 
+                              y2={y} 
+                              stroke="currentColor" 
+                              strokeWidth="2" 
+                              className="text-primary-300"
+                            />
+                          ))}
+                          {/* Checkmark de validación */}
+                          <circle 
+                            cx={150} 
+                            cy={70} 
+                            r="12" 
+                            fill="#22c55e" 
+                            className="animate-pulse"
+                          />
+                          <path 
+                            d="M145 70 L149 74 L155 68" 
+                            stroke="white" 
+                            strokeWidth="2" 
+                            className="animate-fade-in"
+                          />
+                        </g>
+                      ))}
                     </g>
 
-                    {/* Burbujas de chat con efectos mejorados */}
+                    {/* IA procesando */}
                     <g className="animate-bounce-slow">
-                      <rect x="40" y="70" width="140" height="45" rx="22.5" fill="url(#chat-gradient-1)" className="text-primary-100"/>
-                      <circle cx="60" cy="92.5" r="15" fill="currentColor" className="text-primary-200 animate-pulse"/>
-                      <path d="M90 92.5 H160" stroke="currentColor" strokeWidth="2" className="text-primary-300"/>
-                      {/* Indicador de escritura */}
-                      <g className="animate-bounce-slow">
-                        <circle cx="90" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow"/>
-                        <circle cx="100" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:150ms]"/>
-                        <circle cx="110" cy="92.5" r="2" fill="currentColor" className="text-primary-400 animate-ping-slow [animation-delay:300ms]"/>
-                      </g>
+                      <circle cx="280" cy="100" r="40" stroke="url(#invoice-accent)" strokeWidth="2" fill="none" className="animate-spin-slow"/>
+                      <path d="M270 100 L280 90 L290 100 L280 110 Z" fill="currentColor" className="text-primary-400"/>
+                      <text x="280" y="140" textAnchor="middle" className="text-[10px] fill-primary-600 font-medium">IA</text>
                     </g>
 
                     {/* Elementos decorativos */}
                     <g className="animate-sparkle">
-                      <path d="M350 80 L355 75 L350 70 L345 75 Z" fill="currentColor" className="text-primary-300"/>
-                      <path d="M50 180 L55 175 L50 170 L45 175 Z" fill="currentColor" className="text-primary-300"/>
+                      <path d="M320 60 L325 55 L320 50 L315 55 Z" fill="currentColor" className="text-primary-300"/>
+                      <path d="M30 160 L35 155 L30 150 L25 155 Z" fill="currentColor" className="text-primary-300"/>
                     </g>
                   </svg>
                 </div>
               )}
               {feature.id === 2 && (
-                // Ilustración mejorada para Recuperación de impagos
+                // Ilustración para Detección Inteligente
                 <div className="w-[85%] h-[70%] relative bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
-                      <linearGradient id="chart-gradient-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <linearGradient id="detect-gradient-2" x1="0%" y1="100%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="#22c55e" stopOpacity="0.2"/>
-                        <stop offset="100%" stopColor="#4ade80" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="#16a34a" stopOpacity="0.1"/>
                       </linearGradient>
                       <filter id="shadow">
                         <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.1"/>
                       </filter>
                     </defs>
 
-                    {/* Fondo con grid animado */}
-                    <rect width="400" height="200" fill="url(#gradient-lines)" className="animate-slide opacity-20"/>
+                    {/* Lupa de búsqueda */}
+                    <g className="animate-float">
+                      <circle 
+                        cx="120" 
+                        cy="80" 
+                        r="30" 
+                        stroke="currentColor" 
+                        strokeWidth="3" 
+                        fill="none" 
+                        className="text-success-400"
+                      />
+                      <line 
+                        x1="143" 
+                        y1="103" 
+                        x2="160" 
+                        y2="120" 
+                        stroke="currentColor" 
+                        strokeWidth="3" 
+                        className="text-success-400"
+                      />
+                    </g>
 
-                    {/* Área del gráfico con gradiente */}
-                    <path 
-                      d="M40 160 Q150 120 260 40 L260 160 L40 160 Z" 
-                      fill="url(#chart-gradient-2)" 
-                      className="animate-fade-in"
-                    />
-
-                    {/* Barras con animación mejorada */}
-                    <g filter="url(#shadow)" className="animate-rise">
-                      {[0, 1, 2, 3].map((i) => (
-                        <g key={i} className={`animate-scale-slow [animation-delay:${i * 100}ms]`}>
-                          <rect 
-                            x={50 + i * 70} 
-                            y={140 - i * 40} 
-                            width="50" 
-                            height={40 + i * 40} 
-                            fill={`rgb(var(--success-${300 + i * 100}))`} 
-                            className="opacity-80"
+                    {/* Errores detectados */}
+                    <g className="animate-pulse">
+                      {[
+                        { x: 200, y: 60, type: "duplicate" },
+                        { x: 280, y: 90, type: "overcharge" },
+                        { x: 320, y: 130, type: "incorrect" }
+                      ].map((error, i) => (
+                        <g key={i} className={`animate-fade-in [animation-delay:${i * 300}ms]`}>
+                          <circle 
+                            cx={error.x} 
+                            cy={error.y} 
+                            r="20" 
+                            fill="#ef4444" 
+                            fillOpacity="0.2"
+                            className="animate-ping"
                           />
                           <text 
-                            x={75 + i * 70} 
-                            y={135 - i * 40} 
+                            x={error.x} 
+                            y={error.y + 3} 
                             textAnchor="middle" 
-                            className="text-[12px] fill-success-700 font-medium animate-fade-in"
+                            className="text-[8px] fill-red-600 font-bold"
                           >
-                            +{(i + 1) * 10}%
+                            !
                           </text>
                         </g>
                       ))}
                     </g>
 
-                    {/* Línea de tendencia animada */}
-                    <path 
-                      d="M40 160 Q150 120 260 40" 
-                      stroke="#22c55e" 
-                      strokeWidth="3" 
-                      fill="none"
-                      strokeDasharray="5,5"
-                      filter="url(#glow)"
-                      className="animate-dash"
-                    />
-
-                    {/* Puntos de datos con efectos */}
-                    {[0, 1, 2, 3].map((i) => (
-                      <g key={i} className={`animate-pulse-slow [animation-delay:${i * 100}ms]`}>
-                        <circle 
-                          cx={75 + i * 70} 
-                          cy={140 - i * 40} 
-                          r="6" 
-                          fill="#22c55e"
-                          className="animate-ping-slow"
-                        />
-                        <circle 
-                          cx={75 + i * 70} 
-                          cy={140 - i * 40} 
-                          r="12" 
-                          stroke="#4ade80" 
-                          fill="none"
-                          className="animate-scale-slow"
-                        />
-                      </g>
-                    ))}
-                  </svg>
-                </div>
-              )}
-              {feature.id === 3 && (
-                // Ilustración mejorada para Gestión de siniestros
-                <div className="w-[85%] h-[70%] relative bg-transparent">
-                  <svg className="w-full h-full" viewBox="0 0 400 200">
-                    <defs>
-                      <linearGradient id="doc-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.2"/>
-                        <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.1"/>
-                      </linearGradient>
-                      <filter id="paper-shadow">
-                        <feDropShadow dx="2" dy="2" stdDeviation="3" floodOpacity="0.1"/>
-                      </filter>
-                    </defs>
-
-                    {/* Fondo con patrón */}
-                    <rect width="400" height="200" fill="url(#gradient-dots)" className="animate-slide opacity-20"/>
-
-                    {/* Documentos apilados con efecto 3D mejorado */}
-                    <g filter="url(#paper-shadow)" className="animate-stack">
+                    {/* Datos de comparación */}
+                    <g filter="url(#shadow)" className="animate-rise">
                       {[0, 1, 2].map((i) => (
-                        <g key={i} transform={`translate(${i * 10}, ${15 - i * 7})`} className={`animate-float [animation-delay:${i * 200}ms]`}>
+                        <g key={i} className={`animate-scale-slow [animation-delay:${i * 100}ms]`}>
                           <rect 
-                            x="80" 
-                            y="20" 
-                            width="240" 
-                            height="160" 
-                            rx="12" 
-                            fill="url(#doc-gradient-3)" 
-                            className="shadow-lg"
-                          />
-                          {[50, 80, 110].map((y, j) => (
-                            <line 
-                              key={j}
-                              x1="100" 
-                              y1={y} 
-                              x2={280 - j * 20} 
-                              y2={y} 
-                              stroke="currentColor" 
-                              strokeWidth="2" 
-                              className="text-warning-300"
-                            />
-                          ))}
-                          <circle 
-                            cx={260 - i * 20} 
-                            cy={120} 
-                            r="20" 
-                            fill="currentColor" 
-                            className="text-warning-200 animate-pulse"
-                          />
-                          <path 
-                            d={`M${250 - i * 20} 120 L${270 - i * 20} 120 M${260 - i * 20} 110 L${260 - i * 20} 130`} 
-                            stroke="currentColor" 
-                            strokeWidth="2" 
-                            className="text-warning-400"
+                            x={50 + i * 30} 
+                            y={140 - i * 20} 
+                            width="20" 
+                            height={20 + i * 15} 
+                            fill={`rgb(34, 197, 94)`} 
+                            className="opacity-80"
                           />
                         </g>
                       ))}
-
-                      {/* Indicadores de estado */}
-                      <g className="animate-bounce-x">
-                        <circle cx="320" cy="40" r="8" fill="#22c55e" className="animate-ping-slow"/>
-                        <path 
-                          d="M316 40 L319 43 L324 38" 
-                          stroke="white" 
-                          strokeWidth="2" 
-                          className="animate-fade-in"
-                        />
-                      </g>
                     </g>
 
                     {/* Elementos decorativos */}
                     <g className="animate-sparkle">
-                      <path d="M30 100 L35 95 L30 90 L25 95 Z" fill="currentColor" className="text-warning-300"/>
-                      <path d="M370 150 L375 145 L370 140 L365 145 Z" fill="currentColor" className="text-warning-300"/>
+                      <path d="M50 40 L55 35 L50 30 L45 35 Z" fill="currentColor" className="text-success-300"/>
+                      <path d="M350 170 L355 165 L350 160 L345 165 Z" fill="currentColor" className="text-success-300"/>
+                    </g>
+                  </svg>
+                </div>
+              )}
+              {feature.id === 3 && (
+                // Ilustración para Reclamaciones Automáticas
+                <div className="w-[85%] h-[70%] relative bg-transparent">
+                  <svg className="w-full h-full" viewBox="0 0 400 200">
+                    <defs>
+                      <linearGradient id="claim-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.2"/>
+                        <stop offset="100%" stopColor="#d97706" stopOpacity="0.1"/>
+                      </linearGradient>
+                      <filter id="email-shadow">
+                        <feDropShadow dx="2" dy="2" stdDeviation="3" floodOpacity="0.1"/>
+                      </filter>
+                    </defs>
+
+                    {/* Email siendo enviado */}
+                    <g filter="url(#email-shadow)" className="animate-float">
+                      <rect 
+                        x="60" 
+                        y="40" 
+                        width="180" 
+                        height="120" 
+                        rx="12" 
+                        fill="url(#claim-gradient-3)" 
+                        className="shadow-lg"
+                      />
+                      {/* Líneas del email */}
+                      {[70, 90, 110, 130].map((y, j) => (
+                        <line 
+                          key={j}
+                          x1="80" 
+                          y1={y} 
+                          x2={220 - j * 10} 
+                          y2={y} 
+                          stroke="currentColor" 
+                          strokeWidth="2" 
+                          className="text-warning-300"
+                        />
+                      ))}
+                      {/* Adjunto */}
+                      <rect 
+                        x="180" 
+                        y="140" 
+                        width="40" 
+                        height="10" 
+                        rx="2" 
+                        fill="currentColor" 
+                        className="text-warning-400"
+                      />
+                    </g>
+
+                    {/* Flecha de envío */}
+                    <g className="animate-bounce-x">
+                      <path 
+                        d="M260 100 L300 100 M290 90 L300 100 L290 110" 
+                        stroke="currentColor" 
+                        strokeWidth="3" 
+                        fill="none"
+                        className="text-warning-400"
+                      />
+                    </g>
+
+                    {/* Destinatario (transportista) */}
+                    <g className="animate-fade-in">
+                      <circle 
+                        cx="340" 
+                        cy="100" 
+                        r="25" 
+                        fill="currentColor" 
+                        className="text-warning-200"
+                      />
+                      <path 
+                        d="M330 95 L340 85 L350 95 L340 105 Z" 
+                        fill="currentColor" 
+                        className="text-warning-500"
+                      />
+                      <text 
+                        x="340" 
+                        y="135" 
+                        textAnchor="middle" 
+                        className="text-[8px] fill-warning-600 font-medium"
+                      >
+                        Transportista
+                      </text>
+                    </g>
+
+                    {/* Elementos decorativos */}
+                    <g className="animate-sparkle">
+                      <path d="M30 80 L35 75 L30 70 L25 75 Z" fill="currentColor" className="text-warning-300"/>
+                      <path d="M370 140 L375 135 L370 130 L365 135 Z" fill="currentColor" className="text-warning-300"/>
                     </g>
                   </svg>
                 </div>
               )}
               {feature.id === 4 && (
-                // Ilustración mejorada para Métodos de pago
+                // Ilustración para Panel de Control
                 <div className="w-[85%] h-[70%] relative bg-transparent">
                   <svg className="w-full h-full" viewBox="0 0 400 200">
                     <defs>
-                      <linearGradient id="card-gradient-4" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.2"/>
-                        <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1"/>
+                      <linearGradient id="dashboard-gradient-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.2"/>
+                        <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.1"/>
                       </linearGradient>
-                      <filter id="card-shadow">
+                      <filter id="dashboard-shadow">
                         <feDropShadow dx="2" dy="2" stdDeviation="4" floodOpacity="0.1"/>
                       </filter>
                     </defs>
 
-                    {/* Fondo con patrón */}
-                    <rect width="400" height="200" fill="url(#gradient-lines)" className="animate-slide opacity-20"/>
-
-                    {/* Tarjetas de pago con efectos mejorados */}
-                    <g filter="url(#card-shadow)" className="animate-float">
-                      {[0, 1, 2].map((i) => (
-                        <g key={i} transform={`translate(${i * 20}, ${15 - i * 7})`} className={`animate-float [animation-delay:${i * 200}ms]`}>
+                    {/* Dashboard principal */}
+                    <g filter="url(#dashboard-shadow)" className="animate-float">
+                      <rect 
+                        x="40" 
+                        y="30" 
+                        width="320" 
+                        height="140" 
+                        rx="16" 
+                        fill="url(#dashboard-gradient-4)" 
+                        className="shadow-lg"
+                      />
+                      
+                      {/* Gráfico de barras */}
+                      <g className="animate-rise">
+                        {[0, 1, 2, 3, 4].map((i) => (
                           <rect 
-                            x="60" 
-                            y="40" 
-                            width="280" 
-                            height="160" 
-                            rx="16" 
-                            fill="url(#card-gradient-4)" 
-                            className="shadow-lg"
-                          />
-                          <rect 
-                            x="80" 
-                            y="70" 
-                            width="240" 
-                            height="30" 
+                            key={i}
+                            x={70 + i * 25} 
+                            y={140 - (i + 1) * 15} 
+                            width="15" 
+                            height={(i + 1) * 15} 
                             fill="currentColor" 
-                            className="text-info-200"
+                            className="text-purple-400 animate-scale-slow"
+                            style={{ animationDelay: `${i * 100}ms` }}
                           />
-                          
-                          {/* Chip de la tarjeta */}
-                          <g className="animate-shimmer">
-                            <rect 
-                              x="80" 
-                              y="140" 
-                              width="40" 
-                              height="40" 
-                              rx="6" 
-                              fill="currentColor" 
-                              className="text-info-300"
-                            />
-                            {[150, 160, 170].map((y) => (
-                              <path 
-                                key={y}
-                                d="M85 {y} h30" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                className="text-info-400"
-                              />
-                            ))}
-                          </g>
+                        ))}
+                      </g>
 
-                          {/* Número de tarjeta simulado */}
-                          <g className="animate-pulse-slow">
-                            {[0, 1, 2, 3].map((j) => (
-                              <circle 
-                                key={j}
-                                cx={100 + j * 15} 
-                                cy="160" 
-                                r="4" 
-                                fill="currentColor" 
-                                className="text-info-300"
-                              />
-                            ))}
-                          </g>
-                        </g>
-                      ))}
+                      {/* Métricas */}
+                      <g className="animate-fade-in">
+                        <text x="220" y="60" className="text-[12px] fill-purple-600 font-bold">€45.2K</text>
+                        <text x="220" y="75" className="text-[8px] fill-purple-500">Ahorrado</text>
+                        
+                        <text x="220" y="100" className="text-[12px] fill-purple-600 font-bold">87%</text>
+                        <text x="220" y="115" className="text-[8px] fill-purple-500">Precisión</text>
+                        
+                        <text x="280" y="60" className="text-[12px] fill-purple-600 font-bold">234</text>
+                        <text x="280" y="75" className="text-[8px] fill-purple-500">Facturas</text>
+                        
+                        <text x="280" y="100" className="text-[12px] fill-purple-600 font-bold">12</text>
+                        <text x="280" y="115" className="text-[8px] fill-purple-500">Errores</text>
+                      </g>
 
-                      {/* Símbolos de pago flotantes */}
+                      {/* Indicadores de estado */}
                       {[
-                        { symbol: '€', y: 40 },
-                        { symbol: '$', y: 80 },
-                        { symbol: '£', y: 120 }
-                      ].map((item, i) => (
-                        <g key={i} className={`animate-float [animation-delay:${i * 200}ms]`}>
-                          <circle 
-                            cx="350" 
-                            cy={item.y} 
-                            r="15" 
-                            fill="currentColor" 
-                            className="text-info-200 animate-pulse"
-                          />
-                          <text 
-                            x="350" 
-                            y={item.y + 5} 
-                            textAnchor="middle" 
-                            className="text-[12px] fill-info-500 font-medium"
-                          >
-                            {item.symbol}
-                          </text>
-                        </g>
+                        { x: 320, y: 50, color: "#22c55e" },
+                        { x: 320, y: 70, color: "#f59e0b" },
+                        { x: 320, y: 90, color: "#ef4444" }
+                      ].map((indicator, i) => (
+                        <circle 
+                          key={i}
+                          cx={indicator.x} 
+                          cy={indicator.y} 
+                          r="4" 
+                          fill={indicator.color} 
+                          className="animate-pulse"
+                        />
                       ))}
                     </g>
 
                     {/* Elementos decorativos */}
                     <g className="animate-sparkle">
-                      <path d="M30 50 L35 45 L30 40 L25 45 Z" fill="currentColor" className="text-info-300"/>
-                      <path d="M370 180 L375 175 L370 170 L365 175 Z" fill="currentColor" className="text-info-300"/>
+                      <path d="M20 50 L25 45 L20 40 L15 45 Z" fill="currentColor" className="text-purple-300"/>
+                      <path d="M380 150 L385 145 L380 140 L375 145 Z" fill="currentColor" className="text-purple-300"/>
                     </g>
                   </svg>
                 </div>
@@ -496,7 +516,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
 
             {/* Indicador de interactividad */}
             <a
-              href="https://cal.com/adolfo-guell-dominguez-yamc61/15min"
+              href="https://cal.com/obsidyan-demo/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="

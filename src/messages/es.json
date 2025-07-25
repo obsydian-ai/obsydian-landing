@@ -6,8 +6,8 @@
   },
   "Footer": {
     "services": "Servicios",
-    "techConsulting": "Consultoría tecnológica",
-    "ourProjects": "Nuestros proyectos",
+    "auditingSolution": "Auditoría Inteligente",
+    "ourSolution": "Nuestra Solución",
     "contact": "Contacto",
     "privacyPolicy": "Política de Privacidad",
     "termsConditions": "Términos y Condiciones",
@@ -16,50 +16,50 @@
   "Navbar": {
     "home": "Inicio",
     "services": "Servicios",
-    "resources": "Recursos",
-    "projects": "Nuestros proyectos",
-    "consulting": "Consultoría tecnológica",
+    "solution": "Solución",
+    "benefits": "Beneficios",
+    "features": "Características",
     "soon": "Próximamente",
-    "cta": "Hablemos"
+    "cta": "Solicitar Demo"
   },
   "HeroSection": {
-    "tag": "Inteligencia Artificial",
-    "title": "Transformando el sector asegurador",
-    "subtitle": "SegurNeo construye, escala y co-funda soluciones innovadoras en el sector asegurador",
-    "changingTextPrefix": "Cambiando la definición de",
-    "ctaButton": "Descubre nuestras soluciones",
+    "tag": "Automatizando la logística",
+    "title": "La logística hecha fácil y rentable",
+    "subtitle": "Obsidyan automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos",
+    "changingTextPrefix": "Transformando la",
+    "ctaButton": "Descubre cómo ahorrar",
     "scrollIndicator": "Scroll para explorar"
   },
   "VentureStudioSection": {
-    "sectionTag": "Nuestra Visión",
-    "titlePart1": "Impulsamos la",
-    "titlePart2": "transformación digital",
-    "titlePart3": "del sector",
-    "titlePart4": "asegurador",
-    "paragraph1": "En Segurneo, tendemos un puente entre la tradición del sector asegurador y las posibilidades ilimitadas de la transformación digital. Nuestro equipo combina una profunda experiencia en seguros con un sólido dominio de las tecnologías más avanzadas.",
-    "paragraph2": "Por un lado, nuestra rama de consultoría tecnológica desarrolla soluciones a medida que responden a necesidades específicas del negocio. Impulsamos la eficiencia operativa, mejoramos la experiencia del cliente y aceleramos la digitalización de aseguradoras y distribuidores.",
-    "paragraph3": "Por otro lado, exploramos y creamos nuevos modelos de negocio. Colaboramos estrechamente con aseguradoras y distribuidores para co-crear el futuro del sector. Como venture studio, no solo diseñamos soluciones: construimos empresas. Compartimos el riesgo y la recompensa del emprendimiento, trabajando codo a codo con nuestros partners para transformar el sector desde dentro."
+    "sectionTag": "Nuestra Misión",
+    "titlePart1": "Revolucionamos la",
+    "titlePart2": "gestión logística",
+    "titlePart3": "con inteligencia",
+    "titlePart4": "artificial",
+    "paragraph1": "En Obsidyan, transformamos la forma en que las empresas gestionan sus costos de transporte. Nuestra plataforma utiliza IA avanzada para auditar automáticamente las facturas de transportistas, detectando errores y discrepancias que tradicionalmente pasan desapercibidos.",
+    "paragraph2": "Automatizamos todo el proceso: desde la recepción de facturas hasta la gestión de reclamaciones. Nuestra IA interpreta documentos en cualquier formato, los estandariza y los compara con contratos y tarifas negociadas para identificar sobrecargos, duplicados y errores de facturación.",
+    "paragraph3": "No solo detectamos problemas, sino que generamos y enviamos automáticamente las reclamaciones a tus transportistas. Con nuestro panel de control, tienes visibilidad completa de tus ahorros, tasa de recuperación y métricas clave de auditoría logística."
   },
   "ProjectsSection": {
-    "sectionTag": "Nuestros Proyectos",
-    "title": "Explora nuestras soluciones",
-    "paragraph": "Creamos soluciones desde distintos ángulos: B2C, B2B y B2B2C. Hemos desarrollado comparadores online, sistemas de pago adaptados a la operativa del seguro, y agentes virtuales con IA que automatizan la atención al cliente sin perder cercanía.",
-    "project1Desc": "Broker de distribución de seguros de salud nativo con Inteligencia Artificial.",
-    "project2Desc": "Plataforma de pago adaptada al sector asegurador. Gestiona impagos, recobros y facturas de forma automatizada.",
-    "project3Desc": "Solución de inteligencia artificial que optimiza la atención al cliente en centros de llamadas. Reduce tiempos de espera, aumenta márgenes y mejora la satisfacción."
+    "sectionTag": "El caso de uso real",
+    "title": "Cómo te hacemos ahorrar",
+    "paragraph": "Obsidyan se basa en mejorar la eficiencia en la gestión de la facturación logística.",
+    "case1Desc": "Empresa de retail recupera €45,000 anuales detectando sobrecargos de combustible y tarifas incorrectas en sus envíos nacionales.",
+    "case2Desc": "Compañía logística redujo 30% el tiempo de auditoría y aumentó 85% la tasa de detección de errores en facturas internacionales.",
+    "case3Desc": "Fabricante industrial automatizó 100% sus reclamaciones y mejoró la visibilidad de costos en su cadena de suministro."
   },
   "ProductFeatureSection": {
-    "sectionTag": "Céntrate en lo importante",
-    "title": "Digitaliza tu negocio",
-    "paragraph": "Automatiza el trabajo manual, para centrarte en hacer crecer tu negocio",
-    "feature1Title": "Atención al cliente",
-    "feature1Desc": "Respuestas instantáneas y personalizadas 24/7 vía voz, email y Whatsapp. Mejora la satisfacción del cliente y tus márgenes.",
-    "feature2Title": "Recuperación de impagos",
-    "feature2Desc": "Automatiza y optimiza la gestión de cobros con IA, mejorando la tasa de recuperación hasta un 40%.",
-    "feature3Title": "Gestión de siniestros",
-    "feature3Desc": "Reduce el tiempo de gestión en un 70% con IA. Respuestas más rápidas y precisas para cada caso.",
-    "feature4Title": "Métodos de pago",
-    "feature4Desc": "Permite a tus clientes pagar con su método de pago preferido, subiendo la conversión y reduciendo los costes operativos.",
-    "cardActionText": "Click para más info"
+    "sectionTag": "Potencia tu logística",
+    "title": "Automatiza tu auditoría",
+    "paragraph": "Transforma la gestión manual de facturas en un proceso inteligente y automatizado",
+    "feature1Title": "Auditoría automática",
+    "feature1Desc": "Recibe, interpreta y estandariza facturas de cualquier formato. Nuestra IA procesa documentos 24/7 sin intervención manual.",
+    "feature2Title": "Detección inteligente",
+    "feature2Desc": "Identifica sobrecargos, duplicados, tarifas incorrectas y discrepancias comparando con contratos y datos de envío.",
+    "feature3Title": "Reclamaciones automáticas",
+    "feature3Desc": "Genera y envía reclamaciones personalizadas a transportistas con informes detallados de las incidencias detectadas.",
+    "feature4Title": "Panel de control",
+    "feature4Desc": "Monitorea ahorros, tasa de recuperación, facturas auditadas y métricas clave desde un dashboard centralizado.",
+    "cardActionText": "Ver demo"
   }
 } 
