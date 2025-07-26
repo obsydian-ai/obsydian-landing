@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { FileCheck, Search, Send, BarChart3, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -50,23 +50,11 @@ interface Feature {
   image: string;
 }
 
-const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) => string }> = ({ feature, index, t }) => {
+const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: number; t: (key: string) => string }>(({ feature, index, t }, ref) => {
   return (
     <motion.div
+      ref={ref}
       id={`feature-${feature.id}`}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0,
-        transition: {
-          type: "spring",
-          damping: 25,
-          stiffness: 100,
-          duration: 0.5,
-          delay: index * 0.1
-        }
-      }}
-      viewport={{ once: true, amount: 0.2 }}
       className={`
         group w-full max-w-3xl mx-auto
         ${index % 2 === 0 ? 'lg:mr-[40%]' : 'lg:ml-[40%]'}
@@ -539,10 +527,19 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
       </div>
     </motion.div>
   );
-};
+});
+
+FeatureCard.displayName = 'FeatureCard';
 
 const ProductFeatureSection: React.FC = () => {
   const { t } = useTranslation('ProductFeatureSection');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTitleVisible, setIsTitleVisible] = useState(true);
+  const [canShowCard, setCanShowCard] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleContainerRef = useRef<HTMLDivElement>(null);
+  const stickyContainerRef = useRef<HTMLDivElement>(null);
+  const firstCardRef = useRef<HTMLDivElement>(null);
 
   const features: Feature[] = featuresData.map(f => ({
     ...f,
@@ -550,51 +547,170 @@ const ProductFeatureSection: React.FC = () => {
     description: t(f.descriptionKey)
   }));
 
+  // Set up scroll tracking for the sticky container
+  const { scrollYProgress } = useScroll({
+    target: stickyContainerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate which card should be visible based on scroll progress
+  const cardProgress = useTransform(scrollYProgress, [0, 1], [0, features.length - 1]);
+  
+  // Update current index based on scroll progress
+  useEffect(() => {
+    const unsubscribe = cardProgress.on("change", (latest) => {
+      const newIndex = Math.round(latest);
+      if (newIndex !== currentIndex && newIndex >= 0 && newIndex < features.length) {
+        setCurrentIndex(newIndex);
+      }
+    });
+    
+    return unsubscribe;
+  }, [cardProgress, currentIndex, features.length]);
+
+  // Handle title visibility based on scroll progress
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      // Show title only in the first 30% of the scroll
+      const titleThreshold = 0.3;
+      setIsTitleVisible(latest < titleThreshold);
+      
+      // Show cards after 30% scroll
+      setCanShowCard(latest >= titleThreshold);
+    });
+    
+    return unsubscribe;
+  }, [scrollYProgress]);
+
+  const cardVariants = {
+    enter: (direction: number) => ({
+      y: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      y: 0,
+      opacity: 1
+    },
+    exit: () => ({
+      zIndex: 0,
+      opacity: 0
+    })
+  };
+
+  // Special variant for the first card to appear from bottom
+  const firstCardVariants = {
+    enter: {
+      y: 1000,
+      opacity: 0
+    },
+    center: {
+      zIndex: 1,
+      y: 0,
+      opacity: 1
+    },
+    exit: () => ({
+      zIndex: 0,
+      opacity: 0
+    })
+  };
+
+
+
   return (
-    <section id="services" className="relative bg-black mt-24 md:mt-48">
-      {/* Header Fijo en el Centro */}
-      <div className="sticky top-0 pt-20 pb-20 md:pt-32 md:pb-32 z-10 w-full bg-black">
-        <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <div className="
-              inline-flex items-center px-4 py-1.5 md:px-6 md:py-2 mb-6 md:mb-8
-              rounded-full bg-white/10 text-white
-              text-xs md:text-sm font-medium tracking-wide
-              backdrop-blur-sm
-            ">
-              <Settings className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-              {t('sectionTag')}
+    <section 
+      ref={sectionRef}
+      id="services" 
+      className="relative bg-black mt-24 md:mt-48"
+      style={{ height: `${100 * features.length}vh` }}
+    >
+      {/* Scroll container that takes up full height for all cards */}
+      <div 
+        ref={stickyContainerRef}
+        className="relative w-full"
+        style={{ height: `${100 * features.length}vh` }}
+      >
+        {/* Sticky container that stays in viewport */}
+        <div className="sticky top-0 h-screen w-full bg-black">
+          {/* Header */}
+          <div className="absolute top-0 left-0 right-0 pt-20 pb-20 md:pt-32 md:pb-32 z-10 w-full bg-black">
+            <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
+              <motion.div 
+                ref={titleContainerRef}
+                className="text-center"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: isTitleVisible ? 1 : 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+              >
+                <div className="
+                  inline-flex items-center px-4 py-1.5 md:px-6 md:py-2 mb-6 md:mb-8
+                  rounded-full bg-white/10 text-white
+                  text-xs md:text-sm font-medium tracking-wide
+                  backdrop-blur-sm
+                ">
+                  <Settings className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
+                  {t('sectionTag')}
+                </div>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight text-white">
+                  {t('title')}
+                </h2>
+                <p className="text-base md:text-lg lg:text-xl text-gray-300 max-w-xl md:max-w-2xl mx-auto">
+                  {t('paragraph')}
+                </p>
+              </motion.div>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight text-white">
-              {t('title')}
-            </h2>
-            <p className="text-base md:text-lg lg:text-xl text-gray-300 max-w-xl md:max-w-2xl mx-auto">
-              {t('paragraph')}
-            </p>
-          </motion.div>
-        </div>
-      </div>
+          </div>
 
-      {/* Espacio inicial para el scroll */}
-      <div className="h-[20vh] md:h-[30vh] lg:h-[50vh]"/>
+          {/* Cards Container */}
+          <div className="relative z-20 h-full flex items-center justify-center">
+            <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
+              <div className="relative h-full flex items-center justify-center">
+                <AnimatePresence initial={false} custom={currentIndex}>
+                  {!canShowCard ? null : (
+                    <motion.div
+                      key={currentIndex}
+                      custom={currentIndex}
+                      variants={currentIndex === 0 ? firstCardVariants : cardVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        y: { type: "spring", stiffness: 200, damping: 40, duration: 1.2 },
+                        opacity: { duration: 0.8 }
+                      }}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <FeatureCard 
+                        feature={features[currentIndex]}
+                        index={currentIndex}
+                        t={t}
+                        ref={currentIndex === 0 ? firstCardRef : undefined}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
 
-      {/* Contenedor de Cards */}
-      <div className="relative z-20">
-        <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
-          <div className="space-y-12 md:space-y-16 lg:space-y-24 py-16 md:py-24 lg:py-32">
-            {features.map((feature, index) => (
-              <FeatureCard 
-                key={feature.id} 
-                feature={feature}
-                index={index}
-                t={t}
-              />
-            ))}
+          {/* Progress Indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+            <div className="flex space-x-2">
+              {features.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`
+                    w-3 h-3 rounded-full transition-all duration-300
+                    ${index === currentIndex 
+                      ? 'bg-white scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                    }
+                  `}
+                  aria-label={`Go to feature ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
