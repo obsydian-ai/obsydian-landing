@@ -186,7 +186,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                 active:scale-[0.98]
               `}
               onClick={() => {
-                window.open('https://cal.com/obsydian-demo/30min', '_blank');
+                window.open('https://cal.com/Obsydian-demo/30min', '_blank');
               }}
               role="button"
               aria-label={`Solicitar demo para ${project.name}`}
@@ -306,11 +306,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                 variant="ghost"
                 className={`group relative px-6 py-3 font-medium rounded-full border ${cardTheme.border} transition-all duration-400 hover:scale-105 hover:shadow-lg ${cardTheme.text} focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95`}
                 onClick={() => {
-                  window.open('https://cal.com/obsydian-demo/30min', '_blank');
+                  window.open('https://cal.com/Obsydian-demo/30min', '_blank');
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    window.open('https://cal.com/obsydian-demo/30min', '_blank');
+                    window.open('https://cal.com/Obsydian-demo/30min', '_blank');
                   }
                 }}
                 role="button"

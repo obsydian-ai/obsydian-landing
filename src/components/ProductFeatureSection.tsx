@@ -516,7 +516,7 @@ const FeatureCard: React.FC<{ feature: Feature; index: number; t: (key: string) 
 
             {/* Indicador de interactividad */}
             <a
-              href="https://cal.com/obsydian-demo/30min"
+              href="https://cal.com/Obsydian-demo/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="

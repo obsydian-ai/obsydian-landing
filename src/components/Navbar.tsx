@@ -123,7 +123,7 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <a href="#" className="text-2xl font-semibold tracking-tight text-black">
-                obsydian<span style={{ color: '#83B0D9' }}>.</span>
+                Obsydian<span style={{ color: '#83B0D9' }}>.</span>
               </a>
             </motion.div>
 
@@ -237,7 +237,7 @@ const Navbar = () => {
 
               {/* CTA Button - Ahora primero */}
               <motion.a
-                href="https://cal.com/obsydian-demo/30min"
+                href="https://cal.com/Obsydian-demo/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x ml-6"
@@ -296,7 +296,7 @@ const Navbar = () => {
                 
                 {/* Mobile CTA Button */}
                 <motion.a
-                  href="https://cal.com/obsydian-demo/30min"
+                  href="https://cal.com/Obsydian-demo/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-3 rounded-lg text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x"
