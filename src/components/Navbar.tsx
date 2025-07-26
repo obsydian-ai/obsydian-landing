@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 // Define a type for NavItem including submenus
 type SubMenuItem = {
@@ -40,6 +41,7 @@ const NavItemsData: NavItem[] = [
 const Navbar = () => {
   const { t, i18n } = useTranslation('Navbar');
   const currentLanguage = i18n.language as 'en' | 'es'; // Type assertion
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -236,10 +238,8 @@ const Navbar = () => {
               ))}
 
               {/* CTA Button - Ahora primero */}
-              <motion.a
-                href="https://cal.com/Obsydian-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => navigate('/book-a-demo')}
                 className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x ml-6"
                 style={{
                   background: 'linear-gradient(135deg, #83B0D9 0%, #6FA0D6 25%, #83B0D9 50%, #5B95D3 75%, #83B0D9 100%)',
@@ -256,7 +256,7 @@ const Navbar = () => {
                 <span className="relative z-10">
                   {t('cta')}
                 </span>
-              </motion.a>
+              </motion.button>
 
               {/* Language Toggle Button - Ahora segundo */}
               <motion.button
@@ -295,16 +295,16 @@ const Navbar = () => {
                 {/* ... Mobile NavItems mapping ... */} 
                 
                 {/* Mobile CTA Button */}
-                <motion.a
-                  href="https://cal.com/Obsydian-demo/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => {
+                    navigate('/book-a-demo');
+                    setMobileMenuOpen(false);
+                  }}
                   className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-3 rounded-lg text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x"
                   style={{
                     background: 'linear-gradient(135deg, #83B0D9 0%, #6FA0D6 25%, #83B0D9 50%, #5B95D3 75%, #83B0D9 100%)',
                     backgroundSize: '300% 300%'
                   }}
-                  onClick={() => setMobileMenuOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
@@ -318,7 +318,7 @@ const Navbar = () => {
                   <span className="relative z-10">
                     {t('cta')}
                   </span>
-                </motion.a>
+                </motion.button>
               </nav>
             </motion.div>
           )}

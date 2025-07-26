@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion, useScroll, useTransform, cubicBezier } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const ContactSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
   const handleContactClick = () => {
-    window.location.href = 'mailto:hi@segurneo.com';
+    navigate('/book-a-demo');
   };
 
   const sectionRef = React.useRef<HTMLElement>(null);

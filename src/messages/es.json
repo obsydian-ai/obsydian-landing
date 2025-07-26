@@ -6,8 +6,14 @@
   },
   "Footer": {
     "services": "Servicios",
-    "auditingSolution": "Auditoría Inteligente",
-    "ourSolution": "Nuestra Solución",
+    "auditingSolution": "Auditoría",
+    "aiDemandForecasting": "Predicción",
+    "smartShipmentManager": "Envíos",
+    "rateManagement": "Tarifas",
+    "customsAgentService": "Aduanas",
+    "reduceFreightCosts": "Ahorro",
+    "proactiveShipmentTracking": "Seguimiento",
+    "logisticsDocumentInterpreter": "Digitalización",
     "contact": "Contacto",
     "privacyPolicy": "Política de Privacidad",
     "termsConditions": "Términos y Condiciones",
@@ -29,16 +35,6 @@
     "changingTextPrefix": "Transformando la",
     "ctaButton": "Descubre cómo ahorrar",
     "scrollIndicator": "Scroll para explorar"
-  },
-  "VentureStudioSection": {
-    "sectionTag": "Nuestra Misión",
-    "titlePart1": "Revolucionamos la",
-    "titlePart2": "gestión logística",
-    "titlePart3": "con inteligencia",
-    "titlePart4": "artificial",
-    "paragraph1": "En Obsydian, transformamos la forma en que las empresas gestionan sus costos de transporte. Nuestra plataforma utiliza IA avanzada para auditar automáticamente las facturas de transportistas, detectando errores y discrepancias que tradicionalmente pasan desapercibidos.",
-    "paragraph2": "Automatizamos todo el proceso: desde la recepción de facturas hasta la gestión de reclamaciones. Nuestra IA interpreta documentos en cualquier formato, los estandariza y los compara con contratos y tarifas negociadas para identificar sobrecargos, duplicados y errores de facturación.",
-    "paragraph3": "No solo detectamos problemas, sino que generamos y enviamos automáticamente las reclamaciones a tus transportistas. Con nuestro panel de control, tienes visibilidad completa de tus ahorros, tasa de recuperación y métricas clave de auditoría logística."
   },
   "ProjectsSection": {
     "sectionTag": "El caso de uso real",

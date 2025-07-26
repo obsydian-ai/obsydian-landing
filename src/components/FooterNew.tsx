@@ -12,7 +12,7 @@ const FooterNew = () => {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/Obsydian/',
+      href: 'https://www.linkedin.com/company/obsydianai/',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -20,6 +20,17 @@ const FooterNew = () => {
       ),
     },
   ];
+
+  const services = [
+    { key: 'auditingSolution', href: '/#services' },
+    { key: 'aiDemandForecasting', href: '/#services' },
+    { key: 'smartShipmentManager', href: '/#services' },
+    { key: 'rateManagement', href: '/#services' },
+    { key: 'customsAgentService', href: '/#services' },
+    { key: 'reduceFreightCosts', href: '/#services' },
+    { key: 'proactiveShipmentTracking', href: '/#services' },
+    { key: 'logisticsDocumentInterpreter', href: '/#services' },
+  ];  
 
   return (
     <footer className="relative bg-black text-white">
@@ -54,30 +65,24 @@ const FooterNew = () => {
               {t('services')}
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link 
-                  to="/#services" 
-                  className="text-gray-400 hover:text-white transition-all duration-300"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {t('auditingSolution')}
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#mission-section" 
-                  className="text-gray-400 hover:text-white transition-all duration-300"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {t('ourSolution')}
-                </Link>
-              </li>
+              {services.map((service) => (
+                <li key={service.key}>
+                  <Link 
+                    to={service.href}
+                    className="text-gray-400 hover:text-white transition-all duration-300"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (service.href.includes('services')) {
+                        document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                      } else if (service.href.includes('mission-section')) {
+                        document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {t(service.key)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -87,10 +92,10 @@ const FooterNew = () => {
               {t('contact')}
             </h3>
             <a
-              href="mailto:hello@Obsydian.com"
+              href="mailto:hello@obsydianai.com"
               className="text-gray-400 hover:text-white transition-all duration-300 inline-flex items-center group"
             >
-              <span className="group-hover:underline">hello@Obsydian.com</span>
+              <span className="group-hover:underline">hello@obsydianai.com</span>
               <svg 
                 className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" 
                 fill="none" 

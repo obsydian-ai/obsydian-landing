@@ -23,7 +23,6 @@ i18n
       es: { // Spanish resources
         Navbar: esTranslation.Navbar,      
         HeroSection: esTranslation.HeroSection,
-        VentureStudioSection: esTranslation.VentureStudioSection,
         ProjectsSection: esTranslation.ProjectsSection,
         ProductFeatureSection: esTranslation.ProductFeatureSection,
         ContactSection: esTranslation.ContactSection,
@@ -32,7 +31,6 @@ i18n
       en: { // English resources
         Navbar: enTranslation.Navbar,      
         HeroSection: enTranslation.HeroSection,
-        VentureStudioSection: enTranslation.VentureStudioSection,
         ProjectsSection: enTranslation.ProjectsSection,
         ProductFeatureSection: enTranslation.ProductFeatureSection,
         ContactSection: enTranslation.ContactSection,
@@ -47,7 +45,6 @@ i18n
     ns: [
       'Navbar', 
       'HeroSection', 
-      'VentureStudioSection', 
       'ProjectsSection', 
       'ProductFeatureSection',
       'ContactSection',

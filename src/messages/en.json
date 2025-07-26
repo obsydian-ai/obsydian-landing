@@ -6,8 +6,14 @@
   },
   "Footer": {
     "services": "Services",
-    "auditingSolution": "Intelligent Auditing",
-    "ourSolution": "Our Solution",
+    "auditingSolution": "Auditing",
+    "aiDemandForecasting": "Forecasting",
+    "smartShipmentManager": "Shipments",
+    "rateManagement": "Rate Management",
+    "customsAgentService": "Customs",
+    "reduceFreightCosts": "Cost Savings",
+    "proactiveShipmentTracking": "Tracking",
+    "logisticsDocumentInterpreter": "Digitalization",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
     "termsConditions": "Terms and Conditions",
@@ -29,16 +35,6 @@
     "changingTextPrefix": "Transforming",
     "ctaButton": "Discover how to save",
     "scrollIndicator": "Scroll to explore"
-  },
-  "VentureStudioSection": {
-    "sectionTag": "Our Mission",
-    "titlePart1": "We revolutionize",
-    "titlePart2": "logistics management",
-    "titlePart3": "with artificial",
-    "titlePart4": "intelligence",
-    "paragraph1": "At Obsydian, we transform how companies manage their transportation costs. Our platform uses advanced AI to automatically audit carrier invoices, detecting errors and discrepancies that traditionally go unnoticed.",
-    "paragraph2": "We automate the entire process: from invoice reception to claims management. Our AI interprets documents in any format, standardizes them, and compares them with contracts and negotiated rates to identify surcharges, duplicates, and billing errors.",
-    "paragraph3": "We don't just detect problems, we automatically generate and send claims to your carriers. With our control panel, you have complete visibility of your savings, recovery rate, and key logistics auditing metrics."
   },
   "ProjectsSection": {
     "sectionTag": "Real use case",
