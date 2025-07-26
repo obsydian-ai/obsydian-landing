@@ -24,8 +24,8 @@
   },
   "HeroSection": {
     "tag": "Automatizando la logística",
-    "title": "La logística hecha fácil y rentable",
-    "subtitle": "Obsidyan automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos",
+    "title": "La logística fácil y rentable",
+    "subtitle": "Obsydian automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos",
     "changingTextPrefix": "Transformando la",
     "ctaButton": "Descubre cómo ahorrar",
     "scrollIndicator": "Scroll para explorar"
@@ -36,14 +36,14 @@
     "titlePart2": "gestión logística",
     "titlePart3": "con inteligencia",
     "titlePart4": "artificial",
-    "paragraph1": "En Obsidyan, transformamos la forma en que las empresas gestionan sus costos de transporte. Nuestra plataforma utiliza IA avanzada para auditar automáticamente las facturas de transportistas, detectando errores y discrepancias que tradicionalmente pasan desapercibidos.",
+    "paragraph1": "En obsydian, transformamos la forma en que las empresas gestionan sus costos de transporte. Nuestra plataforma utiliza IA avanzada para auditar automáticamente las facturas de transportistas, detectando errores y discrepancias que tradicionalmente pasan desapercibidos.",
     "paragraph2": "Automatizamos todo el proceso: desde la recepción de facturas hasta la gestión de reclamaciones. Nuestra IA interpreta documentos en cualquier formato, los estandariza y los compara con contratos y tarifas negociadas para identificar sobrecargos, duplicados y errores de facturación.",
     "paragraph3": "No solo detectamos problemas, sino que generamos y enviamos automáticamente las reclamaciones a tus transportistas. Con nuestro panel de control, tienes visibilidad completa de tus ahorros, tasa de recuperación y métricas clave de auditoría logística."
   },
   "ProjectsSection": {
     "sectionTag": "El caso de uso real",
     "title": "Cómo te hacemos ahorrar",
-    "paragraph": "Obsidyan se basa en mejorar la eficiencia en la gestión de la facturación logística.",
+    "paragraph": "obsydian se basa en mejorar la eficiencia en la gestión de la facturación logística.",
     "case1Desc": "Empresa de retail recupera €45,000 anuales detectando sobrecargos de combustible y tarifas incorrectas en sus envíos nacionales.",
     "case2Desc": "Compañía logística redujo 30% el tiempo de auditoría y aumentó 85% la tasa de detección de errores en facturas internacionales.",
     "case3Desc": "Fabricante industrial automatizó 100% sus reclamaciones y mejoró la visibilidad de costos en su cadena de suministro."

@@ -25,7 +25,7 @@
   "HeroSection": {
     "tag": "Automating logistics",
     "title": "Logistics made easy and profitable",
-    "subtitle": "Obsidyan automates invoice auditing, detects errors and manages claims to maximize your logistics savings",
+    "subtitle": "obsydian automates invoice auditing, detects errors and manages claims to maximize your logistics savings",
     "changingTextPrefix": "Transforming",
     "ctaButton": "Discover how to save",
     "scrollIndicator": "Scroll to explore"
@@ -36,14 +36,14 @@
     "titlePart2": "logistics management",
     "titlePart3": "with artificial",
     "titlePart4": "intelligence",
-    "paragraph1": "At Obsidyan, we transform how companies manage their transportation costs. Our platform uses advanced AI to automatically audit carrier invoices, detecting errors and discrepancies that traditionally go unnoticed.",
+    "paragraph1": "At obsydian, we transform how companies manage their transportation costs. Our platform uses advanced AI to automatically audit carrier invoices, detecting errors and discrepancies that traditionally go unnoticed.",
     "paragraph2": "We automate the entire process: from invoice reception to claims management. Our AI interprets documents in any format, standardizes them, and compares them with contracts and negotiated rates to identify surcharges, duplicates, and billing errors.",
     "paragraph3": "We don't just detect problems, we automatically generate and send claims to your carriers. With our control panel, you have complete visibility of your savings, recovery rate, and key logistics auditing metrics."
   },
   "ProjectsSection": {
     "sectionTag": "Real use case",
     "title": "How we make you save",
-    "paragraph": "Obsidyan is based on improving efficiency in logistics billing management.",
+    "paragraph": "obsydian is based on improving efficiency in logistics billing management.",
     "case1Desc": "Retail company recovers €45,000 annually by detecting fuel surcharges and incorrect rates in their domestic shipments.",
     "case2Desc": "Logistics company reduced audit time by 30% and increased error detection rate by 85% in international invoices.",
     "case3Desc": "Industrial manufacturer automated 100% of their claims and improved cost visibility in their supply chain."

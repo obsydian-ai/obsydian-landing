@@ -84,21 +84,28 @@ const Navbar = () => {
         className={cn(
           'mx-auto max-w-5xl rounded-2xl transition-all duration-300 relative',
           'bg-white/80 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)]',
-          scrolled ? 'py-3' : 'py-4',
-          // Capa base del borde energético
-          'before:absolute before:inset-0 before:rounded-2xl before:p-[2px]',
-          'before:bg-[linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.05)_20%,rgba(0,0,0,0.95)_50%,rgba(0,0,0,0.05)_80%,transparent_100%)]',
-          'before:bg-[length:200%_100%]',
-          'before:animate-[border-flow_3s_linear_infinite]',
-          // Capa de brillo
-          'after:absolute after:inset-[1px] after:rounded-2xl after:bg-white/90',
-          'after:backdrop-blur-sm'
+          scrolled ? 'py-3' : 'py-4'
         )}
       >
-        {/* Efecto de destello que se mueve */}
+        {/* Capa base del borde energético - flujo principal más sutil */}
+        <div 
+          className="absolute inset-0 rounded-2xl p-[2px] animate-[border-flow_3s_linear_infinite]"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(131,176,217,0.2) 25%, rgba(131,176,217,0.6) 50%, rgba(131,176,217,0.2) 75%, transparent 100%)',
+            backgroundSize: '250% 100%'
+          }}
+        >
+          <div className="w-full h-full rounded-2xl bg-white/90 backdrop-blur-sm"></div>
+        </div>
+
+        {/* Destello sutil que se mueve */}
         <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-          <div className="absolute w-32 h-full bg-gradient-to-r from-transparent via-white to-transparent 
-                        opacity-30 blur-xl transform -translate-x-full animate-[glow_3s_ease-in-out_infinite]" />
+          <div 
+            className="absolute w-32 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-lg"
+            style={{
+              animation: 'glow 5s ease-in-out infinite'
+            }}
+          />
         </div>
 
         {/* Contenido del Navbar */}
@@ -116,7 +123,7 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <a href="#" className="text-2xl font-semibold tracking-tight text-black">
-                Obsidyan<span className="text-blue-500">.</span>
+                obsydian<span style={{ color: '#83B0D9' }}>.</span>
               </a>
             </motion.div>
 
@@ -228,12 +235,38 @@ const Navbar = () => {
                 </motion.div>
               ))}
 
-              {/* Language Toggle Button - Desktop */}
+              {/* CTA Button - Ahora primero */}
+              <motion.a
+                href="https://cal.com/obsydian-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x ml-6"
+                style={{
+                  background: 'linear-gradient(135deg, #83B0D9 0%, #6FA0D6 25%, #83B0D9 50%, #5B95D3 75%, #83B0D9 100%)',
+                  backgroundSize: '300% 300%'
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                
+                {/* Button content */}
+                <span className="relative z-10">
+                  {t('cta')}
+                </span>
+              </motion.a>
+
+              {/* Language Toggle Button - Ahora segundo */}
               <motion.button
                 onClick={handleLocaleChange}
-                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner mr-3" // Keep mr-3
+                className="relative flex items-center h-7 px-1 rounded-full bg-gray-200/80 cursor-pointer shadow-inner"
                 aria-label={`Switch to ${currentLanguage === 'en' ? 'Spanish' : 'English'}`}
-                style={{ width: '64px' }}
+                style={{ 
+                  width: '64px',
+                  marginLeft: '16px'
+                }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.1 }}
               >
@@ -250,19 +283,6 @@ const Navbar = () => {
                   <span className={cn("px-1.5 text-xs font-semibold transition-colors duration-300", currentLanguage === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600')}>EN</span>
                 </div>
               </motion.button>
-
-              {/* CTA Button */}
-              <motion.a
-                href="https://cal.com/obsidyan-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm ml-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                {t('cta')}
-              </motion.a>
             </nav>
           </div>
         </motion.div>
@@ -276,10 +296,14 @@ const Navbar = () => {
                 
                 {/* Mobile CTA Button */}
                 <motion.a
-                  href="https://cal.com/obsidyan-demo/30min"
+                  href="https://cal.com/obsydian-demo/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-base font-medium text-white bg-black hover:bg-gray-900 transition-colors shadow-sm"
+                  className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-3 rounded-lg text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x"
+                  style={{
+                    background: 'linear-gradient(135deg, #83B0D9 0%, #6FA0D6 25%, #83B0D9 50%, #5B95D3 75%, #83B0D9 100%)',
+                    backgroundSize: '300% 300%'
+                  }}
                   onClick={() => setMobileMenuOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -287,7 +311,13 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {t('cta')}
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                  
+                  {/* Button content */}
+                  <span className="relative z-10">
+                    {t('cta')}
+                  </span>
                 </motion.a>
               </nav>
             </motion.div>
