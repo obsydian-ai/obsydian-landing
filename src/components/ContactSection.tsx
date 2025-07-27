@@ -5,15 +5,15 @@ import { ArrowRight, Zap } from 'lucide-react';
 import MetricsList from './MetricsList';
 
 const ContactSection = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('ContactSection');
   const [email, setEmail] = useState<string>('');
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const metrics = [
-    { value: '35%', description: 'Faster Customs Clearance' },
-    { value: '90%', description: 'Reduction in Manual Data Sync Tasks' },
-    { value: '+72%', description: 'Increase in Claims Recovered' },
-    { value: '8+ Hours', description: 'Saved per Week per Operator' }
+    { value: '35%', description: t('metrics.fasterCustoms') },
+    { value: '90%', description: t('metrics.reductionManual') },
+    { value: '+72%', description: t('metrics.increaseClaims') },
+    { value: '8+ Hours', description: t('metrics.savedHours') }
   ];
 
   const handleSubmit = async () => {
@@ -84,18 +84,18 @@ const ContactSection = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm font-medium">
               <Zap size={16} />
-              Automatizando la logística
+              {t('badge')}
             </div>
 
             {/* Headline */}
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-white">
-              <span className="text-[#0ea5e9]">Auditoría</span>{' '}
-              fácil y rentable
+              <span className="text-[#0ea5e9]">{t('headline')}</span>{' '}
+              {t('headlineSuffix')}
             </h2>
 
             {/* Description */}
             <p className="text-lg text-gray-300 leading-relaxed">
-              Obsydian automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos.
+              {t('description')}
             </p>
 
             {/* Metrics List */}
@@ -113,10 +113,10 @@ const ContactSection = () => {
             {/* Form Header */}
             <div className="text-center mb-6">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Talk to an Expert
+                {t('formTitle')}
               </h3>
               <p className="text-gray-400 text-sm">
-                Get personalized insights for your supply chain challenges
+                {t('formSubtitle')}
               </p>
             </div>
 
@@ -124,7 +124,7 @@ const ContactSection = () => {
             <div className="mb-6">
               <input
                 type="email"
-                placeholder="Enter your work email"
+                placeholder={t('emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#0ea5e9] focus:border-transparent outline-none transition-all text-white placeholder-gray-400"
@@ -143,15 +143,15 @@ const ContactSection = () => {
                 }
               `}
             >
-              Submit
+              {t('submitButton')}
               <ArrowRight size={18} />
             </button>
 
             {/* Privacy Policy */}
             <p className="text-xs text-gray-500 text-center mt-4">
-              By submitting, you agree to our{' '}
+              {t('privacyText')}{' '}
               <a href="#" className="text-[#0ea5e9] hover:underline">
-                Privacy Policy
+                {t('privacyLink')}
               </a>
             </p>
           </motion.div>
@@ -182,10 +182,10 @@ const ContactSection = () => {
 
             {/* Success Message */}
             <h3 className="text-2xl font-bold text-white mb-4">
-              Thanks for your submit!
+              {t('successTitle')}
             </h3>
             <p className="text-gray-300 mb-6">
-              You will be contacted by the Obsydian's team!
+              {t('successMessage')}
             </p>
 
             {/* Close Button */}
@@ -193,7 +193,7 @@ const ContactSection = () => {
               onClick={() => setShowSuccess(false)}
               className="bg-[#83B0D9] text-white px-6 py-2 rounded-lg hover:bg-[#6B9BC9] transition-colors"
             >
-              Close
+              {t('closeButton')}
             </button>
           </motion.div>
         </motion.div>

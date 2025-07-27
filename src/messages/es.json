@@ -2,7 +2,26 @@
   "ContactSection": {
     "title": "Contacta",
     "subtitle": "con nosotros",
-    "buttonText": "Contáctanos"
+    "buttonText": "Contáctanos",
+    "badge": "Automatizando la logística",
+    "headline": "Auditoría",
+    "headlineSuffix": "fácil y rentable",
+    "description": "Obsydian automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos.",
+    "formTitle": "Habla con un Experto",
+    "formSubtitle": "Obtén insights personalizados para tus desafíos de cadena de suministro",
+    "emailPlaceholder": "Ingresa tu email de trabajo",
+    "submitButton": "Enviar",
+    "privacyText": "Al enviar, aceptas nuestra",
+    "privacyLink": "Política de Privacidad",
+    "successTitle": "¡Gracias por tu envío!",
+    "successMessage": "¡Serás contactado por el equipo de Obsydian!",
+    "closeButton": "Cerrar",
+    "metrics": {
+      "fasterCustoms": "Despacho de Aduanas Más Rápido",
+      "reductionManual": "Reducción en Tareas Manuales de Sincronización",
+      "increaseClaims": "Aumento en Reclamaciones Recuperadas",
+      "savedHours": "Horas Ahorradas por Semana por Operador"
+    }
   },
   "Footer": {
     "services": "Servicios",
@@ -28,7 +47,33 @@
     "subtitle": "Obsydian automatiza la auditoría de facturas, detecta errores y gestiona reclamaciones para maximizar tus ahorros logísticos",
     "changingTextPrefix": "Transformando la",
     "ctaButton": "Descubre cómo ahorrar",
-    "scrollIndicator": "Scroll para explorar"
+    "scrollIndicator": "Scroll para explorar",
+    "rotatingWords": [
+      "Logística",
+      "Facturación",
+      "Transporte",
+      "Auditoría",
+      "Aduanas"
+    ],
+    "titleSuffix": "fácil y rentable",
+    "analytics": {
+      "buyerSatisfaction": "Satisfacción del comprador",
+      "analytics": "Analíticas",
+      "impressions": "Impresiones",
+      "trackingPage": "Página de seguimiento",
+      "avgVisits": "Visitas promedio por pedido:",
+      "marketingCTR": "CTR de Marketing:",
+      "carriers": "Transportistas",
+      "orderTimeline": "Cronología del pedido",
+      "orderCreated": "Pedido creado...",
+      "orderPrepared": "Pedido preparado",
+      "orderOnWay": "¡Pedido en camino!",
+      "liveFromWarehouse": "En vivo desde el almacén",
+      "pending": "Pendiente:",
+      "inPreparation": "En preparación:",
+      "preparedToday": "Preparado hoy:",
+      "integrations": "Integraciones"
+    }
   },
   "VentureStudioSection": {
     "sectionTag": "Nuestra Misión",
@@ -46,7 +91,13 @@
     "paragraph": "Obsydian se basa en mejorar la eficiencia en la gestión de la facturación logística.",
     "case1Desc": "Empresa de retail recupera €45,000 anuales detectando sobrecargos de combustible y tarifas incorrectas en sus envíos nacionales.",
     "case2Desc": "Compañía logística redujo 30% el tiempo de auditoría y aumentó 85% la tasa de detección de errores en facturas internacionales.",
-    "case3Desc": "Fabricante industrial automatizó 100% sus reclamaciones y mejoró la visibilidad de costos en su cadena de suministro."
+    "case3Desc": "Fabricante industrial automatizó 100% sus reclamaciones y mejoró la visibilidad de costos en su cadena de suministro.",
+    "requestDemo": "Solicitar demo",
+    "projectNames": {
+      "case1": "Caso retail",
+      "case2": "Caso logístico",
+      "case3": "Caso industrial"
+    }
   },
   "ProductFeatureSection": {
     "sectionTag": "Logística con IA",
@@ -69,5 +120,10 @@
     "feature8Title": "Auditoría de Facturas de Flete y Agente de Reclamaciones",
     "feature8Desc": "Nunca pierdas un sobrecargo. Nuestro agente revisa facturas, detecta errores e incluso presenta y hace seguimiento de reclamaciones por ti.",
     "cardActionText": "Ver demo"
+  },
+  "NotFound": {
+    "title": "404",
+    "message": "¡Ups! Página no encontrada",
+    "returnHome": "Volver al Inicio"
   }
 } 

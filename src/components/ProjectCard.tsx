@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, TrendingUp, Package, Factory } from 'lucide-react';
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 interface Theme {
   text: string;
@@ -42,6 +43,7 @@ const getProjectIcon = (projectName: string) => {
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isMobile = false }) => {
+  const { t } = useTranslation('ProjectsSection');
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -189,10 +191,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                 window.open('https://cal.com/Obsydian-demo/30min', '_blank');
               }}
               role="button"
-              aria-label={`Solicitar demo para ${project.name}`}
+              aria-label={`${t('requestDemo')} para ${project.name}`}
             >
               <span className="relative z-10 flex items-center justify-center gap-2 text-base font-medium">
-                Solicitar demo
+                {t('requestDemo')}
                 <ArrowRight className="w-5 h-5" />
               </span>
               <motion.div
@@ -314,11 +316,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                   }
                 }}
                 role="button"
-                aria-label={`Solicitar demo para ${project.name}`}
+                aria-label={`${t('requestDemo')} para ${project.name}`}
                 tabIndex={0}
               >
                 <span className="relative z-10 flex items-center justify-center w-full pointer-events-auto">
-                  Solicitar demo
+                  {t('requestDemo')}
                 </span>
                 <motion.div
                   className="absolute inset-0 rounded-full bg-current"

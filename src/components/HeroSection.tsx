@@ -3,19 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 
-// Array de palabras que van rotando para el título
-const rotatingWords = [
-  'Logística',
-  'Facturación', 
-  'Transporte',
-  'Auditoría',
-  'Aduanas'
-];
-
 const HeroSection = () => {
   const { t } = useTranslation('HeroSection');
   
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  // Get rotating words from translations
+  const rotatingWords = t('rotatingWords', { returnObjects: true }) as string[];
 
   // Efecto para rotar las palabras cada 3 segundos
   useEffect(() => {
@@ -26,7 +20,7 @@ const HeroSection = () => {
     }, 3500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [rotatingWords.length]);
 
   const scrollToNextSection = () => {
     const servicesSection = document.getElementById('services');
@@ -102,11 +96,16 @@ const HeroSection = () => {
                       {rotatingWords[currentWordIndex]}
                     </motion.span>
                   </AnimatePresence>
-                  <span className="invisible font-black">Facturación</span>
+                  {/* Use the longest word to set the container width */}
+                  <span className="invisible font-black">
+                    {rotatingWords.reduce((longest, current) => 
+                      current.length > longest.length ? current : longest, ''
+                    )}
+                  </span>
                 </span>
                 <br />
                 <span className="bg-gradient-to-br from-white to-neutral-300 bg-clip-text text-transparent">
-                  fácil y rentable
+                  {t('titleSuffix')}
                 </span>
               </h1>
               
@@ -115,8 +114,6 @@ const HeroSection = () => {
                 {t('subtitle')}
               </p>
             </motion.div>
-
-
 
             {/* CTA button */}
             <motion.div
@@ -178,7 +175,7 @@ const HeroSection = () => {
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-white text-sm font-medium">Buyer satisfaction</h3>
+                <h3 className="text-white text-sm font-medium">{t('analytics.buyerSatisfaction')}</h3>
                 <Star className="w-4 h-4 text-warning-400 fill-warning-400" />
               </div>
               <div className="text-2xl font-bold text-white">96%</div>
@@ -191,10 +188,10 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 col-span-2"
             >
-              <h3 className="text-white text-sm font-medium mb-3">Analytics</h3>
+              <h3 className="text-white text-sm font-medium mb-3">{t('analytics.analytics')}</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">Impressions</span>
+                  <span className="text-neutral-300 text-xs">{t('analytics.impressions')}</span>
                   <span className="text-white text-sm font-medium">31,827</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
@@ -202,7 +199,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">Tracking page</span>
+                  <span className="text-neutral-300 text-xs">{t('analytics.trackingPage')}</span>
                   <span className="text-white text-sm font-medium">9,473</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
@@ -210,12 +207,12 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Avg visits per order:</span>
+                  <span className="text-neutral-300">{t('analytics.avgVisits')}</span>
                   <span className="text-white font-medium">4.3</span>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Marketing CTR:</span>
+                  <span className="text-neutral-300">{t('analytics.marketingCTR')}</span>
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 bg-success-400 rounded-full"></div>
                     <span className="text-white font-medium">4%</span>
@@ -231,7 +228,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
-              <h3 className="text-white text-sm font-medium mb-3">Carriers</h3>
+              <h3 className="text-white text-sm font-medium mb-3">{t('analytics.carriers')}</h3>
               <div className="grid grid-cols-3 gap-2">
                 {['DHL', 'UPS', 'FedEx', 'TNT', 'DPD', 'GLS', 'Colissimo', 'Chronopost', 'Mondial Relay'].map((carrier, index) => (
                   <div key={carrier} className="w-8 h-8 bg-white/20 rounded flex items-center justify-center">
@@ -248,21 +245,21 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
-              <h3 className="text-white text-sm font-medium mb-3">Order timeline</h3>
+              <h3 className="text-white text-sm font-medium mb-3">{t('analytics.orderTimeline')}</h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs">
                   <RefreshCw className="w-3 h-3 text-primary-400" />
-                  <span className="text-neutral-300">Order created...</span>
+                  <span className="text-neutral-300">{t('analytics.orderCreated')}</span>
                   <span className="text-white ml-auto">Mar 23, 12:32</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
                   <Home className="w-3 h-3 text-success-400" />
-                  <span className="text-neutral-300">Order prepared</span>
+                  <span className="text-neutral-300">{t('analytics.orderPrepared')}</span>
                   <span className="text-white ml-auto">Mar 22, 14:30</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
                   <Truck className="w-3 h-3 text-warning-400" />
-                  <span className="text-neutral-300">Order on its way!</span>
+                  <span className="text-neutral-300">{t('analytics.orderOnWay')}</span>
                   <span className="text-white ml-auto">Mar 20, 10:22</span>
                 </div>
               </div>
@@ -275,10 +272,10 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 col-span-2"
             >
-              <h3 className="text-white text-sm font-medium mb-3">Live from warehouse</h3>
+              <h3 className="text-white text-sm font-medium mb-3">{t('analytics.liveFromWarehouse')}</h3>
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Pending:</span>
+                  <span className="text-neutral-300">{t('analytics.pending')}</span>
                   <span className="text-white font-medium">19</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
@@ -286,7 +283,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">In preparation:</span>
+                  <span className="text-neutral-300">{t('analytics.inPreparation')}</span>
                   <span className="text-white font-medium">130</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
@@ -294,7 +291,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Prepared today:</span>
+                  <span className="text-neutral-300">{t('analytics.preparedToday')}</span>
                   <span className="text-white font-medium">29</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
@@ -310,7 +307,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 col-span-2"
             >
-              <h3 className="text-white text-sm font-medium mb-3">Integrations</h3>
+              <h3 className="text-white text-sm font-medium mb-3">{t('analytics.integrations')}</h3>
               <div className="grid grid-cols-6 gap-2">
                 {['Shopify', 'WooCommerce', 'Magento', 'PrestaShop', 'BigCommerce', 'Klaviyo'].map((platform, index) => (
                   <div key={platform} className="w-8 h-8 bg-white/20 rounded flex items-center justify-center">

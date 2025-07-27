@@ -2,7 +2,26 @@
   "ContactSection": {
     "title": "Contact",
     "subtitle": "with us",
-    "buttonText": "Contact us"
+    "buttonText": "Contact us",
+    "badge": "Automating logistics",
+    "headline": "Auditing",
+    "headlineSuffix": "easy and profitable",
+    "description": "Obsydian automates invoice auditing, detects errors and manages claims to maximize your logistics savings.",
+    "formTitle": "Talk to an Expert",
+    "formSubtitle": "Get personalized insights for your supply chain challenges",
+    "emailPlaceholder": "Enter your work email",
+    "submitButton": "Submit",
+    "privacyText": "By submitting, you agree to our",
+    "privacyLink": "Privacy Policy",
+    "successTitle": "Thanks for your submit!",
+    "successMessage": "You will be contacted by the Obsydian's team!",
+    "closeButton": "Close",
+    "metrics": {
+      "fasterCustoms": "Faster Customs Clearance",
+      "reductionManual": "Reduction in Manual Data Sync Tasks",
+      "increaseClaims": "Increase in Claims Recovered",
+      "savedHours": "Saved per Week per Operator"
+    }
   },
   "Footer": {
     "services": "Services",
@@ -28,7 +47,33 @@
     "subtitle": "Obsydian automates invoice auditing, detects errors and manages claims to maximize your logistics savings",
     "changingTextPrefix": "Transforming",
     "ctaButton": "Discover how to save",
-    "scrollIndicator": "Scroll to explore"
+    "scrollIndicator": "Scroll to explore",
+    "rotatingWords": [
+      "Logistics",
+      "Billing",
+      "Transport",
+      "Auditing",
+      "Customs"
+    ],
+    "titleSuffix": "easy and profitable",
+    "analytics": {
+      "buyerSatisfaction": "Buyer satisfaction",
+      "analytics": "Analytics",
+      "impressions": "Impressions",
+      "trackingPage": "Tracking page",
+      "avgVisits": "Avg visits per order:",
+      "marketingCTR": "Marketing CTR:",
+      "carriers": "Carriers",
+      "orderTimeline": "Order timeline",
+      "orderCreated": "Order created...",
+      "orderPrepared": "Order prepared",
+      "orderOnWay": "Order on its way!",
+      "liveFromWarehouse": "Live from warehouse",
+      "pending": "Pending:",
+      "inPreparation": "In preparation:",
+      "preparedToday": "Prepared today:",
+      "integrations": "Integrations"
+    }
   },
   "VentureStudioSection": {
     "sectionTag": "Our Mission",
@@ -46,7 +91,13 @@
     "paragraph": "Obsydian is based on improving efficiency in logistics billing management.",
     "case1Desc": "Retail company recovers €45,000 annually by detecting fuel surcharges and incorrect rates in their domestic shipments.",
     "case2Desc": "Logistics company reduced audit time by 30% and increased error detection rate by 85% in international invoices.",
-    "case3Desc": "Industrial manufacturer automated 100% of their claims and improved cost visibility in their supply chain."
+    "case3Desc": "Industrial manufacturer automated 100% of their claims and improved cost visibility in their supply chain.",
+    "requestDemo": "Request demo",
+    "projectNames": {
+      "case1": "Retail case",
+      "case2": "Logistics case",
+      "case3": "Industrial case"
+    }
   },
   "ProductFeatureSection": {
     "sectionTag": "AI-Powered Logistics",
@@ -69,5 +120,10 @@
     "feature8Title": "Freight Invoice Audit & Claim Agent",
     "feature8Desc": "Never miss an overcharge. Our agent checks invoices, detects errors, and even files and follows up on claims for you.",
     "cardActionText": "View demo"
+  },
+  "NotFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
   }
 } 
