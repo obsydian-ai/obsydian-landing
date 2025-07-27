@@ -27,7 +27,8 @@ i18n
         ProjectsSection: esTranslation.ProjectsSection,
         ProductFeatureSection: esTranslation.ProductFeatureSection,
         ContactSection: esTranslation.ContactSection,
-        Footer: esTranslation.Footer
+        Footer: esTranslation.Footer,
+        NotFound: esTranslation.NotFound
       },
       en: { // English resources
         Navbar: enTranslation.Navbar,      
@@ -36,7 +37,8 @@ i18n
         ProjectsSection: enTranslation.ProjectsSection,
         ProductFeatureSection: enTranslation.ProductFeatureSection,
         ContactSection: enTranslation.ContactSection,
-        Footer: enTranslation.Footer
+        Footer: enTranslation.Footer,
+        NotFound: enTranslation.NotFound
       }
     },
     // No longer need backend configuration
@@ -51,7 +53,8 @@ i18n
       'ProjectsSection', 
       'ProductFeatureSection',
       'ContactSection',
-      'Footer'
+      'Footer',
+      'NotFound'
     ], 
     defaultNS: 'Navbar', 
     // React specific configuration

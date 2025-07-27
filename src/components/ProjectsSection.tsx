@@ -5,25 +5,25 @@ import ProjectCard from '@/components/ProjectCard';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { useTranslation } from 'react-i18next';
 
-// Project data now uses description keys
+// Project data now uses description keys and name keys
 const projectsData = [
   {
     id: 1,
-    name: "Caso retail",
+    nameKey: "case1",
     descriptionKey: "case1Desc",
     imageSrc: "/lovable-uploads/saludneo-onboarding.webp",
     color: "blue",
   },
   {
     id: 2,
-    name: "Caso logístico",
+    nameKey: "case2",
     descriptionKey: "case2Desc",
     imageSrc: "/lovable-uploads/segurpay-dashboard.webp",
     color: "purple",
   },
   {
     id: 3,
-    name: "Caso industrial",
+    nameKey: "case3",
     descriptionKey: "case3Desc",
     imageSrc: "/lovable-uploads/call-center-dashboard.png",
     color: "green",
@@ -106,9 +106,10 @@ const ProjectsSection: React.FC = () => {
     [1, 0]
   );
 
-  // Map projectsData to include translated description
+  // Map projectsData to include translated description and name
   const projects = projectsData.map(p => ({
     ...p,
+    name: t(`projectNames.${p.nameKey}`),
     description: t(p.descriptionKey)
   }));
 
