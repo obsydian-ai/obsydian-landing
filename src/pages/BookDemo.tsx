@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import FooterNew from '@/components/FooterNew';
+import Navbar from '@/components/Navbar';
 
 const BookDemo = () => {
   const { t } = useTranslation();
@@ -122,6 +123,9 @@ const BookDemo = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Navigation Bar */}
+      <Navbar />
+      
       {/* Top Left Logo */}
       <div className="absolute top-8 left-8">
         <div className="w-12 h-12 bg-[#83B0D9] rounded-full flex items-center justify-center">
@@ -129,7 +133,7 @@ const BookDemo = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 pt-32">
         {/* Top Section - Headline Only */}
         <motion.div 
           className="text-center mb-12"
