@@ -555,7 +555,8 @@ const ProductFeatureSection: React.FC = () => {
   });
 
   // Calculate which card should be visible based on scroll progress
-  const cardProgress = useTransform(scrollYProgress, [0, 1], [0, features.length - 1]);
+  // Start card progression after 25% of scroll and end at 75% to make transitions much slower
+  const cardProgress = useTransform(scrollYProgress, [0.25, 0.75], [0, features.length - 1]);
   
   // Update current index based on scroll progress
   useEffect(() => {
@@ -572,12 +573,12 @@ const ProductFeatureSection: React.FC = () => {
   // Handle title visibility and card display based on scroll progress
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Show title only in the first 5% of the scroll (same as card appearance)
-      const titleThreshold = 0.05;
+      // Show title until 20% of scroll, then fade out gradually
+      const titleThreshold = 0.20;
       setIsTitleVisible(latest < titleThreshold);
       
-      // Show cards immediately when scrolling starts (after 5% scroll)
-      setCanShowCard(latest >= 0.05);
+      // Show cards after 20% scroll (in sync with title fade)
+      setCanShowCard(latest >= 0.20);
       
       // Track if user has started scrolling
       if (latest > 0.01) {
