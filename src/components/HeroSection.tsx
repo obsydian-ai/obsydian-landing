@@ -8,7 +8,8 @@ const rotatingWords = [
   'Logística',
   'Facturación', 
   'Transporte',
-  'Auditoría'
+  'Auditoría',
+  'Aduanas'
 ];
 
 const HeroSection = () => {
