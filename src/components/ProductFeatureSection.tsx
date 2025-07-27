@@ -17,56 +17,56 @@ const featuresData: FeatureData[] = [
     titleKey: "feature1Title",
     descriptionKey: "feature1Desc",
     icon: <TrendingUp className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-blue-50 to-indigo-100"
+    image: "bg-gradient-to-br from-primary-50 to-primary-100"
   },
   {
     id: 2,
     titleKey: "feature2Title",
     descriptionKey: "feature2Desc",
     icon: <FileText className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-emerald-50 to-teal-100"
+    image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
     id: 3,
     titleKey: "feature3Title",
     descriptionKey: "feature3Desc",
     icon: <Link className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-amber-50 to-yellow-100"
+    image: "bg-gradient-to-br from-warning-50 to-warning-100"
   },
   {
     id: 4,
     titleKey: "feature4Title",
     descriptionKey: "feature4Desc",
     icon: <Users className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-purple-50 to-pink-100"
+    image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
     id: 5,
     titleKey: "feature5Title",
     descriptionKey: "feature5Desc",
     icon: <Package className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-rose-50 to-red-100"
+    image: "bg-gradient-to-br from-primary-50 to-primary-100"
   },
   {
     id: 6,
     titleKey: "feature6Title",
     descriptionKey: "feature6Desc",
     icon: <Globe className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-cyan-50 to-blue-100"
+    image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
     id: 7,
     titleKey: "feature7Title",
     descriptionKey: "feature7Desc",
     icon: <MapPin className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-violet-50 to-purple-100"
+    image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
     id: 8,
     titleKey: "feature8Title",
     descriptionKey: "feature8Desc",
     icon: <Receipt className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-orange-50 to-amber-100"
+    image: "bg-gradient-to-br from-warning-50 to-warning-100"
   }
 ];
 
@@ -114,7 +114,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                 group-hover:rotate-2
               ">
                 {React.cloneElement(feature.icon as React.ReactElement, {
-                  className: "w-6 h-6 md:w-7 md:h-7 text-gray-800"
+                  className: "w-6 h-6 md:w-7 md:h-7 text-neutral-800"
                 })}
               </div>
 
@@ -123,7 +123,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                 <h3 className="
                   text-2xl md:text-3xl lg:text-4xl
                   font-semibold
-                  text-gray-900
+                  text-neutral-900
                   tracking-tight
                   transition-transform duration-300
                   group-hover:translate-x-1
@@ -133,7 +133,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                 <p className="
                   text-base md:text-lg
                   leading-relaxed
-                  text-gray-600
+                  text-neutral-600
                   max-w-lg
                   transition-transform duration-300
                   group-hover:-translate-x-0.5
@@ -168,28 +168,28 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                   ">
                     <div className="w-6 h-6 relative">
                       {feature.id === 1 && (
-                        <TrendingUp className="w-full h-full text-blue-500 group-hover/btn:text-blue-400 transition-colors" />
+                        <TrendingUp className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
                       )}
                       {feature.id === 2 && (
-                        <FileText className="w-full h-full text-emerald-500 group-hover/btn:text-emerald-400 transition-colors" />
+                        <FileText className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
                       )}
                       {feature.id === 3 && (
-                        <Link className="w-full h-full text-amber-500 group-hover/btn:text-amber-400 transition-colors" />
+                        <Link className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
                       )}
                       {feature.id === 4 && (
-                        <Users className="w-full h-full text-purple-500 group-hover/btn:text-purple-400 transition-colors" />
+                        <Users className="w-full h-full text-accent-500 group-hover/btn:text-accent-400 transition-colors" />
                       )}
                       {feature.id === 5 && (
-                        <Package className="w-full h-full text-rose-500 group-hover/btn:text-rose-400 transition-colors" />
+                        <Package className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
                       )}
                       {feature.id === 6 && (
-                        <Globe className="w-full h-full text-cyan-500 group-hover/btn:text-cyan-400 transition-colors" />
+                        <Globe className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
                       )}
                       {feature.id === 7 && (
-                        <MapPin className="w-full h-full text-violet-500 group-hover/btn:text-violet-400 transition-colors" />
+                        <MapPin className="w-full h-full text-accent-500 group-hover/btn:text-accent-400 transition-colors" />
                       )}
                       {feature.id === 8 && (
-                        <Receipt className="w-full h-full text-orange-500 group-hover/btn:text-orange-400 transition-colors" />
+                        <Receipt className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
                       )}
                     </div>
                   </button>

@@ -6,6 +6,7 @@
 
 @layer base {
   :root {
+    /* Unified Obsydian Color System */
     --background: 0 0% 100%;
     --foreground: 0 0% 0%;
     
@@ -15,7 +16,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
     
-    --primary: 0 0% 0%;
+    /* Primary brand colors */
+    --primary: 201 96% 32%;
     --primary-foreground: 0 0% 100%;
     
     --secondary: 0 0% 96%;
@@ -24,15 +26,15 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
     
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 292 84% 65%;
+    --accent-foreground: 0 0% 100%;
     
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 0 0% 0%;
+    --ring: 201 96% 32%;
     
     --radius: 0.75rem;
   }
@@ -81,9 +83,56 @@
     background-position: 100% 50%;
     transition: background-position 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
+
+  /* Unified gradient utilities - Lighter version */
+  .gradient-primary {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 25%, #0ea5e9 50%, #0369a1 75%, #0ea5e9 100%);
+    background-size: 300% 300%;
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, #e879f9 0%, #d946ef 25%, #e879f9 50%, #c026d3 75%, #e879f9 100%);
+    background-size: 300% 300%;
+  }
+
+  .gradient-success {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 25%, #22c55e 50%, #15803d 75%, #22c55e 100%);
+    background-size: 300% 300%;
+  }
+
+  .gradient-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 25%, #f59e0b 50%, #b45309 75%, #f59e0b 100%);
+    background-size: 300% 300%;
+  }
+
+  /* Unified shimmer effects - Lighter version */
+  .shimmer-corporate {
+    background: linear-gradient(90deg, transparent 0%, rgba(14, 165, 233, 0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .shimmer-accent {
+    background: linear-gradient(90deg, transparent 0%, rgba(232, 121, 249, 0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Unified border effects - Lighter version */
+  .border-energy {
+    background: linear-gradient(90deg, transparent 0%, rgba(14, 165, 233, 0.08) 25%, rgba(14, 165, 233, 0.2) 50%, rgba(14, 165, 233, 0.08) 75%, transparent 100%);
+    background-size: 250% 100%;
+    animation: border-flow 3s linear infinite;
+  }
+
+  .border-energy-accent {
+    background: linear-gradient(90deg, transparent 0%, rgba(232, 121, 249, 0.08) 25%, rgba(232, 121, 249, 0.2) 50%, rgba(232, 121, 249, 0.08) 75%, transparent 100%);
+    background-size: 250% 100%;
+    animation: border-flow 3s linear infinite;
+  }
 }
 
-/* Animación para el gradiente del título - más agresiva */
+/* Unified gradient animations */
 @keyframes gradient-x {
   0% {
     background-position: 0% 0%;
@@ -102,118 +151,66 @@
   }
 }
 
-.animate-gradient-x {
-  animation: gradient-x 1.5s cubic-bezier(0.19, 1, 0.22, 1) infinite;
-}
-
-
-
-/* Animación shimmer para el badge */
 @keyframes shimmer {
   0% {
-    transform: translateX(-100%);
+    background-position: -200% 0;
   }
   100% {
-    transform: translateX(100%);
+    background-position: 200% 0;
   }
 }
 
-.shimmer {
-  animation: shimmer 2.5s infinite;
-  background: linear-gradient(
-    to right, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.8) 50%, 
-    rgba(255,255,255,0) 100%
-  );
-}
-
-.shimmer-corporate {
-  animation: shimmer 2.5s infinite;
-  background: linear-gradient(
-    to right, 
-    rgba(131,176,217,0) 0%, 
-    rgba(131,176,217,0.4) 50%, 
-    rgba(131,176,217,0) 100%
-  );
-}
-
-.animate-shimmer-slow {
-  animation: shimmer 4s ease-in-out infinite;
-}
-
-/* ========== ANIMACIONES DE ENERGÍA PARA EL NAVBAR ========== */
-
-/* Flujo de energía principal del borde */
 @keyframes border-flow {
   0% {
     background-position: 0% 50%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Flujo de energía inverso */
-@keyframes border-flow-reverse {
-  0% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 0% 50%;
-  }
   100% {
     background-position: 100% 50%;
   }
 }
 
-/* Destello de energía que se mueve */
 @keyframes glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes energy-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes energy-wave {
   0% {
-    transform: translateX(-150%);
+    transform: translateX(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(360deg);
+  }
+}
+
+@keyframes particle-flow {
+  0% {
+    transform: translateY(0) rotate(0deg);
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
   100% {
-    transform: translateX(250%);
+    transform: translateY(-100px) rotate(360deg);
     opacity: 0;
-  }
-}
-
-/* Pulso energético */
-@keyframes energy-pulse {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(131, 176, 217, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(131, 176, 217, 0.6), 0 0 30px rgba(131, 176, 217, 0.3);
-  }
-}
-
-/* Ondas de energía */
-@keyframes energy-wave {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.1);
-    opacity: 0;
-  }
-}
-
-/* Flujo circular de partículas */
-@keyframes particle-flow {
-  0% {
-    transform: rotate(0deg) translateX(20px) rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(20px) rotate(-360deg);
   }
 }
 

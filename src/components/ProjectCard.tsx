@@ -89,28 +89,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
   // Custom gradients based on project color
   const gradientMap = {
     blue: {
-      primary: "from-blue-500/20 to-blue-600/20",
-      secondary: "from-blue-400/10 to-blue-500/10",
-      accent: "bg-blue-500",
-      text: "text-blue-700",
-      border: "border-blue-200/50",
-      icon: "text-blue-600"
+      primary: "from-primary-500/20 to-primary-600/20",
+      secondary: "from-primary-400/10 to-primary-500/10",
+      accent: "bg-primary-500",
+      text: "text-primary-700",
+      border: "border-primary-200/50",
+      icon: "text-primary-600"
     },
     purple: {
-      primary: "from-purple-500/20 to-purple-600/20",
-      secondary: "from-purple-400/10 to-purple-500/10",
-      accent: "bg-purple-500",
-      text: "text-purple-700",
-      border: "border-purple-200/50",
-      icon: "text-purple-600"
+      primary: "from-accent-500/20 to-accent-600/20",
+      secondary: "from-accent-400/10 to-accent-500/10",
+      accent: "bg-accent-500",
+      text: "text-accent-700",
+      border: "border-accent-200/50",
+      icon: "text-accent-600"
     },
     green: {
-      primary: "from-green-500/20 to-green-600/20",
-      secondary: "from-green-400/10 to-green-500/10",
-      accent: "bg-green-500",
-      text: "text-green-700",
-      border: "border-green-200/50",
-      icon: "text-green-600"
+      primary: "from-success-500/20 to-success-600/20",
+      secondary: "from-success-400/10 to-success-500/10",
+      accent: "bg-success-500",
+      text: "text-success-700",
+      border: "border-success-200/50",
+      icon: "text-success-600"
     }
   };
   
@@ -137,7 +137,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
                     style={{
                       backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
                       backgroundSize: '20px 20px',
-                      color: project.color === 'blue' ? '#3b82f6' : project.color === 'purple' ? '#8b5cf6' : '#22c55e'
+                      color: project.color === 'blue' ? '#0ea5e9' : project.color === 'purple' ? '#e879f9' : '#22c55e'
                     }}
                   />
                   
@@ -358,7 +358,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, theme, isM
               style={{
                 backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
                 backgroundSize: '40px 40px',
-                color: project.color === 'blue' ? '#3b82f6' : project.color === 'purple' ? '#8b5cf6' : '#22c55e'
+                color: project.color === 'blue' ? '#0ea5e9' : project.color === 'purple' ? '#e879f9' : '#22c55e'
               }}
             />
             

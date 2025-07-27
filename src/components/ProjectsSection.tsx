@@ -43,25 +43,25 @@ interface Theme {
 const getTheme = (index: number): Theme => {
   const themes: Theme[] = [
     {
-      text: 'text-blue-600',
-      border: 'border-blue-200',
-      background: 'bg-blue-50',
-      primary: 'blue-600',
-      accent: 'blue-400'
+      text: 'text-primary-600',
+      border: 'border-primary-200',
+      background: 'bg-primary-50',
+      primary: 'primary-600',
+      accent: 'primary-400'
     },
     {
-      text: 'text-purple-600',
-      border: 'border-purple-200',
-      background: 'bg-purple-50',
-      primary: 'purple-600',
-      accent: 'purple-400'
+      text: 'text-accent-600',
+      border: 'border-accent-200',
+      background: 'bg-accent-50',
+      primary: 'accent-600',
+      accent: 'accent-400'
     },
     {
-      text: 'text-green-600',
-      border: 'border-green-200',
-      background: 'bg-green-50',
-      primary: 'green-600',
-      accent: 'green-400'
+      text: 'text-success-600',
+      border: 'border-success-200',
+      background: 'bg-success-50',
+      primary: 'success-600',
+      accent: 'success-400'
     }
   ];
   return themes[index % themes.length];
@@ -146,7 +146,7 @@ const ProjectsSection: React.FC = () => {
                 className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6"
               >
                 <div className="h-px bg-gray-200 w-8 md:w-12"></div>
-                <span className="text-gray-500 text-xs sm:text-sm uppercase tracking-wider font-medium">
+                <span className="text-neutral-500 text-xs sm:text-sm uppercase tracking-wider font-medium">
                   {t('sectionTag')}
                 </span>
                 <div className="h-px bg-gray-200 w-8 md:w-12"></div>
@@ -161,7 +161,7 @@ const ProjectsSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-gray-600 text-base md:text-lg leading-relaxed"
+                className="text-neutral-600 text-base md:text-lg leading-relaxed"
               >
                 {t('paragraph')}
               </motion.p>

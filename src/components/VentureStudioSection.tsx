@@ -38,7 +38,7 @@ const VentureStudioSection = () => {
 
     return (
       <div ref={lineRef} className={`${className} relative overflow-hidden ${isTitle ? 'h-[1.1em]' : 'leading-tight'}`}>
-        <span className="text-gray-300 block" aria-hidden="true">{revealedText}</span>
+                    <span className="text-neutral-300 block" aria-hidden="true">{revealedText}</span>
         <motion.span
           className="absolute left-0 top-0 right-0 text-black"
           style={{
@@ -107,17 +107,17 @@ const VentureStudioSection = () => {
                 <div className="mt-4 md:mt-6 space-y-[1.35rem]">
                   <RevealLine 
                     textKey="paragraph1"
-                    className="text-base md:text-lg lg:text-xl text-gray-700"
+                    className="text-base md:text-lg lg:text-xl text-neutral-700"
                     isTitle={false}
                   />
                   <RevealLine 
                     textKey="paragraph2"
-                    className="text-base md:text-lg lg:text-xl text-gray-700"
+                    className="text-base md:text-lg lg:text-xl text-neutral-700"
                     isTitle={false}
                   />
                   <RevealLine 
                     textKey="paragraph3"
-                    className="text-base md:text-lg lg:text-xl text-gray-700"
+                    className="text-base md:text-lg lg:text-xl text-neutral-700"
                     isTitle={false}
                   />
                 </div>
@@ -141,19 +141,19 @@ const VentureStudioSection = () => {
                         style={{
                           opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.15, 0.05])
                         }}
-                        className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-blue-100 rounded-full blur-lg md:blur-xl"
+                        className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-primary-100 rounded-full blur-lg md:blur-xl"
                       />
                       <motion.div 
                         style={{
                           opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.15, 0.05])
                         }}
-                        className="absolute bottom-0 left-0 w-28 h-28 md:w-40 md:h-40 bg-purple-100 rounded-full blur-lg md:blur-xl"
+                        className="absolute bottom-0 left-0 w-28 h-28 md:w-40 md:h-40 bg-accent-100 rounded-full blur-lg md:blur-xl"
                       />
                       <motion.div 
                         style={{
                           opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.2, 0.1])
                         }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 md:w-48 md:h-48 bg-gray-100 rounded-full blur-lg md:blur-xl"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 md:w-48 md:h-48 bg-neutral-100 rounded-full blur-lg md:blur-xl"
                       />
                     </div>
 
@@ -170,7 +170,7 @@ const VentureStudioSection = () => {
                           style={{
                             scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.85])
                           }}
-                          className="absolute inset-2 md:inset-4 border-2 md:border-4 border-blue-500 rounded-full"
+                          className="absolute inset-2 md:inset-4 border-2 md:border-4 border-primary-500 rounded-full"
                         />
                         <motion.div 
                           style={{
@@ -178,7 +178,7 @@ const VentureStudioSection = () => {
                           }}
                           className="absolute inset-0 flex items-center justify-center"
                         >
-                          <div className="w-1/2 h-1/2 bg-purple-500 opacity-10 md:opacity-20 transform rotate-45" />
+                          <div className="w-1/2 h-1/2 bg-accent-500 opacity-10 md:opacity-20 transform rotate-45" />
                         </motion.div>
                       </div>
                     </div>
