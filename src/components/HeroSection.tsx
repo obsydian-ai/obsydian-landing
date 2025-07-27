@@ -67,7 +67,7 @@ const HeroSection = () => {
               className="space-y-4"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-white">
-                <span className="relative inline-block py-2">
+                <span className="relative inline-block py-2 px-6 min-w-[12rem] sm:min-w-[16rem] lg:min-w-[20rem] xl:min-w-[24rem]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
@@ -96,11 +96,9 @@ const HeroSection = () => {
                       {rotatingWords[currentWordIndex]}
                     </motion.span>
                   </AnimatePresence>
-                  {/* Use the longest word to set the container width */}
+                  {/* Invisible span to maintain consistent height */}
                   <span className="invisible font-black">
-                    {rotatingWords.reduce((longest, current) => 
-                      current.length > longest.length ? current : longest, ''
-                    )}
+                    {rotatingWords[0]}
                   </span>
                 </span>
                 <br />
