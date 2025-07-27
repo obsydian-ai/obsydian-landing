@@ -29,9 +29,9 @@ const HeroSection = () => {
   }, []);
 
   const scrollToNextSection = () => {
-    const missionSection = document.getElementById('mission-section');
-    if (missionSection) {
-      missionSection.scrollIntoView({ behavior: 'smooth' });
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -126,7 +126,7 @@ const HeroSection = () => {
               <div className="absolute -inset-y-1 inset-x-0 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-300 rounded-xl opacity-0 group-hover:opacity-70 transition-all duration-500 blur-lg group-hover:blur-xl"></div>
               
               <a
-                href="#mission-section"
+                href="#services"
                 className="relative group inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 border-0 text-sm sm:text-base font-semibold rounded-xl text-white overflow-hidden transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-300/30 animate-gradient-x"
                 style={{
                   background: 'linear-gradient(135deg, #83B0D9 0%, #6FA0D6 25%, #83B0D9 50%, #5B95D3 75%, #83B0D9 100%)',

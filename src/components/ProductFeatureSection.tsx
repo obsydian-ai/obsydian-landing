@@ -902,8 +902,9 @@ const ProductFeatureSection: React.FC = () => {
   const { t } = useTranslation('ProductFeatureSection');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTitleVisible, setIsTitleVisible] = useState(true);
-  const [canShowCard, setCanShowCard] = useState(true); // Start with true to show first card immediately
+  const [canShowCard, setCanShowCard] = useState(false); // Start with false to ensure title is shown first
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const titleContainerRef = useRef<HTMLDivElement>(null);
   const stickyContainerRef = useRef<HTMLDivElement>(null);
@@ -922,8 +923,8 @@ const ProductFeatureSection: React.FC = () => {
   });
 
   // Calculate which card should be visible based on scroll progress
-  // Start card progression after 25% of scroll and end at 75% to make transitions much slower
-  const cardProgress = useTransform(scrollYProgress, [0.25, 0.75], [0, features.length - 1]);
+  // Start card progression after the title section (1 viewport) and end at 75% to make transitions more compact
+  const cardProgress = useTransform(scrollYProgress, [0.15, 0.75], [0, features.length - 1]);
   
   // Update current index based on scroll progress
   useEffect(() => {
@@ -940,21 +941,44 @@ const ProductFeatureSection: React.FC = () => {
   // Handle title visibility and card display based on scroll progress
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Show title until 20% of scroll, then fade out gradually
-      const titleThreshold = 0.20;
+      // Show title until 15% of scroll (full viewport), then fade out gradually
+      const titleThreshold = 0.15;
       setIsTitleVisible(latest < titleThreshold);
       
-      // Show cards after 20% scroll (in sync with title fade)
-      setCanShowCard(latest >= 0.20);
+      // Show cards only after title is completely faded out (with small buffer)
+      setCanShowCard(latest >= 0.18);
       
       // Track if user has started scrolling
       if (latest > 0.01) {
         setHasScrolled(true);
+        setIsInitialLoad(false);
       }
     });
     
     return unsubscribe;
   }, [scrollYProgress]);
+
+  // Handle direct navigation to section (anchor links)
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#services') {
+        // If user navigates directly to services, show the first card after a brief delay
+        setTimeout(() => {
+          setIsTitleVisible(false);
+          setCanShowCard(true);
+          setCurrentIndex(0);
+          setIsInitialLoad(false);
+        }, 500);
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const cardVariants = {
     enter: (direction: number) => ({
@@ -975,9 +999,9 @@ const ProductFeatureSection: React.FC = () => {
   // Special variant for the first card to appear from bottom
   const firstCardVariants = {
     enter: {
-      y: hasScrolled ? 200 : 0,
-      opacity: hasScrolled ? 0 : 1,
-      scale: hasScrolled ? 0.95 : 1
+      y: 100,
+      opacity: 0,
+      scale: 0.95
     },
     center: {
       zIndex: 1,
@@ -1009,8 +1033,8 @@ const ProductFeatureSection: React.FC = () => {
       >
         {/* Sticky container that stays in viewport */}
         <div className="sticky top-0 h-screen w-full bg-black">
-          {/* Header */}
-          <div className="absolute top-0 left-0 right-0 pt-20 pb-20 md:pt-32 md:pb-32 z-10 w-full bg-black">
+          {/* Header - Takes full viewport height */}
+          <div className="absolute top-0 left-0 right-0 h-screen flex items-center justify-center z-10 w-full bg-black">
             <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
               <motion.div 
                 ref={titleContainerRef}
@@ -1038,11 +1062,11 @@ const ProductFeatureSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Cards Container */}
+          {/* Cards Container - Only visible when title is gone */}
           <div className="relative z-20 h-full flex items-center justify-center">
             <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
               <div className="relative h-full flex items-center justify-center">
-                <AnimatePresence initial={true} custom={currentIndex}>
+                <AnimatePresence initial={false} custom={currentIndex}>
                   {canShowCard && (
                     <motion.div
                       key={currentIndex}
@@ -1055,7 +1079,7 @@ const ProductFeatureSection: React.FC = () => {
                         y: { type: "spring", stiffness: 300, damping: 30, duration: 0.8 },
                         opacity: { duration: 0.6 },
                         scale: { type: "spring", stiffness: 300, damping: 30, duration: 0.8 },
-                        delay: currentIndex === 0 && !hasScrolled ? 0.1 : 0
+                        delay: currentIndex === 0 ? 0.2 : 0
                       }}
                       className="absolute inset-0 flex items-center justify-center"
                     >
