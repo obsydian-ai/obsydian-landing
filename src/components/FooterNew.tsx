@@ -29,7 +29,7 @@ const FooterNew = () => {
           <div className="md:col-span-6">
             <Link to="/" className="inline-block">
                         <h2 className="text-5xl font-bold tracking-tighter">
-            Obsydian<span style={{ color: '#83B0D9' }}>.</span>
+            Obsydian<span style={{ color: '#0ea5e9' }}>.</span>
           </h2>
             </Link>
             <div className="mt-8 flex space-x-6">
@@ -39,7 +39,7 @@ const FooterNew = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
+                  className="text-neutral-400 hover:text-white transition-all duration-300 transform hover:scale-110"
                 >
                   <span className="sr-only">{item.name}</span>
                   {item.icon}
@@ -57,7 +57,7 @@ const FooterNew = () => {
               <li>
                 <Link 
                   to="/#services" 
-                  className="text-gray-400 hover:text-white transition-all duration-300"
+                  className="text-neutral-400 hover:text-white transition-all duration-300"
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
@@ -69,7 +69,7 @@ const FooterNew = () => {
               <li>
                 <Link 
                   to="/#mission-section" 
-                  className="text-gray-400 hover:text-white transition-all duration-300"
+                  className="text-neutral-400 hover:text-white transition-all duration-300"
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -88,7 +88,7 @@ const FooterNew = () => {
             </h3>
             <a
               href="mailto:hello@Obsydian.com"
-              className="text-gray-400 hover:text-white transition-all duration-300 inline-flex items-center group"
+              className="text-neutral-400 hover:text-white transition-all duration-300 inline-flex items-center group"
             >
               <span className="group-hover:underline">hello@Obsydian.com</span>
               <svg 
@@ -107,7 +107,7 @@ const FooterNew = () => {
         <div className="h-px bg-white/10 my-12" />
 
         {/* Copyright y enlaces legales */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-neutral-400">
           <p className="mb-4 md:mb-0">© {currentYear} Obsydian. {t('allRightsReserved')}</p>
           <div className="flex space-x-8">
             <Link 
