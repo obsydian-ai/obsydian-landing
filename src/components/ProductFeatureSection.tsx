@@ -535,7 +535,8 @@ const ProductFeatureSection: React.FC = () => {
   const { t } = useTranslation('ProductFeatureSection');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTitleVisible, setIsTitleVisible] = useState(true);
-  const [canShowCard, setCanShowCard] = useState(false);
+  const [canShowCard, setCanShowCard] = useState(true); // Start with true to show first card immediately
+  const [hasScrolled, setHasScrolled] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const titleContainerRef = useRef<HTMLDivElement>(null);
   const stickyContainerRef = useRef<HTMLDivElement>(null);
@@ -568,15 +569,20 @@ const ProductFeatureSection: React.FC = () => {
     return unsubscribe;
   }, [cardProgress, currentIndex, features.length]);
 
-  // Handle title visibility based on scroll progress
+  // Handle title visibility and card display based on scroll progress
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Show title only in the first 30% of the scroll
-      const titleThreshold = 0.3;
+      // Show title only in the first 5% of the scroll (same as card appearance)
+      const titleThreshold = 0.05;
       setIsTitleVisible(latest < titleThreshold);
       
-      // Show cards after 30% scroll
-      setCanShowCard(latest >= titleThreshold);
+      // Show cards immediately when scrolling starts (after 5% scroll)
+      setCanShowCard(latest >= 0.05);
+      
+      // Track if user has started scrolling
+      if (latest > 0.01) {
+        setHasScrolled(true);
+      }
     });
     
     return unsubscribe;
@@ -601,17 +607,20 @@ const ProductFeatureSection: React.FC = () => {
   // Special variant for the first card to appear from bottom
   const firstCardVariants = {
     enter: {
-      y: 1000,
-      opacity: 0
+      y: hasScrolled ? 200 : 0,
+      opacity: hasScrolled ? 0 : 1,
+      scale: hasScrolled ? 0.95 : 1
     },
     center: {
       zIndex: 1,
       y: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1
     },
     exit: () => ({
       zIndex: 0,
-      opacity: 0
+      opacity: 0,
+      scale: 0.95
     })
   };
 
@@ -640,7 +649,7 @@ const ProductFeatureSection: React.FC = () => {
                 className="text-center"
                 initial={{ opacity: 1 }}
                 animate={{ opacity: isTitleVisible ? 1 : 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
               >
                 <div className="
                   inline-flex items-center px-4 py-1.5 md:px-6 md:py-2 mb-6 md:mb-8
@@ -665,8 +674,8 @@ const ProductFeatureSection: React.FC = () => {
           <div className="relative z-20 h-full flex items-center justify-center">
             <div className="container mx-auto px-4 sm:px-8 max-w-7xl">
               <div className="relative h-full flex items-center justify-center">
-                <AnimatePresence initial={false} custom={currentIndex}>
-                  {!canShowCard ? null : (
+                <AnimatePresence initial={true} custom={currentIndex}>
+                  {canShowCard && (
                     <motion.div
                       key={currentIndex}
                       custom={currentIndex}
@@ -675,8 +684,10 @@ const ProductFeatureSection: React.FC = () => {
                       animate="center"
                       exit="exit"
                       transition={{
-                        y: { type: "spring", stiffness: 200, damping: 40, duration: 1.2 },
-                        opacity: { duration: 0.8 }
+                        y: { type: "spring", stiffness: 300, damping: 30, duration: 0.8 },
+                        opacity: { duration: 0.6 },
+                        scale: { type: "spring", stiffness: 300, damping: 30, duration: 0.8 },
+                        delay: currentIndex === 0 && !hasScrolled ? 0.1 : 0
                       }}
                       className="absolute inset-0 flex items-center justify-center"
                     >
