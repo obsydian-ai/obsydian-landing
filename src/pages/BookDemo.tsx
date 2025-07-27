@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -7,9 +7,14 @@ import Navbar from '@/components/Navbar';
 
 const BookDemo = () => {
   const { t } = useTranslation();
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date(2025, 6, 26)); // July 26th, 2025
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2025, 6, 26)); // July 26th, 2025
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [selectedDuration] = useState<string>('30 mins');
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleDateSelect = (day: number) => {
     const newDate = new Date(selectedDate);
