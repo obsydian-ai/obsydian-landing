@@ -126,12 +126,7 @@ const BookDemo = () => {
       {/* Navigation Bar */}
       <Navbar />
       
-      {/* Top Left Logo */}
-      <div className="absolute top-8 left-8">
-        <div className="w-12 h-12 bg-[#83B0D9] rounded-full flex items-center justify-center">
-          <span className="text-white text-lg font-bold">O</span>
-        </div>
-      </div>
+
 
       <div className="container mx-auto px-4 py-12 pt-32">
         {/* Top Section - Headline Only */}
@@ -294,138 +289,7 @@ const BookDemo = () => {
         </motion.div>
       </div>
 
-      {/* Vertical Components Section */}
-      <div className="container mx-auto px-4 py-16">
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            AI-Powered Solutions
-          </h2>
-          <p className="text-xl text-gray-600">
-            Discover how Obsydian's AI transforms your logistics operations
-          </p>
-        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* AI-Powered Demand Forecasting */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">🔮</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI-Powered Demand Forecasting</h3>
-            <p className="text-gray-600 mb-4">
-              Let AI predict what you need before you know it. It learns from your sales, seasonality, and trends to prevent stockouts and overstock.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-blue-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">📊</span>
-            </div>
-          </motion.div>
-
-          {/* Logistics Document Interpreter */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">📄</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Logistics Document Interpreter</h3>
-            <p className="text-gray-600 mb-4">
-              AI reads and understands your shipping documents—like BoLs, PODs, delivery notes, invoices, and customs forms and updates it in your systems so you don't have to.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-green-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">🤖</span>
-            </div>
-          </motion.div>
-
-          {/* Universal Integration Layer */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">🔗</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Universal Integration Layer</h3>
-            <p className="text-gray-600 mb-4">
-              Our AI syncs your systems: ERP, TMS, WMS, PDF, CSV and external data seamlessly. No more silos, no more delays, just real-time flow.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-orange-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">⚡</span>
-            </div>
-          </motion.div>
-
-          {/* Carrier Intelligence & Benchmarking */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">📈</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Carrier Intelligence & Benchmarking</h3>
-            <p className="text-gray-600 mb-4">
-              AI analyzes past performance, pricing, claims, and contract terms to help you choose the right carrier every time, data beats guesswork.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-purple-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">🎯</span>
-            </div>
-          </motion.div>
-
-          {/* Smart Shipment Manager */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">🚀</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Shipment Manager</h3>
-            <p className="text-gray-600 mb-4">
-              You describe the shipment, our agent quotes, compares, recommends, and books the best option, all in seconds and autonomously.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-pink-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">📦</span>
-            </div>
-          </motion.div>
-
-          {/* Customs Agent-as-a-Service */}
-          <motion.div 
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            <div className="w-16 h-16 bg-[#83B0D9] rounded-xl flex items-center justify-center mb-4">
-              <span className="text-2xl">🌍</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Customs Agent-as-a-Service</h3>
-            <p className="text-gray-600 mb-4">
-              Automate the most painful part of global shipping. Our AI handles customs documents, broker coordination, and clearance smoothly.
-            </p>
-            <div className="w-full h-32 bg-gradient-to-br from-indigo-100 to-[#83B0D9]/20 rounded-lg flex items-center justify-center">
-              <span className="text-4xl">📋</span>
-            </div>
-          </motion.div>
-        </div>
-      </div>
 
       {/* Footer */}
       <FooterNew />
