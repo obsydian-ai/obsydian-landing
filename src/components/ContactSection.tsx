@@ -73,7 +73,7 @@ const ContactSection = () => {
   return (
     <section className="bg-black py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Content */}
           <motion.div 
             className="space-y-6"
@@ -89,7 +89,7 @@ const ContactSection = () => {
 
             {/* Headline */}
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-white">
-              <span className="text-[#83B0D9]">Auditoría</span>{' '}
+              <span className="text-[#0ea5e9]">Auditoría</span>{' '}
               fácil y rentable
             </h2>
 
@@ -105,14 +105,14 @@ const ContactSection = () => {
 
           {/* Right Column - Contact Form */}
           <motion.div 
-            className="bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-700"
+            className="bg-gray-900 rounded-2xl p-6 border border-gray-700 shadow-lg h-full flex flex-col justify-center"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Form Header */}
             <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Talk to an Expert
               </h3>
               <p className="text-gray-400 text-sm">
@@ -127,7 +127,7 @@ const ContactSection = () => {
                 placeholder="Enter your work email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#83B0D9] focus:border-transparent outline-none transition-all text-white placeholder-gray-400"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-[#0ea5e9] focus:border-transparent outline-none transition-all text-white placeholder-gray-400"
               />
             </div>
 
@@ -138,7 +138,7 @@ const ContactSection = () => {
               className={`
                 w-full text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2
                 ${email
-                  ? 'bg-[#83B0D9] hover:bg-[#6B9BC9] shadow-lg transform scale-105' 
+                  ? 'bg-[#0ea5e9] hover:bg-[#0284c7] shadow-lg transform scale-105' 
                   : 'bg-gray-700 text-gray-500 cursor-not-allowed'
                 }
               `}
@@ -150,7 +150,7 @@ const ContactSection = () => {
             {/* Privacy Policy */}
             <p className="text-xs text-gray-500 text-center mt-4">
               By submitting, you agree to our{' '}
-              <a href="#" className="text-[#83B0D9] hover:underline">
+              <a href="#" className="text-[#0ea5e9] hover:underline">
                 Privacy Policy
               </a>
             </p>
