@@ -1022,7 +1022,7 @@ const ProductFeatureSection: React.FC = () => {
     <section 
       ref={sectionRef}
       id="services" 
-      className="relative bg-black mt-24 md:mt-48"
+      className="relative bg-black mt-8 md:mt-12"
       style={{ height: `${100 * features.length}vh` }}
     >
       {/* Scroll container that takes up full height for all cards */}
@@ -1096,8 +1096,8 @@ const ProductFeatureSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Progress Indicators */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+          {/* Progress Indicators - Hidden */}
+          {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
             <div className="flex space-x-2">
               {features.map((_, index) => (
                 <button
@@ -1114,7 +1114,7 @@ const ProductFeatureSection: React.FC = () => {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
