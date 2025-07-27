@@ -67,7 +67,7 @@ const HeroSection = () => {
               className="space-y-4"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-white">
-                <span className="relative inline-block py-2 px-6 min-w-[12rem] sm:min-w-[16rem] lg:min-w-[20rem] xl:min-w-[24rem]">
+                <span className="relative inline-block py-2 px-6 min-w-[14rem] sm:min-w-[18rem] lg:min-w-[24rem] xl:min-w-[28rem]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
