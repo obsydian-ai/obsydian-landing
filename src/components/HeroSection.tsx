@@ -165,7 +165,7 @@ const HeroSection = () => {
 
           {/* Right Column - Visual Cards */}
           <div className="grid grid-cols-2 gap-4 lg:gap-6">
-            {/* Buyer Satisfaction */}
+            {/* Time Saved */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -173,10 +173,24 @@ const HeroSection = () => {
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-white text-sm font-medium">{t('analytics.buyerSatisfaction')}</h3>
-                <Star className="w-4 h-4 text-warning-400 fill-warning-400" />
+                <h3 className="text-white text-sm font-medium">Time saved</h3>
+                <Clock className="w-4 h-4 text-primary-400" />
               </div>
-              <div className="text-2xl font-bold text-white">96%</div>
+              <div className="text-2xl font-bold text-white pb-1">6h</div>
+            </motion.div>
+
+            {/* Cost Reduction */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-white text-sm font-medium">Cost saved</h3>
+                <span className="text-success-400 text-base font-bold h-4 w-4 flex items-center justify-center">€</span>
+              </div>
+              <div className="text-2xl font-bold text-white">9,650€</div>
             </motion.div>
 
             {/* Analytics */}
@@ -189,31 +203,31 @@ const HeroSection = () => {
               <h3 className="text-white text-sm font-medium mb-3">{t('analytics.analytics')}</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">{t('analytics.impressions')}</span>
+                  <span className="text-neutral-300 text-xs">Shipments processed</span>
                   <span className="text-white text-sm font-medium">31,827</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
-                  <div className="bg-primary-400 h-1 rounded-full" style={{ width: '75%' }}></div>
+                  <div className="bg-primary-400 h-1 rounded-full" style={{ width: '85%' }}></div>
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">{t('analytics.trackingPage')}</span>
+                  <span className="text-neutral-300 text-xs">Customs cleared</span>
                   <span className="text-white text-sm font-medium">9,473</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
-                  <div className="bg-accent-400 h-1 rounded-full" style={{ width: '60%' }}></div>
+                  <div className="bg-accent-400 h-1 rounded-full" style={{ width: '70%' }}></div>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">{t('analytics.avgVisits')}</span>
-                  <span className="text-white font-medium">4.3</span>
+                  <span className="text-neutral-300">Avg delivery time:</span>
+                  <span className="text-white font-medium">2.3 days</span>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">{t('analytics.marketingCTR')}</span>
+                  <span className="text-neutral-300">Cost savings:</span>
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 bg-success-400 rounded-full"></div>
-                    <span className="text-white font-medium">4%</span>
+                    <span className="text-white font-medium">24%</span>
                   </div>
                 </div>
               </div>
