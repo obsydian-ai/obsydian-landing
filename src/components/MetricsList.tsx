@@ -34,12 +34,12 @@ const MetricsList: React.FC<MetricsListProps> = ({ metrics, className = '' }) =>
           >
             {/* Animated Dot */}
             <motion.div 
-              className="w-2 h-2 bg-[#83B0D9] rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"
+              className="w-2 h-2 bg-[#0ea5e9] rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"
               whileHover={{ scale: 1.5 }}
             />
             
             {/* Value */}
-            <span className="text-[#83B0D9] font-semibold mr-2 group-hover:text-[#6B9BC9] transition-colors duration-300">
+            <span className="text-[#0ea5e9] font-semibold mr-2 group-hover:text-[#0284c7] transition-colors duration-300">
               {metric.value}
             </span>
             
