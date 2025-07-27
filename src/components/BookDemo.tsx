@@ -23,7 +23,7 @@ const BookDemo = () => {
       // Send notification to Slack
       const slackWebhookUrl = 'https://hooks.slack.com/services/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';
       const slackMessage = {
-        text: `🎉 *New demo requested by ${email}*\n\n*Source:* Obsydian Website\n\nRequested at ${new Date().toLocaleString()}`
+        text: `🎉 *New demo requested! By ${email}*\n\n*Source:* Obsydian Website\n\nRequested at ${new Date().toLocaleString()}`
       };
 
       console.log('Sending Slack message:', slackMessage);
