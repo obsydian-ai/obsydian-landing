@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
   const { t } = useTranslation('HeroSection');
-  
+
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   // Get rotating words from translations
@@ -42,22 +42,22 @@ const HeroSection = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-6 lg:space-y-8">
             {/* Animated Tag chip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
               className="inline-flex relative overflow-hidden group cursor-pointer rounded-full"
-            >
-              <div 
+          >
+            <div 
                 className="relative z-10 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-white/20 text-[0.65rem] sm:text-xs font-medium tracking-wide text-white/90 shadow-sm"
-                style={{
+              style={{
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(14,165,233,0.2) 50%, rgba(255,255,255,0.1) 100%)'
-                }}
-              >
-                {t('tag')}
-              </div>
+              }}
+            >
+              {t('tag')}
+            </div>
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out shimmer-corporate z-20"></div>
-            </motion.div>
+          </motion.div>
 
             {/* Main title with rotating words */}
             <motion.div
@@ -68,34 +68,34 @@ const HeroSection = () => {
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-white">
                 <span className="relative inline-block py-2 px-6 min-w-[12rem] sm:min-w-[16rem] lg:min-w-[20rem] xl:min-w-[24rem]">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={currentWordIndex}
-                      initial={{ 
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentWordIndex}
+                    initial={{ 
                         y: 30,
-                        opacity: 0
-                      }}
-                      animate={{ 
+                      opacity: 0
+                    }}
+                    animate={{ 
                         y: 0,
-                        opacity: 1
-                      }}
-                      exit={{ 
+                      opacity: 1
+                    }}
+                    exit={{ 
                         y: -30,
-                        opacity: 0
-                      }}
-                      transition={{
+                      opacity: 0
+                    }}
+                    transition={{
                         duration: 0.5,
                         ease: "easeInOut"
-                      }}
+                    }}
                       className="absolute inset-0 bg-clip-text text-transparent font-black animate-gradient-x"
-                      style={{
+                    style={{
                         backgroundImage: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 25%, #0ea5e9 50%, #0369a1 75%, #0ea5e9 100%)',
-                        backgroundSize: '300% 300%'
-                      }}
-                    >
-                      {rotatingWords[currentWordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
+                      backgroundSize: '300% 300%'
+                    }}
+                  >
+                    {rotatingWords[currentWordIndex]}
+                  </motion.span>
+                </AnimatePresence>
                   {/* Invisible span to maintain consistent height */}
                   <span className="invisible font-black">
                     {rotatingWords[0]}
@@ -104,20 +104,20 @@ const HeroSection = () => {
                 <br />
                 <span className="bg-gradient-to-br from-white to-neutral-300 bg-clip-text text-transparent">
                   {t('titleSuffix')}
-                </span>
+              </span>
               </h1>
-              
-              {/* Subtitle */}
+
+          {/* Subtitle */}
               <p className="text-lg sm:text-xl text-neutral-300 max-w-2xl leading-relaxed">
-                {t('subtitle')}
+            {t('subtitle')}
               </p>
             </motion.div>
 
-            {/* CTA button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+          {/* CTA button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             >
               <div className="relative group">
                 
@@ -128,16 +128,16 @@ const HeroSection = () => {
                     background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 25%, #0ea5e9 50%, #0369a1 75%, #0ea5e9 100%)',
                     backgroundSize: '300% 300%'
                   }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToNextSection();
-                  }}
-                >
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToNextSection();
+              }}
+            >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer-slow"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
                   
                   <span className="relative z-10 flex items-center gap-2 transition-all duration-300 group-hover:gap-3">
-                    {t('ctaButton')}
+              {t('ctaButton')}
                     <svg 
                       className="w-4 h-4 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" 
                       fill="none" 
@@ -450,7 +450,7 @@ const HeroSection = () => {
                   />
                 </div>
               </div>
-            </motion.div>
+          </motion.div>
           </div>
         </div>
       </div>
