@@ -869,9 +869,14 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
 
                 {/* Indicador de interactividad */}
                 <a
-                  href="https://cal.com/Obsydian-demo/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="
                     absolute bottom-4 right-4
                     px-3 py-1.5

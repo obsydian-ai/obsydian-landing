@@ -38,18 +38,20 @@
     "cta": "Request Demo"
   },
   "HeroSection": {
-    "tag": "Automating logistics",
+    "tag": "Without technical development",
     "title": "Logistics made easy and profitable",
     "subtitle": "Obsydian helps you automate your entire supply chain to eliminate Excel spreadsheets, manual work, and repetitive communications, reducing costs and gaining complete visibility.",
     "changingTextPrefix": "Transforming",
-    "ctaButton": "Discover how to save",
+    "ctaButton": "Discover how we do it",
     "scrollIndicator": "Scroll to explore",
     "rotatingWords": [
       "Logistics",
       "Billing",
       "Transport",
       "Auditing",
-      "Customs"
+      "Customs",
+      "Negotiation",
+      "Synchronization"
     ],
     "titleSuffix": "reinvented",
     "analytics": {
@@ -103,13 +105,13 @@
   "ProductFeatureSection": {
     "sectionTag": "Obsydian AI Agents",
     "title": "The new standard in supply chain",
-    "paragraph": "Obsydian automates your entire supply chain — from demand planning to contract negotiation, customs clearance and freight auditing — eliminating Excels, manual work, and hidden costs. Total visibility. Full control.",
+    "paragraph": "Obsydian automates your entire supply chain — from demand planning to connecting seamlessly with providers, contract negotiation, customs clearance and freight auditing — eliminating Excels, manual work, and hidden costs. Total visibility. Full control.",
     "feature1Title": "Predictive Demand Engine",
     "feature1Desc": "Learning from your historical data to anticipate what you'll need before you do. Detects patterns, trends, and seasonality to generate precise demand forecasts—so you can plan smarter, reduce stockouts, and avoid costly overstock.",
     "feature2Title": "Document Intelligence",
     "feature2Desc": "Our AI Agent reads and understands shipping documents regardless of the format. Extracting and standardizing the data instantly, eliminating manual entry, errors, and lost productivity.",
     "feature3Title": "Seamless Systems Integration",
-    "feature3Desc": "Connecting internal systems like ERP, TMS, WMS, and external data sources into one unified flow. Eliminating silos and manual syncing to enable real-time, reliable decision-making across the supply chain.",
+    "feature3Desc": "Connecting internal systems like ERP, TMS, WMS and documents (PDF, PNG, CSV) of external data sources into one unified flow. Eliminating silos and manual syncing to enable real-time, reliable decision-making across the supply chain.",
     "feature4Title": "Smart Carrier Sourcing",
     "feature4Desc": "The AI agent automates the process of sourcing, communicating and comparing carriers based on rates, performance, and contract terms.",
     "feature5Title": "Autonomous Shipment Manager",
