@@ -35,11 +35,7 @@
   },
   "Navbar": {
     "home": "Inicio",
-    "services": "Servicios",
-    "solution": "Solución",
-    "benefits": "Beneficios",
     "features": "Características",
-    "soon": "Próximamente",
     "cta": "Solicitar Demo"
   },
   "HeroSection": {

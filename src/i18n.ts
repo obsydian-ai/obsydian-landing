@@ -15,9 +15,9 @@ i18n
     // Debug output in console
     debug: true, // Turn off in production
     // Default language
-    fallbackLng: 'es', 
+    fallbackLng: 'en', 
     // Current language
-    lng: 'es', // Or detect from browser: https://github.com/i18next/i18next-browser-languageDetector
+    lng: 'en', // Or detect from browser: https://github.com/i18next/i18next-browser-languageDetector
     // Load resources directly
     resources: {
       es: { // Spanish resources

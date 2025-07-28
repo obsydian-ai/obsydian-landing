@@ -7,9 +7,40 @@ const HeroSection = () => {
   const { t } = useTranslation('HeroSection');
   
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [widestWord, setWidestWord] = useState('');
 
   // Get rotating words from translations
   const rotatingWords = t('rotatingWords', { returnObjects: true }) as string[];
+
+  // Effect to measure the widest word for container width
+  useEffect(() => {
+    const measureWidestWord = () => {
+      const temp = document.createElement('span');
+      temp.style.position = 'absolute';
+      temp.style.visibility = 'hidden';
+      temp.style.fontSize = 'inherit';
+      temp.style.fontFamily = 'inherit';
+      temp.style.fontWeight = 'inherit';
+      document.body.appendChild(temp);
+      
+      let widest = '';
+      let maxWidth = 0;
+      
+      rotatingWords.forEach(word => {
+        temp.textContent = word;
+        const width = temp.offsetWidth;
+        if (width > maxWidth) {
+          maxWidth = width;
+          widest = word;
+        }
+      });
+      
+      document.body.removeChild(temp);
+      setWidestWord(widest);
+    };
+    
+    measureWidestWord();
+  }, [rotatingWords]);
 
   // Efecto para rotar las palabras cada 3 segundos
   useEffect(() => {
@@ -66,8 +97,8 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-white">
-                <span className="relative inline-block py-2">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-none tracking-tight text-white">
+                <span className="relative inline-block py-0.5">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
@@ -96,11 +127,9 @@ const HeroSection = () => {
                       {rotatingWords[currentWordIndex]}
                     </motion.span>
                   </AnimatePresence>
-                  {/* Use the longest word to set the container width */}
+                  {/* Use the widest word to set the container width */}
                   <span className="invisible font-black">
-                    {rotatingWords.reduce((longest, current) => 
-                      current.length > longest.length ? current : longest, ''
-                    )}
+                    {widestWord || rotatingWords[0]}
                   </span>
                 </span>
                 <br />

@@ -71,7 +71,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-black py-16 md:py-24">
+    <section id="contact" className="bg-black py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Content */}
@@ -93,10 +93,7 @@ const ContactSection = () => {
               {t('headlineSuffix')}
             </h2>
 
-            {/* Description */}
-            <p className="text-lg text-gray-300 leading-relaxed">
-              {t('description')}
-            </p>
+
 
             {/* Metrics List */}
             <MetricsList metrics={metrics} />

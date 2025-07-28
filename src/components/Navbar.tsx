@@ -1,39 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Define a type for NavItem including submenus
-type SubMenuItem = {
-  nameKey: string; // Key for translation
-  href?: string;
-  disabled?: boolean;
-};
-
+// Define a type for NavItem
 type NavItem = {
   nameKey: string; // Key for translation
   href?: string;
-  submenu?: SubMenuItem[];
 };
 
 // NavItems now uses translation keys
 const NavItemsData: NavItem[] = [
-  { nameKey: 'home', href: '#' },
+  { nameKey: 'home', href: '#home' },
   { 
-    nameKey: 'services', 
-    href: '#services',
-    submenu: [
-      { nameKey: 'features', href: '#services' },
-      { nameKey: 'benefits', href: '#benefits' }
-    ]
-  },
-  { 
-    nameKey: 'solution', 
-    href: '#solution',
-    submenu: [
-      { nameKey: 'soon', disabled: true } // Assuming 'soon' key exists
-    ]
+    nameKey: 'features', 
+    href: '#services'
   }
 ];
 
@@ -42,16 +24,11 @@ const Navbar = () => {
   const currentLanguage = i18n.language as 'en' | 'es'; // Type assertion
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   // Generate NavItems with translated names
   const NavItems = NavItemsData.map(item => ({
     ...item,
-    name: t(item.nameKey),
-    submenu: item.submenu?.map(subItem => ({
-      ...subItem,
-      name: t(subItem.nameKey)
-    }))
+    name: t(item.nameKey)
   }));
 
   // Function to handle locale change
@@ -122,7 +99,14 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <a href="#" className="text-2xl font-semibold tracking-tight text-neutral-900">
+              <a 
+                href="#home" 
+                className="text-2xl font-semibold tracking-tight text-neutral-900"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
                 Obsydian<span style={{ color: '#0ea5e9' }}>.</span>
               </a>
             </motion.div>
@@ -170,8 +154,6 @@ const Navbar = () => {
                 <motion.div 
                   key={item.name}
                   className="relative group"
-                  onMouseEnter={() => setHoveredItem(i)}
-                  onMouseLeave={() => setHoveredItem(null)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
@@ -180,66 +162,35 @@ const Navbar = () => {
                     onClick={(e) => {
                       if (item.href) {
                         e.preventDefault();
-                        const element = document.querySelector(item.href);
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' });
+                        if (item.href === '#home') {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                          const element = document.querySelector(item.href);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
                         }
                       }
                     }}
                     className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors flex items-center py-2 px-3 rounded-lg hover:bg-neutral-50/80"
                   >
                     {item.name}
-                    {item.submenu && (
-                      <ChevronDown size={16} className="ml-1 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
-                    )}
                   </a>
 
-                  {/* Submenu */}
-                  {item.submenu && hoveredItem === i && (
-                    <div className="absolute left-0 z-[999]" style={{ top: '100%' }}>
-                      <motion.div 
-                        initial={{ opacity: 0, y: 5, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="relative mt-2 w-48 bg-white/80 backdrop-blur-sm border border-neutral-100 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-2"
-                      >
-                        {item.submenu.map((subItem) => (
-                          <motion.a
-                            key={subItem.name}
-                            href={subItem.href}
-                            onClick={(e) => {
-                              if (!subItem.disabled && subItem.href) {
-                                e.preventDefault();
-                                const element = document.querySelector(subItem.href);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth' });
-                                  setHoveredItem(null);
-                                }
-                              }
-                            }}
-                            className={`block px-4 py-2 text-sm ${
-                              subItem.disabled 
-                                ? 'text-neutral-400 cursor-not-allowed' 
-                                : 'text-neutral-600 hover:bg-neutral-50/80 hover:text-neutral-900 transition-colors cursor-pointer'
-                            }`}
-                            whileHover={!subItem.disabled ? { x: 4 } : {}}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                          >
-                            {subItem.name}
-                          </motion.a>
-                        ))}
-                      </motion.div>
-                    </div>
-                  )}
+
                 </motion.div>
               ))}
 
               {/* CTA Button - Ahora primero */}
               <motion.a
-                href="https://cal.com/Obsydian-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.querySelector('#contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x ml-6"
                 style={{
                   background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 25%, #0ea5e9 50%, #0369a1 75%, #0ea5e9 100%)',
@@ -300,10 +251,15 @@ const Navbar = () => {
                       onClick={(e) => {
                         if (item.href) {
                           e.preventDefault();
-                          const element = document.querySelector(item.href);
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
+                          if (item.href === '#home') {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
                             setMobileMenuOpen(false);
+                          } else {
+                            const element = document.querySelector(item.href);
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth' });
+                              setMobileMenuOpen(false);
+                            }
                           }
                         }
                       }}
@@ -316,52 +272,26 @@ const Navbar = () => {
                       {item.name}
                     </motion.a>
                     
-                    {/* Mobile submenu */}
-                    {item.submenu && (
-                      <div className="ml-4 space-y-1">
-                        {item.submenu.map((subItem, j) => (
-                          <motion.a
-                            key={subItem.name}
-                            href={subItem.href}
-                            onClick={(e) => {
-                              if (!subItem.disabled && subItem.href) {
-                                e.preventDefault();
-                                const element = document.querySelector(subItem.href);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth' });
-                                  setMobileMenuOpen(false);
-                                }
-                              }
-                            }}
-                            className={`block text-sm ${
-                              subItem.disabled 
-                                ? 'text-neutral-400 cursor-not-allowed' 
-                                : 'text-neutral-500 hover:text-neutral-700 transition-colors cursor-pointer'
-                            }`}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: (i * 0.1) + (j * 0.05) }}
-                            whileHover={!subItem.disabled ? { x: 4 } : {}}
-                          >
-                            {subItem.name}
-                          </motion.a>
-                        ))}
-                      </div>
-                    )}
+
                   </motion.div>
                 ))}
                 
                 {/* Mobile CTA Button */}
                 <motion.a
-                  href="https://cal.com/Obsydian-demo/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                      setMobileMenuOpen(false);
+                    }
+                  }}
                   className="relative overflow-hidden group inline-flex items-center justify-center px-5 py-3 rounded-lg text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-gradient-x"
                   style={{
                     background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 25%, #0ea5e9 50%, #0369a1 75%, #0ea5e9 100%)',
                     backgroundSize: '300% 300%'
                   }}
-                  onClick={() => setMobileMenuOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
