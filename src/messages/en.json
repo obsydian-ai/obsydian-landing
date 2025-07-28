@@ -16,6 +16,7 @@
     "successTitle": "Thanks for your submit!",
     "successMessage": "You will be contacted by the Obsydian's team!",
     "closeButton": "Close",
+    "companyName": "Obsydian.",
     "metrics": {
       "fasterCustoms": "Faster Customs Clearance",
       "reductionManual": "Reduction in Manual Data Sync Tasks",
@@ -72,7 +73,12 @@
       "pending": "Pending:",
       "inPreparation": "In preparation:",
       "preparedToday": "Prepared today:",
-      "integrations": "Integrations"
+      "integrations": "Integrations",
+      "dates": {
+        "orderCreated": "Mar 23, 12:32",
+        "orderPrepared": "Mar 22, 14:30",
+        "orderOnWay": "Mar 20, 10:22"
+      }
     }
   },
   "VentureStudioSection": {
@@ -126,10 +132,39 @@
     "message": "Oops! Page not found",
     "returnHome": "Return to Home"
   },
+  "BookDemo": {
+    "badge": "Innovation in Motion",
+    "headline": "Crafting the",
+    "headlineAutonomous": "autonomous",
+    "headlineBrain": "brain",
+    "headlineSuffix": "of the supply chain",
+    "description": "Transform your supply chain operations with AI-powered intelligence. Discover how Obsydian revolutionizes logistics through autonomous decision-making.",
+    "formTitle": "Talk to an Expert",
+    "formSubtitle": "Get personalized insights for your supply chain challenges",
+    "emailPlaceholder": "Enter your work email",
+    "submitButton": "Submit",
+    "privacyText": "By submitting, you agree to our",
+    "privacyLink": "Privacy Policy",
+    "successTitle": "Thanks for your request!",
+    "successMessage": "You will be contacted by the Obsydian's team!",
+    "closeButton": "Close",
+    "companyName": "Obsydian.",
+    "alerts": {
+      "emailRequired": "Please enter your email to schedule a call."
+    }
+  },
   "MetricsSection": {
     "badge": "AI-Powered Results",
     "title": "Measurable Impact",
     "subtitle": "Our AI agents deliver concrete results that transform your logistics operations and drive significant cost savings.",
-    "ctaButton": "See How It Works"
+    "ctaButton": "See How It Works",
+    "metrics": {
+      "hoursSaved": "Hours Saved per Week per Operator",
+      "customsClearance": "Faster Customs Clearance Processing by",
+      "invoiceProcessing": "Reduction in Invoice Processing Time by",
+      "invoiceAccuracy": "Accuracy Rate in Invoice Validation by",
+      "manualTasks": "Reduction in Manual Data Entry Tasks by",
+      "claimsRecovered": "Increase in Claims Recovery Rate by"
+    }
   }
 } 

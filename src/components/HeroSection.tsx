@@ -67,7 +67,7 @@ const HeroSection = () => {
               className="space-y-4"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-white">
-                <span className="relative inline-block py-2 px-6 min-w-[14rem] sm:min-w-[18rem] lg:min-w-[24rem] xl:min-w-[28rem]">
+                <span className="relative inline-block py-2">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
@@ -96,9 +96,11 @@ const HeroSection = () => {
                       {rotatingWords[currentWordIndex]}
                     </motion.span>
                   </AnimatePresence>
-                  {/* Invisible span to maintain consistent height */}
+                  {/* Use the longest word to set the container width */}
                   <span className="invisible font-black">
-                    {rotatingWords[0]}
+                    {rotatingWords.reduce((longest, current) => 
+                      current.length > longest.length ? current : longest, ''
+                    )}
                   </span>
                 </span>
                 <br />
@@ -165,7 +167,7 @@ const HeroSection = () => {
 
           {/* Right Column - Visual Cards */}
           <div className="grid grid-cols-2 gap-4 lg:gap-6">
-            {/* Time Saved */}
+            {/* Buyer Satisfaction */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -173,24 +175,10 @@ const HeroSection = () => {
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-white text-sm font-medium">Time saved</h3>
-                <Clock className="w-4 h-4 text-primary-400" />
+                <h3 className="text-white text-sm font-medium">{t('analytics.buyerSatisfaction')}</h3>
+                <Star className="w-4 h-4 text-warning-400 fill-warning-400" />
               </div>
-              <div className="text-2xl font-bold text-white pb-1">6h</div>
-            </motion.div>
-
-            {/* Cost Reduction */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-white text-sm font-medium">Cost saved</h3>
-                <span className="text-success-400 text-base font-bold h-4 w-4 flex items-center justify-center">€</span>
-              </div>
-              <div className="text-2xl font-bold text-white">9,650€</div>
+              <div className="text-2xl font-bold text-white">96%</div>
             </motion.div>
 
             {/* Analytics */}
@@ -203,31 +191,31 @@ const HeroSection = () => {
               <h3 className="text-white text-sm font-medium mb-3">{t('analytics.analytics')}</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">Shipments processed</span>
+                  <span className="text-neutral-300 text-xs">{t('analytics.impressions')}</span>
                   <span className="text-white text-sm font-medium">31,827</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
-                  <div className="bg-primary-400 h-1 rounded-full" style={{ width: '85%' }}></div>
+                  <div className="bg-primary-400 h-1 rounded-full" style={{ width: '75%' }}></div>
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-neutral-300 text-xs">Customs cleared</span>
+                  <span className="text-neutral-300 text-xs">{t('analytics.trackingPage')}</span>
                   <span className="text-white text-sm font-medium">9,473</span>
                 </div>
                 <div className="w-full bg-neutral-600/30 rounded-full h-1">
-                  <div className="bg-accent-400 h-1 rounded-full" style={{ width: '70%' }}></div>
+                  <div className="bg-accent-400 h-1 rounded-full" style={{ width: '60%' }}></div>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Avg delivery time:</span>
-                  <span className="text-white font-medium">2.3 days</span>
+                  <span className="text-neutral-300">{t('analytics.avgVisits')}</span>
+                  <span className="text-white font-medium">4.3</span>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-neutral-300">Cost savings:</span>
+                  <span className="text-neutral-300">{t('analytics.marketingCTR')}</span>
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 bg-success-400 rounded-full"></div>
-                    <span className="text-white font-medium">24%</span>
+                    <span className="text-white font-medium">4%</span>
                   </div>
                 </div>
               </div>
@@ -241,87 +229,12 @@ const HeroSection = () => {
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
             >
               <h3 className="text-white text-sm font-medium mb-3">{t('analytics.carriers')}</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {/* DHL */}
-                <div className="w-12 h-12 bg-yellow-500 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/Kp13HQyR/dhl-1-1.png" 
-                    alt="DHL" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* UPS */}
-                <div className="w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/1fh03qyZ/images-4.png" 
-                    alt="UPS" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* FedEx */}
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/tP1stPbX/fedex-icon-filled-256.png" 
-                    alt="FedEx" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* TNT */}
-                <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/p6sFj9L3/7a415876ffd726129f55e506993e9a56.png" 
-                    alt="TNT" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* DPD */}
-                <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/mrzts1NV/dpd-courier-service.jpg" 
-                    alt="DPD" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* GLS */}
-                <div className="w-12 h-12 bg-green-600 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/bM995Rjt/images-5.png" 
-                    alt="GLS" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* DB Schenker */}
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/LhYws3QX/db-schenker-logo.webp" 
-                    alt="DB Schenker" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* Chronopost */}
-                <div className="w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/cS15p433/channels4-profile.jpg" 
-                    alt="Chronopost" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
-                
-                {/* Maersk */}
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/21V6VMDq/maersk-logo-0.png" 
-                    alt="Maersk" 
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                </div>
+              <div className="grid grid-cols-3 gap-2">
+                {['DHL', 'UPS', 'FedEx', 'TNT', 'DPD', 'GLS', 'Colissimo', 'Chronopost', 'Mondial Relay'].map((carrier, index) => (
+                  <div key={carrier} className="w-8 h-8 bg-white/20 rounded flex items-center justify-center">
+                    <span className="text-white text-xs font-medium">{carrier.charAt(0)}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -337,17 +250,17 @@ const HeroSection = () => {
                 <div className="flex items-center gap-2 text-xs">
                   <RefreshCw className="w-3 h-3 text-primary-400" />
                   <span className="text-neutral-300">{t('analytics.orderCreated')}</span>
-                  <span className="text-white ml-auto">Mar 23, 12:32</span>
+                  <span className="text-white ml-auto">{t('analytics.dates.orderCreated')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
                   <Home className="w-3 h-3 text-success-400" />
                   <span className="text-neutral-300">{t('analytics.orderPrepared')}</span>
-                  <span className="text-white ml-auto">Mar 22, 14:30</span>
+                  <span className="text-white ml-auto">{t('analytics.dates.orderPrepared')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
                   <Truck className="w-3 h-3 text-warning-400" />
                   <span className="text-neutral-300">{t('analytics.orderOnWay')}</span>
-                  <span className="text-white ml-auto">Mar 20, 10:22</span>
+                  <span className="text-white ml-auto">{t('analytics.dates.orderOnWay')}</span>
                 </div>
               </div>
             </motion.div>
@@ -395,60 +308,12 @@ const HeroSection = () => {
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 col-span-2"
             >
               <h3 className="text-white text-sm font-medium mb-3">{t('analytics.integrations')}</h3>
-              <div className="grid grid-cols-6 gap-3 w-full">
-                {/* SAP */}
-                <div className="w-full h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/zDFbWcD/SAP-Logo-svg.png" 
-                    alt="SAP" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
-                
-                {/* Oracle */}
-                <div className="w-full h-12 bg-red-600 rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/fzkTNCWp/images-6.png" 
-                    alt="Oracle" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
-                
-                {/* Microsoft Dynamics */}
-                <div className="w-full h-12 bg-green-600 rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/k26BPP1W/Dynamics-365-logo.jpg" 
-                    alt="Microsoft Dynamics" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
-                
-                {/* NetSuite */}
-                <div className="w-full h-12 bg-white rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/HTxMK5Dw/Net-Suite-Logo.png" 
-                    alt="NetSuite" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
-                
-                {/* Blue Yonder */}
-                <div className="w-full h-12 bg-white rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/qLGF9SmQ/Shopify-logo-2018-svg.png" 
-                    alt="Shopify" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
-                
-                {/* Manhattan */}
-                <div className="w-full h-12 bg-white rounded-lg flex items-center justify-center">
-                  <img 
-                    src="https://i.ibb.co/NcyWnbD/1-s-F3-Hm25-Vf25-D3t494-To1-XA.png" 
-                    alt="Manhattan" 
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                </div>
+              <div className="grid grid-cols-6 gap-2">
+                {['Shopify', 'WooCommerce', 'Magento', 'PrestaShop', 'BigCommerce', 'Klaviyo'].map((platform, index) => (
+                  <div key={platform} className="w-8 h-8 bg-white/20 rounded flex items-center justify-center">
+                    <span className="text-white text-xs font-medium">{platform.charAt(0)}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>

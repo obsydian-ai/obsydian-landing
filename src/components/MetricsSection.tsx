@@ -24,7 +24,7 @@ const MetricsSection = () => {
       id: 'hours-saved',
       value: '8+',
       suffix: ' Hours',
-      description: 'Hours Saved per Week per Operator',
+      description: t('metrics.hoursSaved'),
       icon: <Clock className="w-4 h-4" />,
       color: 'text-neutral-700',
       gradient: 'from-neutral-600 to-neutral-700'
@@ -33,7 +33,7 @@ const MetricsSection = () => {
       id: 'customs-clearance',
       value: '35',
       suffix: '%',
-      description: 'Faster Customs Clearance Processing by',
+      description: t('metrics.customsClearance'),
       icon: <TrendingUp className="w-4 h-4" />,
       color: 'text-emerald-600',
       gradient: 'from-emerald-500 to-emerald-600'
@@ -42,7 +42,7 @@ const MetricsSection = () => {
       id: 'invoice-processing',
       value: '92',
       suffix: '%',
-      description: 'Reduction in Invoice Processing Time by',
+      description: t('metrics.invoiceProcessing'),
       icon: <FileText className="w-4 h-4" />,
       color: 'text-amber-600',
       gradient: 'from-amber-500 to-amber-600'
@@ -51,7 +51,7 @@ const MetricsSection = () => {
       id: 'invoice-accuracy',
       value: '98',
       suffix: '%',
-      description: 'Accuracy Rate in Invoice Validation by',
+      description: t('metrics.invoiceAccuracy'),
       icon: <CheckCircle className="w-4 h-4" />,
       color: 'text-slate-700',
       gradient: 'from-slate-600 to-slate-700'
@@ -60,7 +60,7 @@ const MetricsSection = () => {
       id: 'manual-tasks',
       value: '90',
       suffix: '%',
-      description: 'Reduction in Manual Data Entry Tasks by',
+      description: t('metrics.manualTasks'),
       icon: <Zap className="w-4 h-4" />,
       color: 'text-blue-600',
       gradient: 'from-blue-500 to-blue-600'
@@ -69,7 +69,7 @@ const MetricsSection = () => {
       id: 'claims-recovered',
       value: '+72',
       suffix: '%',
-      description: 'Increase in Claims Recovery Rate by',
+      description: t('metrics.claimsRecovered'),
       icon: <Target className="w-4 h-4" />,
       color: 'text-indigo-600',
       gradient: 'from-indigo-500 to-indigo-600'

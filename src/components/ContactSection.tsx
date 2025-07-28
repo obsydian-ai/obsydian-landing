@@ -18,7 +18,7 @@ const ContactSection = () => {
 
   const handleSubmit = async () => {
     if (!email) {
-      alert('Please enter your email to get in touch.');
+      alert(t('alerts.emailRequired'));
       return;
     }
 
@@ -175,7 +175,7 @@ const ContactSection = () => {
             {/* Obsydian Logo */}
             <div className="flex items-center justify-center mx-auto mb-6">
               <div className="flex items-center">
-                <span className="text-white text-2xl font-bold">Obsydian.</span>
+                <span className="text-white text-2xl font-bold">{t('companyName')}</span>
                 <div className="w-2 h-2 bg-[#83B0D9] rounded-full ml-1"></div>
               </div>
             </div>

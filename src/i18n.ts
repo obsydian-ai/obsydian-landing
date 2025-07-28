@@ -28,7 +28,9 @@ i18n
         ProductFeatureSection: esTranslation.ProductFeatureSection,
         ContactSection: esTranslation.ContactSection,
         Footer: esTranslation.Footer,
-        NotFound: esTranslation.NotFound
+        NotFound: esTranslation.NotFound,
+        BookDemo: esTranslation.BookDemo,
+        MetricsSection: esTranslation.MetricsSection
       },
       en: { // English resources
         Navbar: enTranslation.Navbar,      
@@ -38,7 +40,9 @@ i18n
         ProductFeatureSection: enTranslation.ProductFeatureSection,
         ContactSection: enTranslation.ContactSection,
         Footer: enTranslation.Footer,
-        NotFound: enTranslation.NotFound
+        NotFound: enTranslation.NotFound,
+        BookDemo: enTranslation.BookDemo,
+        MetricsSection: enTranslation.MetricsSection
       }
     },
     // No longer need backend configuration
@@ -54,7 +58,9 @@ i18n
       'ProductFeatureSection',
       'ContactSection',
       'Footer',
-      'NotFound'
+      'NotFound',
+      'BookDemo',
+      'MetricsSection'
     ], 
     defaultNS: 'Navbar', 
     // React specific configuration

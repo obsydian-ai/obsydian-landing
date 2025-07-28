@@ -16,6 +16,7 @@
     "successTitle": "¡Gracias por tu envío!",
     "successMessage": "¡Serás contactado por el equipo de Obsydian!",
     "closeButton": "Cerrar",
+    "companyName": "Obsydian.",
     "metrics": {
       "fasterCustoms": "Despacho de Aduanas Más Rápido",
       "reductionManual": "Reducción en Tareas Manuales de Sincronización",
@@ -72,7 +73,12 @@
       "pending": "Pendiente:",
       "inPreparation": "En preparación:",
       "preparedToday": "Preparado hoy:",
-      "integrations": "Integraciones"
+      "integrations": "Integraciones",
+      "dates": {
+        "orderCreated": "Mar 23, 12:32",
+        "orderPrepared": "Mar 22, 14:30",
+        "orderOnWay": "Mar 20, 10:22"
+      }
     }
   },
   "VentureStudioSection": {
@@ -126,10 +132,39 @@
     "message": "¡Ups! Página no encontrada",
     "returnHome": "Volver al Inicio"
   },
+  "BookDemo": {
+    "badge": "Innovación en Movimiento",
+    "headline": "Creando el",
+    "headlineAutonomous": "cerebro",
+    "headlineBrain": "autónomo",
+    "headlineSuffix": "de la cadena de suministro",
+    "description": "Transforma tus operaciones de cadena de suministro con inteligencia impulsada por IA. Descubre cómo Obsydian revoluciona la logística a través de la toma de decisiones autónoma.",
+    "formTitle": "Habla con un Experto",
+    "formSubtitle": "Obtén insights personalizados para tus desafíos de cadena de suministro",
+    "emailPlaceholder": "Ingresa tu email de trabajo",
+    "submitButton": "Enviar",
+    "privacyText": "Al enviar, aceptas nuestra",
+    "privacyLink": "Política de Privacidad",
+    "successTitle": "¡Gracias por tu solicitud!",
+    "successMessage": "¡Serás contactado por el equipo de Obsydian!",
+    "closeButton": "Cerrar",
+    "companyName": "Obsydian.",
+    "alerts": {
+      "emailRequired": "Por favor ingresa tu email para programar una llamada."
+    }
+  },
   "MetricsSection": {
     "badge": "Resultados con IA",
     "title": "Impacto Medible",
     "subtitle": "Nuestros agentes de IA entregan resultados concretos que transforman tus operaciones logísticas y generan ahorros significativos.",
-    "ctaButton": "Ver Cómo Funciona"
+    "ctaButton": "Ver Cómo Funciona",
+    "metrics": {
+      "hoursSaved": "Horas Ahorradas por Semana por Operador",
+      "customsClearance": "Procesamiento de Despacho de Aduanas Más Rápido por",
+      "invoiceProcessing": "Reducción en Tiempo de Procesamiento de Facturas por",
+      "invoiceAccuracy": "Tasa de Precisión en Validación de Facturas por",
+      "manualTasks": "Reducción en Tareas Manuales de Entrada de Datos por",
+      "claimsRecovered": "Aumento en Tasa de Recuperación de Reclamaciones por"
+    }
   }
 } 

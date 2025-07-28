@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, Zap } from 'lucide-react';
 
 const BookDemo = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('BookDemo');
   const [email, setEmail] = useState<string>('');
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const handleScheduleCall = async () => {
     if (!email) {
-      alert('Please enter your email to schedule a call.');
+      alert(t('alerts.emailRequired'));
       return;
     }
 
@@ -82,20 +82,20 @@ const BookDemo = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
               <Zap size={16} />
-              Innovation in Motion
+              {t('badge')}
             </div>
 
             {/* Headline */}
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Crafting the{' '}
-              <span className="text-[#83B0D9]">autonomous</span>{' '}
-              <span className="text-purple-600">brain</span>{' '}
-              of the supply chain
+              {t('headline')}{' '}
+              <span className="text-[#83B0D9]">{t('headlineAutonomous')}</span>{' '}
+              <span className="text-purple-600">{t('headlineBrain')}</span>{' '}
+              {t('headlineSuffix')}
             </h2>
 
             {/* Description */}
             <p className="text-lg text-gray-600 leading-relaxed">
-              Transform your supply chain operations with AI-powered intelligence. Discover how Obsydian revolutionizes logistics through autonomous decision-making.
+              {t('description')}
             </p>
 
           </motion.div>
@@ -110,10 +110,10 @@ const BookDemo = () => {
             {/* Form Header */}
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Talk to an Expert
+                {t('formTitle')}
               </h3>
               <p className="text-gray-600 text-sm">
-                Get personalized insights for your supply chain challenges
+                {t('formSubtitle')}
               </p>
             </div>
 
@@ -121,7 +121,7 @@ const BookDemo = () => {
             <div className="mb-6">
               <input
                 type="email"
-                placeholder="Enter your work email"
+                placeholder={t('emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#83B0D9] focus:border-transparent outline-none transition-all"
@@ -140,15 +140,15 @@ const BookDemo = () => {
                 }
               `}
             >
-              Submit
+              {t('submitButton')}
               <ArrowRight size={18} />
             </button>
 
             {/* Privacy Policy */}
             <p className="text-xs text-gray-600 text-center mt-4">
-              By submitting, you agree to our{' '}
+              {t('privacyText')}{' '}
               <a href="#" className="text-[#83B0D9] hover:underline">
-                Privacy Policy
+                {t('privacyLink')}
               </a>
             </p>
           </motion.div>
@@ -172,17 +172,17 @@ const BookDemo = () => {
             {/* Obsydian Logo */}
             <div className="flex items-center justify-center mx-auto mb-6">
               <div className="flex items-center">
-                <span className="text-black text-2xl font-bold">Obsydian.</span>
+                <span className="text-black text-2xl font-bold">{t('companyName')}</span>
                 <div className="w-2 h-2 bg-[#83B0D9] rounded-full ml-1"></div>
               </div>
             </div>
 
             {/* Success Message */}
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Thanks for your submit!
+              {t('successTitle')}
             </h3>
             <p className="text-gray-600 mb-6">
-              You will be contacted by the Obsydian's team!
+              {t('successMessage')}
             </p>
 
             {/* Close Button */}
@@ -190,7 +190,7 @@ const BookDemo = () => {
               onClick={() => setShowSuccess(false)}
               className="bg-[#83B0D9] text-white px-6 py-2 rounded-lg hover:bg-[#6B9BC9] transition-colors"
             >
-              Close
+              {t('closeButton')}
             </button>
           </motion.div>
         </motion.div>
