@@ -125,5 +125,11 @@
     "title": "404",
     "message": "¡Ups! Página no encontrada",
     "returnHome": "Volver al Inicio"
+  },
+  "MetricsSection": {
+    "badge": "Resultados con IA",
+    "title": "Impacto Medible",
+    "subtitle": "Nuestros agentes de IA entregan resultados concretos que transforman tus operaciones logísticas y generan ahorros significativos.",
+    "ctaButton": "Ver Cómo Funciona"
   }
 } 

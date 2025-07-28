@@ -93,6 +93,20 @@ export default {
           900: '#78350f',
           950: '#451a03',
         },
+        // Info colors - unified blue
+        info: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
         // Neutral colors for text and backgrounds
         neutral: {
           50: '#fafafa',

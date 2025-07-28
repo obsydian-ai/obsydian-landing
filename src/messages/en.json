@@ -125,5 +125,11 @@
     "title": "404",
     "message": "Oops! Page not found",
     "returnHome": "Return to Home"
+  },
+  "MetricsSection": {
+    "badge": "AI-Powered Results",
+    "title": "Measurable Impact",
+    "subtitle": "Our AI agents deliver concrete results that transform your logistics operations and drive significant cost savings.",
+    "ctaButton": "See How It Works"
   }
 } 
