@@ -244,8 +244,12 @@ const MetricsSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 bg-gradient-to-r from-neutral-900 via-primary-600 to-neutral-900 bg-clip-text text-transparent"
             >
-              Real Value,<br />
-              Real Fast.
+              {t('headline').split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t('headline').split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </motion.h2>
 
             {/* Subtitle */}
@@ -255,7 +259,7 @@ const MetricsSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-neutral-600 leading-relaxed"
             >
-              Drive operational excellence and reduce costs in 90 days with AI agents for supply chain.
+              {t('description')}
             </motion.p>
           </motion.div>
         </div>
