@@ -54,30 +54,36 @@ const FooterNew = () => {
               {t('services')}
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link 
-                  to="/#services" 
-                  className="text-neutral-400 hover:text-white transition-all duration-300"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {t('auditingSolution')}
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#mission-section" 
-                  className="text-neutral-400 hover:text-white transition-all duration-300"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  {t('ourSolution')}
-                </Link>
-              </li>
+              {[
+                { key: 'predictiveDemand', featureId: 1 },
+                { key: 'documentIntelligence', featureId: 2 },
+                { key: 'systemsIntegration', featureId: 3 },
+                { key: 'carrierSourcing', featureId: 4 },
+                { key: 'shipmentManager', featureId: 5 },
+                { key: 'customsClearance', featureId: 6 },
+                { key: 'trackingAlerts', featureId: 7 },
+                { key: 'freightAudit', featureId: 8 }
+              ].map((service, index) => (
+                <li key={service.key}>
+                  <Link 
+                    to="/#services" 
+                    className="text-neutral-400 hover:text-white transition-all duration-300"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const servicesSection = document.getElementById('services');
+                      if (servicesSection) {
+                        servicesSection.scrollIntoView({ behavior: 'smooth' });
+                        // Wait for scroll to complete then scroll to specific feature
+                        setTimeout(() => {
+                          document.getElementById(`feature-${service.featureId}`)?.scrollIntoView({ behavior: 'smooth' });
+                        }, 1000);
+                      }
+                    }}
+                  >
+                    {t(service.key)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
