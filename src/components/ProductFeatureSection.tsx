@@ -23,46 +23,39 @@ const featuresData: FeatureData[] = [
     id: 2,
     titleKey: "feature2Title",
     descriptionKey: "feature2Desc",
-    icon: <FileText className="w-8 h-8" />,
+    icon: <Bot className="w-8 h-8" />,
     image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
     id: 3,
-    titleKey: "feature3Title",
-    descriptionKey: "feature3Desc",
-    icon: <Link className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-warning-50 to-warning-100"
-  },
-  {
-    id: 4,
     titleKey: "feature4Title",
     descriptionKey: "feature4Desc",
     icon: <Users className="w-8 h-8" />,
     image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
-    id: 5,
+    id: 4,
     titleKey: "feature5Title",
     descriptionKey: "feature5Desc",
     icon: <Package className="w-8 h-8" />,
     image: "bg-gradient-to-br from-primary-50 to-primary-100"
   },
   {
-    id: 6,
+    id: 5,
     titleKey: "feature6Title",
     descriptionKey: "feature6Desc",
     icon: <Globe className="w-8 h-8" />,
     image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
-    id: 7,
+    id: 6,
     titleKey: "feature7Title",
     descriptionKey: "feature7Desc",
     icon: <MapPin className="w-8 h-8" />,
     image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
-    id: 8,
+    id: 7,
     titleKey: "feature8Title",
     descriptionKey: "feature8Desc",
     icon: <Receipt className="w-8 h-8" />,
@@ -171,24 +164,21 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                         <TrendingUp className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
                       )}
                       {feature.id === 2 && (
-                        <FileText className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
+                        <Bot className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
                       )}
                       {feature.id === 3 && (
-                        <Link className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
-                      )}
-                      {feature.id === 4 && (
                         <Users className="w-full h-full text-accent-500 group-hover/btn:text-accent-400 transition-colors" />
                       )}
-                      {feature.id === 5 && (
+                      {feature.id === 4 && (
                         <Package className="w-full h-full text-primary-500 group-hover/btn:text-primary-400 transition-colors" />
                       )}
-                      {feature.id === 6 && (
+                      {feature.id === 5 && (
                         <Globe className="w-full h-full text-success-500 group-hover/btn:text-success-400 transition-colors" />
                       )}
-                      {feature.id === 7 && (
+                      {feature.id === 6 && (
                         <MapPin className="w-full h-full text-accent-500 group-hover/btn:text-accent-400 transition-colors" />
                       )}
-                      {feature.id === 8 && (
+                      {feature.id === 7 && (
                         <Receipt className="w-full h-full text-warning-500 group-hover/btn:text-warning-400 transition-colors" />
                       )}
                     </div>
@@ -280,89 +270,109 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 2 && (
-                    // Logistics Document Interpreter
+                    // B2B Order Processing AI Agent
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
-                          <linearGradient id="doc-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <linearGradient id="b2b-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#22c55e" stopOpacity="0.2"/>
                             <stop offset="100%" stopColor="#16a34a" stopOpacity="0.1"/>
                           </linearGradient>
-                          <filter id="doc-shadow">
+                          <filter id="b2b-shadow">
                             <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.1"/>
                           </filter>
                         </defs>
 
-                        {/* Documents Stack */}
+                        {/* Email Inbox */}
                         <g className="animate-float">
-                          {[0, 1, 2].map((i) => (
-                            <g key={i} transform={`translate(${i * 8}, ${i * 5})`} className={`animate-fade-in [animation-delay:${i * 200}ms]`}>
+                          <rect 
+                            x="40" 
+                            y="40" 
+                            width="120" 
+                            height="120" 
+                            rx="8" 
+                            fill="url(#b2b-gradient)" 
+                            className="text-emerald-100 shadow-lg"
+                          />
+                          <text x="100" y="60" textAnchor="middle" className="text-[10px] fill-emerald-700 font-bold">Inbox</text>
+                          {/* Email messages */}
+                          {[70, 85, 100, 115].map((y, i) => (
+                            <g key={i} className={`animate-fade-in [animation-delay:${i * 150}ms]`}>
                               <rect 
-                                x="60" 
-                                y="40" 
-                                width="120" 
-                                height="140" 
-                                rx="8" 
-                                fill="url(#doc-gradient)" 
-                                className="text-emerald-100 shadow-lg"
-                              />
-                              {/* Document lines */}
-                              {[60, 80, 100, 120, 140, 160].map((y, j) => (
-                                <line 
-                                  key={j}
-                                  x1="70" 
-                                  y1={y} 
-                                  x2={170 - j * 3} 
-                                  y2={y} 
-                                  stroke="currentColor" 
-                                  strokeWidth="2" 
-                                  className="text-emerald-300"
-                                />
-                              ))}
-                              {/* Document type icons */}
-                              <circle 
-                                cx="140" 
-                                cy="70" 
-                                r="8" 
+                                x="50" 
+                                y={y} 
+                                width="100" 
+                                height="15" 
+                                rx="2" 
                                 fill="currentColor" 
-                                className="text-emerald-400"
+                                className="text-emerald-300 opacity-60"
                               />
+                              <text x="55" y={y + 10} className="text-[6px] fill-emerald-700">Order #{1000 + i}</text>
                             </g>
                           ))}
                         </g>
 
-                        {/* AI Processing */}
+                        {/* AI Processing Hub */}
                         <g className="animate-bounce-slow">
-                          <circle cx="280" cy="100" r="35" stroke="url(#doc-gradient)" strokeWidth="2" fill="none" className="animate-spin-slow"/>
-                          <path d="M270 100 L280 90 L290 100 L280 110 Z" fill="currentColor" className="text-emerald-400"/>
-                          <text x="280" y="140" textAnchor="middle" className="text-[10px] fill-emerald-600 font-medium">AI</text>
+                          <circle cx="200" cy="100" r="40" stroke="url(#b2b-gradient)" strokeWidth="3" fill="none" className="animate-spin-slow"/>
+                          <path d="M190 100 L200 90 L210 100 L200 110 Z" fill="currentColor" className="text-emerald-400"/>
+                          <text x="200" y="150" textAnchor="middle" className="text-[10px] fill-emerald-600 font-medium">AI Agent</text>
                         </g>
 
-                        {/* Data Flow */}
-                        <g className="animate-bounce-x">
-                          <path 
-                            d="M200 100 L250 100 M240 90 L250 100 L240 110" 
-                            stroke="currentColor" 
-                            strokeWidth="3" 
-                            fill="none"
-                            className="text-emerald-400"
-                          />
-                        </g>
-
-                        {/* System Update */}
-                        <g className="animate-fade-in">
+                        {/* Product Matching */}
+                        <g className="animate-pulse">
                           <rect 
-                            x="300" 
+                            x="280" 
                             y="60" 
-                            width="80" 
+                            width="100" 
                             height="80" 
                             rx="8" 
                             fill="currentColor" 
                             className="text-emerald-200 opacity-60"
                           />
-                          <text x="340" y="85" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">ERP</text>
-                          <text x="340" y="100" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">TMS</text>
-                          <text x="340" y="115" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">WMS</text>
+                          <text x="330" y="75" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">Product</text>
+                          <text x="330" y="90" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">Matching</text>
+                          <text x="330" y="105" textAnchor="middle" className="text-[6px] fill-emerald-600">SKU: ABC123</text>
+                          <text x="330" y="120" textAnchor="middle" className="text-[6px] fill-emerald-600">Qty: 50</text>
+                        </g>
+
+                        {/* ERP Integration */}
+                        <g className="animate-fade-in">
+                          <rect 
+                            x="280" 
+                            y="150" 
+                            width="100" 
+                            height="30" 
+                            rx="6" 
+                            fill="currentColor" 
+                            className="text-emerald-300 opacity-80"
+                          />
+                          <text x="330" y="170" textAnchor="middle" className="text-[8px] fill-emerald-700 font-bold">ERP</text>
+                        </g>
+
+                        {/* Connection Lines */}
+                        <g className="animate-bounce-x">
+                          <path 
+                            d="M160 100 L180 100 M170 90 L180 100 L170 110" 
+                            stroke="currentColor" 
+                            strokeWidth="3" 
+                            fill="none"
+                            className="text-emerald-400"
+                          />
+                          <path 
+                            d="M240 100 L260 100 M250 90 L260 100 L250 110" 
+                            stroke="currentColor" 
+                            strokeWidth="3" 
+                            fill="none"
+                            className="text-emerald-400"
+                          />
+                          <path 
+                            d="M330 140 L330 150 M325 145 L330 150 L335 145" 
+                            stroke="currentColor" 
+                            strokeWidth="2" 
+                            fill="none"
+                            className="text-emerald-400"
+                          />
                         </g>
 
                         {/* Elementos decorativos */}
@@ -374,7 +384,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 3 && (
-                    // Universal Integration Layer
+                    // Smart Carrier Sourcing
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
@@ -473,7 +483,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 4 && (
-                    // Carrier Intelligence & Benchmarking
+                    // Autonomous Shipment Manager
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
@@ -557,7 +567,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 5 && (
-                    // Smart Shipment Manager
+                    // Customs Clearance AI Agent
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
@@ -633,7 +643,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 6 && (
-                    // Customs Agent-as-a-Service
+                    // Real-Time Tracking & Alerts
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
@@ -696,7 +706,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, { feature: Feature; index: 
                     </div>
                   )}
                   {feature.id === 7 && (
-                    // Proactive Shipment Tracking & Alerts
+                    // Freight Audit & Claims AI Agent
                     <div className="w-[85%] h-[70%] relative bg-transparent">
                       <svg className="w-full h-full" viewBox="0 0 400 200">
                         <defs>
@@ -1029,13 +1039,13 @@ const ProductFeatureSection: React.FC = () => {
       ref={sectionRef}
       id="services" 
       className="relative bg-black mt-8 md:mt-12"
-      style={{ height: `${100 * features.length}vh` }}
+      style={{ height: `${100 * 7}vh` }}
     >
       {/* Scroll container that takes up full height for all cards */}
       <div 
         ref={stickyContainerRef}
         className="relative w-full"
-        style={{ height: `${100 * features.length}vh` }}
+        style={{ height: `${100 * 7}vh` }}
       >
         {/* Sticky container that stays in viewport */}
         <div className="sticky top-0 h-screen w-full bg-black">
