@@ -16,48 +16,41 @@ const featuresData: FeatureData[] = [
     id: 1,
     titleKey: "feature1Title",
     descriptionKey: "feature1Desc",
-    icon: <TrendingUp className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-primary-50 to-primary-100"
+    icon: <Bot className="w-8 h-8" />,
+    image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
     id: 2,
     titleKey: "feature2Title",
     descriptionKey: "feature2Desc",
-    icon: <Bot className="w-8 h-8" />,
-    image: "bg-gradient-to-br from-success-50 to-success-100"
-  },
-  {
-    id: 3,
-    titleKey: "feature4Title",
-    descriptionKey: "feature4Desc",
     icon: <Users className="w-8 h-8" />,
     image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
-    id: 4,
-    titleKey: "feature5Title",
-    descriptionKey: "feature5Desc",
+    id: 3,
+    titleKey: "feature3Title",
+    descriptionKey: "feature3Desc",
     icon: <Package className="w-8 h-8" />,
     image: "bg-gradient-to-br from-primary-50 to-primary-100"
   },
   {
-    id: 5,
-    titleKey: "feature6Title",
-    descriptionKey: "feature6Desc",
+    id: 4,
+    titleKey: "feature4Title",
+    descriptionKey: "feature4Desc",
     icon: <Globe className="w-8 h-8" />,
     image: "bg-gradient-to-br from-success-50 to-success-100"
   },
   {
-    id: 6,
-    titleKey: "feature7Title",
-    descriptionKey: "feature7Desc",
+    id: 5,
+    titleKey: "feature5Title",
+    descriptionKey: "feature5Desc",
     icon: <MapPin className="w-8 h-8" />,
     image: "bg-gradient-to-br from-accent-50 to-accent-100"
   },
   {
-    id: 7,
-    titleKey: "feature8Title",
-    descriptionKey: "feature8Desc",
+    id: 6,
+    titleKey: "feature6Title",
+    descriptionKey: "feature6Desc",
     icon: <Receipt className="w-8 h-8" />,
     image: "bg-gradient-to-br from-warning-50 to-warning-100"
   }

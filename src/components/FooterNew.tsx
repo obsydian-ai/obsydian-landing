@@ -55,14 +55,12 @@ const FooterNew = () => {
             </h3>
             <ul className="space-y-3">
               {[
-                { key: 'predictiveDemand', featureId: 1 },
-                { key: 'documentIntelligence', featureId: 2 },
-                { key: 'systemsIntegration', featureId: 3 },
-                { key: 'carrierSourcing', featureId: 4 },
-                { key: 'shipmentManager', featureId: 5 },
-                { key: 'customsClearance', featureId: 6 },
-                { key: 'trackingAlerts', featureId: 7 },
-                { key: 'freightAudit', featureId: 8 }
+                { key: 'b2bOrderProcessing', featureId: 1 },
+                { key: 'carrierSourcing', featureId: 2 },
+                { key: 'shipmentManager', featureId: 3 },
+                { key: 'customsClearance', featureId: 4 },
+                { key: 'trackingAlerts', featureId: 5 },
+                { key: 'freightAudit', featureId: 6 }
               ].map((service, index) => (
                 <li key={service.key}>
                   <Link 
